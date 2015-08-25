@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scheduler">
+	<resultMap type="recruitbvo" id="boardRM">      
+      <result property="recruitNo" column="recruit_no"/>         
+      <result property="recruitingStart" column="recruiting_start" />       
+      <result property="recruitingEnd" column="recruiting_end" />     
+      <result property="postDate" column="time_posted"/>  
+      <result property="memberNo" column="member_no"/>
+      <result property="volunteeringStartDate" column="volunteering_start_date"/>
+      <result property="volunteeringEndDate" column="volunteering_end_date"/>
+      <result property="volunteeringStartTime" column="volunteering_start_time"/>
+      <result property="volunteeringEndTime" column="volunteering_end_time"/>
+   </resultMap>
+	<select id="findSchedulerList" resultMap="boardRM" parameterType="sdvo">
+		select recruit_no, title, field, location, age,recruitingStart as checkDate,volunteering_start_time,volunteering_end_time,recruiting_end,volunteering_start_date,volunteering_end_date
+		from(select recruit_no, title, field,location, age,volunteering_start_time, volunteering_end_time,recruiting_start as recruitingStart,recruiting_end,volunteering_start_date,volunteering_end_date from recruit order by recruit_no desc)
+		<where>
+			<if test="field!='' ">
+				AND field=#{field}
+			</if>
+			<if test="location!='' ">
+				AND location=#{location}
+			</if>
+			<if test="volunteeringStartTime!='' ">
+  			<![CDATA[
+   			 AND volunteering_start_time>=#{volunteeringStartTime} 
+    		 ]]>
+			</if>
+			<if test="volunteeringEndTime!='' ">
+  			<![CDATA[
+   			 AND volunteering_end_time<=#{volunteeringEndTime}
+    		 ]]>
+			</if>
+		</where>
+	</select>
+	
+	
+	
+	<select id="findSearchList" resultMap="boardRM" parameterType="scvo">
+		select recruit_no, title, field, location, age,volunteering_start_date,volunteering_end_date,recruiting_end as recruitingEnd
+		from(select recruit_no, title, field, location, age, volunteering_start_date,volunteering_end_date,recruiting_end,
+		ceil(rownum/5) as page from(select recruit_no, title, field,	location, age,volunteering_start_date, volunteering_end_date
+		,recruiting_end from recruit
+		<where>
+			<if test="field != ''">
+				AND field=#{field}
+			</if>
+			<if test="location != ''">
+				AND location=#{location}
+			</if>
+			<if test="volunteeringStartDate != ''">
+  			<![CDATA[
+   			 AND volunteering_start_date>=#{volunteeringStartDate} 
+    		 ]]>
+			</if>
+			<if test="volunteeringEndDate != ''">
+  			<![CDATA[
+   			 AND volunteering_end_date<=#{volunteeringEndDate}
+    		 ]]>
+			</if>
+			<if test="title != ''">
+			AND title like '%${title}%'
+			</if>
+		</where>
+		order by recruit_no desc) )
+		where page=#{pageNo}
+	</select>
+	<select id="totalContent" parameterType="scvo" resultType="int">
+		select count(*) from recruit
+		<where>
+			<if test="field != ''">
+				AND field=#{field}
+			</if>
+			<if test="location != ''">
+				AND location=#{location}
+			</if>
+			<if test="volunteeringStartDate != ''">
+  			<![CDATA[
+   			 AND volunteering_start_date>=#{volunteeringStartDate} 
+    		 ]]>
+			</if>
+			<if test="volunteeringEndDate != ''">
+  			<![CDATA[
+   			 AND volunteering_end_date<=#{volunteeringEndDate}
+    		 ]]>
+			</if>
+			<if test="title != ''">
+			AND title like '%${title}%'
+			</if>
+		</where>
+	</select>
+	
+	
+	
+	<select id="findDateList" parameterType="sdvo" resultType="hashMap">
+		select distinct(recruiting_start) as date_list from (
+		select volunteering_start_time,volunteering_end_time,recruiting_start,field,location from recruit)
+		<where>
+			<if test="field !='' ">
+				AND field=#{field}
+			</if>
+			<if test="location !='' ">
+				AND location=#{location}
+			</if>
+			<if test="volunteeringStartTime != '' ">
+  			<![CDATA[
+   			 AND volunteering_start_time>=#{volunteeringStartTime} 
+    		 ]]>
+			</if>
+			<if test="volunteeringEndTime != '' ">
+  			<![CDATA[
+   			 AND volunteering_end_time<=#{volunteeringEndTime}
+    		 ]]>
+			</if>
+		</where>
+		order by date_list asc
+	</select>
+	<resultMap type="sdvo" id="schedulerRM">
+		<result property="memberNo" column="member_no"/>
+		<result property="volunteeringStartTime" column="volunteering_start_time"/>
+		<result property="volunteeringEndTime" column="volunteering_end_time"/>
+	</resultMap>
+	<select id="checkScheduler" resultMap="schedulerRM" parameterType="String">
+		select * from scheduler where member_no=#{value}
+	</select>
+	<insert id="registerScheduler" parameterType="sdvo">
+		insert into scheduler(member_no,field,location,volunteering_start_time,volunteering_end_time) values(#{memberNo},#{field},#{location},#{volunteeringStartTime},#{volunteeringEndTime})
+	</insert>
+	<update id="updateScheduler" parameterType="sdvo">
+		update scheduler set field=#{field},location=#{location},volunteering_start_time=#{volunteeringStartTime},volunteering_end_time=#{volunteeringEndTime} where member_no=#{memberNo}
+	</update>
+</mapper> 

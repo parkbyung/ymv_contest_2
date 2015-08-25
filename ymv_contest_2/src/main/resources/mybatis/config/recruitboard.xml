@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="recruitboard"> 
+ 
+<resultMap type="recruitbvo" id="boardRM">      
+      <result property="recruitNo" column="recruit_no"/>         
+      <result property="recruitingStart" column="recruiting_start" />       
+      <result property="recruitingEnd" column="recruiting_end" />     
+      <result property="postDate" column="time_posted"/>  
+      <result property="memberNo" column="member_no"/>
+      <result property="volunteeringStartDate" column="volunteering_start_date"/>
+      <result property="volunteeringEndDate" column="volunteering_end_date"/>
+      <result property="volunteeringStartTime" column="volunteering_start_time"/>
+      <result property="volunteeringEndTime" column="volunteering_end_time"/>
+   </resultMap>
+   
+   <select id="findFieldList" resultType="fieldvo">
+       select * from field
+    </select>
+    
+    <select id="findLocationList" resultType="locationvo">
+       select * from location order by location asc
+    </select>
+   
+   <select id="findBoardList" resultMap="boardRM" resultType="recruitbvo">   
+   select recruit_no, title, field, location, age, recruiting_start,recruiting_end 
+   from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end, CEIL(rownum/5) AS page from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end from recruit order by recruit_no desc) ) 
+   where page=#{pageNo}
+   </select>
+
+   <select id="findRecruitBoardByRecruitNo" resultMap="boardRM" resultType="recruitbvo">   
+    select r.recruit_no, r.title, r.field, r.location, r.age,recruiting_start,recruiting_end,r.content, r.member_no, to_char(r.time_posted,'YYYY-MM-DD HH24:MI') as time_posted,m.name,r.hit,r.volunteering_start_date,r.volunteering_end_date,r.volunteering_start_time,r.volunteering_end_time
+  	from recruit r, member m
+   where r.recruit_no=#{value} and r.member_no=m.member_no
+   </select>
+
+   <select id="showContent"  resultMap="boardRM" resultType="recruitbvo">
+      select recruit_no ,title, field, location, age, recruiting_start, recruiting_end ,content,volunteering_start_date,volunteering_end_date,volunteering_start_time,volunteering_end_time
+   from recruit
+   where recruit_no=#{value}
+   </select>
+	
+    <insert id="registerVolunteer" parameterType="recruitbvo">
+       <selectKey keyProperty="recruitNo" resultType="int" order="BEFORE">
+          select ymv_seq.nextval from dual
+       </selectKey>
+       insert into recruit(recruit_no,title,field,location,age,recruiting_start,recruiting_end,content,member_no,time_posted,hit,volunteering_start_date,volunteering_end_date,volunteering_start_time,volunteering_end_time) 
+       values(#{recruitNo},#{title},#{field},#{location},#{age},#{recruitingStart},#{recruitingEnd},#{content},#{memberNo}, sysdate ,0,#{volunteeringStartDate},#{volunteeringEndDate},#{volunteeringStartTime},#{volunteeringEndTime})
+    </insert>
+	<select id="totalContent" resultType="int">
+		select count(*) from recruit
+	</select>	
+	
+	<delete id="deleteRecruitVolunteer" parameterType="recruitbvo">
+   delete recruit where recruit_no=#{value}
+   </delete>
+	
+   <update id="updateBoard" parameterType="recruitbvo">
+   update recruit set title=#{title},content=#{content},recruiting_start=#{recruitingStart},recruiting_end=#{recruitingEnd},field=#{field} ,location=#{location} ,age=#{age},volunteering_start_date=#{volunteeringStartDate},volunteering_end_date=#{volunteeringEndDate},volunteering_start_time=#{volunteeringStartTime},volunteering_end_time=#{volunteeringEndTime} 
+   where recruit_no=#{recruitNo}
+   </update>
+	<select id="findCompanyBoardList" resultMap="boardRM" parameterType="cpvo" resultType="recruitbvo">
+		select recruit_no, title, field, location, age, recruiting_start,recruiting_end
+   	from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end, CEIL(rownum/5) AS page from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end from recruit where member_no=#{memberNo} order by recruit_no desc) ) 
+   	where page=#{pageNo}
+	</select>
+	<select id="totalCompanyContent" parameterType="int" resultType="int">
+		select count(*) from recruit where member_no=#{value}
+	</select>	
+	<delete id="deletePicture" parameterType="int">
+		delete from picture where picture_no=#{value}
+	</delete>
+	<select id="findNormalBoardList" resultMap="boardRM" parameterType="cpvo" resultType="recruitbvo">
+		select recruit_no, title, field, location, age, recruiting_start,recruiting_end 
+   	from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end, CEIL(rownum/5) AS page from(select r.recruit_no, r.title, r.field, r.location, r.age, r.recruiting_start, r.recruiting_end
+   	from recruit r , voluntary_service_applicate vsa
+   	where r.recruit_no=vsa.recruit_no and vsa.member_no=#{memberNo} order by recruit_no desc) ) 
+   	where page=#{pageNo}
+	</select>
+	<select id="totalNormalContent" parameterType="int" resultType="int">
+		select count(*) from recruit r , voluntary_service_applicate vsa where r.recruit_no=vsa.recruit_no and vsa.member_no=#{value}
+	</select>	
+	<update id="updateHit" parameterType="int">
+		update recruit set hit = hit+1 where recruit_no=#{value}
+	</update>
+ </mapper> 
