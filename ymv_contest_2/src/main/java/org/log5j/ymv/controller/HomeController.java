@@ -8,7 +8,6 @@ public class HomeController {
 	@RequestMapping("home.ymv")
 	@NoLoginCheck
 	public String test(){
-		System.out.println("홈이다");
 		return "home";
 	}
 	/**
