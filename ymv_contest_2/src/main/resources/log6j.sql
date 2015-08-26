@@ -63,7 +63,7 @@ select * from statistics
 
 drop table recruit cascade constraints;
 
-create table recruit(
+
    recruit_no number primary key,
    title varchar2(100) not null,
    field varchar2(100) not null,
@@ -78,7 +78,8 @@ create table recruit(
    volunteering_start_date varchar2(30) not null,
    volunteering_end_date varchar2(30) not null,
    volunteering_start_time varchar2(30) not null,
-   volunteering_end_time varchar2(30) not null
+   volunteering_end_time varchar2(30) not null,
+   applicant_choice varchar2(10) not null
 )
 
 alter table recruit modify start_time varchar2(10)
