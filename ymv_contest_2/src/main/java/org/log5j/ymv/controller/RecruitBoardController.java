@@ -19,8 +19,6 @@ import org.log5j.ymv.model.board.NoticeBoardVO;
 import org.log5j.ymv.model.board.RecruitBoardService;
 import org.log5j.ymv.model.board.RecruitBoardVO;
 import org.log5j.ymv.model.cookie.CookieService;
-import org.log5j.ymv.model.member.Email;
-import org.log5j.ymv.model.member.EmailSender;
 import org.log5j.ymv.model.member.MemberService;
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.ApplicantListVO;
@@ -31,7 +29,6 @@ import org.log5j.ymv.model.voluntary.MessageService;
 import org.log5j.ymv.model.voluntary.MessageVO;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateService;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -347,17 +344,18 @@ public class RecruitBoardController {
 	}
 	/**
 	 * 
-	 * 작성자 : 임영학
+	 * 작성자 : 백지영
 	 * 내용 : 
 	 * @param request
 	 * @param alvo
 	 * @return
 	 */
 	@RequestMapping("voluntary_OKList.ymv")
-	public ModelAndView voluntary_OKList(HttpServletRequest request,ApplicantListVO alvo){
-		//String recruitNo=request.getParameter("recruitNo");
+	@ResponseBody
+	public List voluntary_OKList(HttpServletRequest request,ApplicantListVO alvo){
 		List<ApplicantListVO> list=recruitBoardService.findApplicantOkList(alvo.getRecruitNo());
-		return new ModelAndView("voluntary_OKList","list",list);
+		System.out.println("list  " + list);
+		return list;
 	}
 	/**
 	 * 
