@@ -33,4 +33,5 @@ public interface RecruitBoardDAO {
 	public List<BoardVO> findConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO);
 	public int totalContentConfirm(int memberNo);
 	public ConfirmBoardVO findConfirmBoardByConfirm(ConfirmVO cvo);
+	public void updateApplicationChoice(RecruitBoardVO rbvo);
 }

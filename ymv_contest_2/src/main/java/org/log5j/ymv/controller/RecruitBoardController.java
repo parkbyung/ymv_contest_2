@@ -483,4 +483,13 @@ public class RecruitBoardController {
 		mv.setViewName("member_check_identityNo");
 		return mv;
 	}
+	
+	@RequestMapping("applicant_choice.ymv")
+	public ModelAndView applicantChoice(RecruitBoardVO rbvo){
+		ModelAndView mv = new ModelAndView("voluntary_show_content");
+		recruitBoardService.updateApplicationChoice(rbvo);
+		rbvo = recruitBoardService.findRecruitBoardByRecruitNo(rbvo.getRecruitNo());
+		mv.addObject("rvo", rbvo);
+		return mv;
+	}
 }

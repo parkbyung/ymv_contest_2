@@ -14,6 +14,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="volunteeringEndDate" column="volunteering_end_date"/>
       <result property="volunteeringStartTime" column="volunteering_start_time"/>
       <result property="volunteeringEndTime" column="volunteering_end_time"/>
+      <result property="applicantChoice" column="applicant_choice"/>
+      
    </resultMap>
    
    <select id="findFieldList" resultType="fieldvo">
@@ -25,19 +27,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
    
    <select id="findBoardList" resultMap="boardRM" resultType="recruitbvo">   
-   select recruit_no, title, field, location, age, recruiting_start,recruiting_end 
-   from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end, CEIL(rownum/5) AS page from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end from recruit order by recruit_no desc) ) 
+   select recruit_no, title, field, location, age, recruiting_start,recruiting_end, applicant_choice 
+   from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end, applicant_choice, CEIL(rownum/5) AS page from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end, applicant_choice from recruit order by recruit_no desc) ) 
    where page=#{pageNo}
    </select>
 
    <select id="findRecruitBoardByRecruitNo" resultMap="boardRM" resultType="recruitbvo">   
-    select r.recruit_no, r.title, r.field, r.location, r.age,recruiting_start,recruiting_end,r.content, r.member_no, to_char(r.time_posted,'YYYY-MM-DD HH24:MI') as time_posted,m.name,r.hit,r.volunteering_start_date,r.volunteering_end_date,r.volunteering_start_time,r.volunteering_end_time
+    select r.recruit_no, r.title, r.field, r.location, r.age,recruiting_start,recruiting_end,r.content, r.member_no, to_char(r.time_posted,'YYYY-MM-DD HH24:MI') as time_posted,m.name,r.hit,r.volunteering_start_date,r.volunteering_end_date,r.volunteering_start_time,r.volunteering_end_time, r.applicant_choice
   	from recruit r, member m
    where r.recruit_no=#{value} and r.member_no=m.member_no
    </select>
 
    <select id="showContent"  resultMap="boardRM" resultType="recruitbvo">
-      select recruit_no ,title, field, location, age, recruiting_start, recruiting_end ,content,volunteering_start_date,volunteering_end_date,volunteering_start_time,volunteering_end_time
+      select recruit_no ,title, field, location, age, recruiting_start, recruiting_end ,content,volunteering_start_date,volunteering_end_date,volunteering_start_time,volunteering_end_time, applicant_choice
    from recruit
    where recruit_no=#{value}
    </select>
@@ -46,9 +48,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        <selectKey keyProperty="recruitNo" resultType="int" order="BEFORE">
           select ymv_seq.nextval from dual
        </selectKey>
-       insert into recruit(recruit_no,title,field,location,age,recruiting_start,recruiting_end,content,member_no,time_posted,hit,volunteering_start_date,volunteering_end_date,volunteering_start_time,volunteering_end_time) 
-       values(#{recruitNo},#{title},#{field},#{location},#{age},#{recruitingStart},#{recruitingEnd},#{content},#{memberNo}, sysdate ,0,#{volunteeringStartDate},#{volunteeringEndDate},#{volunteeringStartTime},#{volunteeringEndTime})
+       insert into recruit(recruit_no,title,field,location,age,recruiting_start,recruiting_end,content,member_no,time_posted,hit,volunteering_start_date,volunteering_end_date,volunteering_start_time,volunteering_end_time, applicant_choice) 
+       values(#{recruitNo},#{title},#{field},#{location},#{age},#{recruitingStart},#{recruitingEnd},#{content},#{memberNo}, sysdate ,0,#{volunteeringStartDate},#{volunteeringEndDate},#{volunteeringStartTime},#{volunteeringEndTime}, 'N')
     </insert>
+    
 	<select id="totalContent" resultType="int">
 		select count(*) from recruit
 	</select>	
@@ -62,8 +65,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    where recruit_no=#{recruitNo}
    </update>
 	<select id="findCompanyBoardList" resultMap="boardRM" parameterType="cpvo" resultType="recruitbvo">
-		select recruit_no, title, field, location, age, recruiting_start,recruiting_end
-   	from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end, CEIL(rownum/5) AS page from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end from recruit where member_no=#{memberNo} order by recruit_no desc) ) 
+		select recruit_no, title, field, location, age, recruiting_start,recruiting_end, applicant_choice
+   	from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end, applicant_choice, CEIL(rownum/5) AS page from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end, applicant_choice from recruit where member_no=#{memberNo} order by recruit_no desc) ) 
    	where page=#{pageNo}
 	</select>
 	<select id="totalCompanyContent" parameterType="int" resultType="int">
@@ -73,8 +76,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from picture where picture_no=#{value}
 	</delete>
 	<select id="findNormalBoardList" resultMap="boardRM" parameterType="cpvo" resultType="recruitbvo">
-		select recruit_no, title, field, location, age, recruiting_start,recruiting_end 
-   	from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end, CEIL(rownum/5) AS page from(select r.recruit_no, r.title, r.field, r.location, r.age, r.recruiting_start, r.recruiting_end
+		select recruit_no, title, field, location, age, recruiting_start,recruiting_end, applicant_choice 
+   	from(select recruit_no, title, field, location, age, recruiting_start, recruiting_end, applicant_choice, CEIL(rownum/5) AS page from(select r.recruit_no, r.title, r.field, r.location, r.age, r.recruiting_start, r.recruiting_end, r.applicant_choice
    	from recruit r , voluntary_service_applicate vsa
    	where r.recruit_no=vsa.recruit_no and vsa.member_no=#{memberNo} order by recruit_no desc) ) 
    	where page=#{pageNo}
@@ -84,5 +87,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>	
 	<update id="updateHit" parameterType="int">
 		update recruit set hit = hit+1 where recruit_no=#{value}
+	</update>
+	
+	<update id="updateApplicationChoice" parameterType="recruitbvo">
+		update recruit set applicant_choice = 'Y' where recruit_no=#{recruitNo} 
 	</update>
  </mapper> 

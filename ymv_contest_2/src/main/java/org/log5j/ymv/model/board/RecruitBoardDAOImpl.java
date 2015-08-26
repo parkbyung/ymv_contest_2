@@ -159,7 +159,10 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 		return sqlSessionTemplate.selectOne("applicant.findConfirmBoardByConfirm",cvo);
 	}
 
-
+	@Override
+	public void updateApplicationChoice(RecruitBoardVO rbvo) {
+		sqlSessionTemplate.update("recruitboard.updateApplicationChoice", rbvo);
+	}
 
 
 }

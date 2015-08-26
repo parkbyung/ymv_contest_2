@@ -28,4 +28,5 @@ public interface RecruitBoardService {
 	public void registerConfirmBoard(ConfirmBoardVO confirmbvo);
 	public ListVO findConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO);
 	public ConfirmBoardVO findConfirmBoardByConfirm(ConfirmVO cvo);
+	public void updateApplicationChoice(RecruitBoardVO rbvo);
 }

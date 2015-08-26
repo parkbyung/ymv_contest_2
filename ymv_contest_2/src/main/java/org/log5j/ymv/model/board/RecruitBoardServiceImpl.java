@@ -144,4 +144,8 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		return recruitBoardDAO.findConfirmBoardByConfirm(cvo);
 	}
 
+	@Override
+	public void updateApplicationChoice(RecruitBoardVO rbvo) {
+		recruitBoardDAO.updateApplicationChoice(rbvo);
+	}
 }

@@ -24,12 +24,12 @@ public class RecruitBoardVO implements BoardVO{
 	private String volunteeringEndDate;
 	private String volunteeringStartTime;
 	private String volunteeringEndTime;
+	private String applicantChoice;
 	
 	
 	public RecruitBoardVO() {
 		super();
 	}
-
 
 	public RecruitBoardVO(int recruitNo, String title, String field,
 			String location, String age, String recruitingStart,
@@ -55,6 +55,36 @@ public class RecruitBoardVO implements BoardVO{
 		this.volunteeringEndDate = volunteeringEndDate;
 		this.volunteeringStartTime = volunteeringStartTime;
 		this.volunteeringEndTime = volunteeringEndTime;
+	}
+
+
+
+	public RecruitBoardVO(int recruitNo, String title, String field,
+			String location, String age, String recruitingStart,
+			String recruitingEnd, String content, int memberNo,
+			String postDate, int hit, String checkDate, String mojib,
+			String volunteeringStartDate, String volunteeringEndDate,
+			String volunteeringStartTime, String volunteeringEndTime,
+			String applicantChoice) {
+		super();
+		this.recruitNo = recruitNo;
+		this.title = title;
+		this.field = field;
+		this.location = location;
+		this.age = age;
+		this.recruitingStart = recruitingStart;
+		this.recruitingEnd = recruitingEnd;
+		this.content = content;
+		this.memberNo = memberNo;
+		this.postDate = postDate;
+		this.hit = hit;
+		this.checkDate = checkDate;
+		this.mojib = mojib;
+		this.volunteeringStartDate = volunteeringStartDate;
+		this.volunteeringEndDate = volunteeringEndDate;
+		this.volunteeringStartTime = volunteeringStartTime;
+		this.volunteeringEndTime = volunteeringEndTime;
+		this.applicantChoice = applicantChoice;
 	}
 
 
@@ -227,6 +257,13 @@ public class RecruitBoardVO implements BoardVO{
 		this.volunteeringEndTime = volunteeringEndTime;
 	}
 
+	public String getApplicantChoice() {
+		return applicantChoice;
+	}
+
+	public void setApplicantChoice(String applicantChoice) {
+		this.applicantChoice = applicantChoice;
+	}
 
 	@Override
 	public String toString() {
@@ -239,7 +276,8 @@ public class RecruitBoardVO implements BoardVO{
 				+ mojib + ", volunteeringStartDate=" + volunteeringStartDate
 				+ ", volunteeringEndDate=" + volunteeringEndDate
 				+ ", volunteeringStartTime=" + volunteeringStartTime
-				+ ", volunteeringEndTime=" + volunteeringEndTime + "]";
+				+ ", volunteeringEndTime=" + volunteeringEndTime
+				+ ", applicantChoice=" + applicantChoice + "]";
 	}
 	
 }
