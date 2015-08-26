@@ -381,7 +381,8 @@ public class RecruitBoardController {
 					recruitbvo.getField(), recruitbvo.getLocation(),
 					recruitbvo.getAge(), recruitbvo.getRecruitingStart(),
 					recruitbvo.getRecruitingEnd(), recruitbvo.getContent(),
-					recruitbvo.getMemberNo());
+					recruitbvo.getMemberNo(),recruitbvo.getVolunteeringStartDate(),recruitbvo.getVolunteeringEndDate(),
+					recruitbvo.getVolunteeringStartTime(),recruitbvo.getVolunteeringEndTime());
 			recruitBoardService.registerConfirmBoard(confirmbvo);
 			//글등록 먼저하고나서 컨펌등록
 			ConfirmVO confirmvo=new ConfirmVO(alvo.getRecruitNo(),alvo.getMemberNo());

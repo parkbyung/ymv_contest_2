@@ -14,10 +14,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </resultMap>
     <resultMap type="confirmbvo" id="confirmRM">             
       <result property="boardNo" column="board_no"/>         
-      <result property="startDate" column="start_date"/>
-      <result property="endDate" column="end_date"/>
+      <result property="recruitingStart" column="recruiting_start"/>
+      <result property="recruitingEnd" column="recruiting_end"/>
       <result property="memberNo" column="member_no"/>
       <result property="timePosted" column="time_posted"/>
+      <result property="volunteeringStartDate" column="volunteering_start_date"/>
+      <result property="volunteeringEndDate" column="volunteering_end_date"/>
    </resultMap>
    
  <select id="findApplicantList" parameterType="int" resultMap="applicantRM">
@@ -34,14 +36,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	insert into confirm(board_no,member_no) values(#{boardNo},#{memberNo})
  </insert>
  <insert id="registerConfirmBoard" parameterType="confirmbvo">
- 	insert into confirm_board(board_no, title, field, location, age, start_date, end_date, content, member_no, time_posted, hit) values(#{boardNo},#{title},#{field},#{location},#{age},to_date(#{startDate},'YYYY-MM-DD HH24:MI'),to_date(#{endDate},'YYYY-MM-DD HH24:MI'),#{content},#{memberNo},sysdate,0)
+ 	insert into confirm_board(board_no,title,field,location,age,recruiting_start,recruiting_end,content,member_no,time_posted,hit,volunteering_start_date,volunteering_end_date,volunteering_start_time,volunteering_end_time) 
+       values(#{boardNo},#{title},#{field},#{location},#{age},#{recruitingStart},#{recruitingEnd},#{content},#{memberNo}, sysdate ,0,#{volunteeringStartDate},#{volunteeringEndDate},#{volunteeringStartTime},#{volunteeringEndTime})
  </insert>
  <select id="findMailAddressByMemberNo" parameterType="int" resultMap="memberRM">
  	select member_no, id, name, mail_address from member where member_no=#{value}
  </select>
 <select id="findConfirmBoardListByMemberNo" parameterType="confirmbvo" resultMap="confirmRM">
-	select board_no, title, field, location, age, start_date, end_date 
-   	from(select board_no, title, field, location, age, start_date, end_date, CEIL(rownum/5) AS page from(select board_no, title, field, location, age, start_date, end_date from(select cb.board_no, cb.title, cb.field, cb.location, cb.age, to_char(cb.start_date,'YYYY-MM-DD HH24:MI') as start_date,to_char(cb.end_date,'YYYY-MM-DD HH24:MI') as end_date
+	select board_no, title, field, location, age, volunteering_start_date, volunteering_end_date 
+   	from(select board_no, title, field, location, age, volunteering_start_date, volunteering_end_date, CEIL(rownum/5) AS page from(select board_no, title, field, location, age, volunteering_start_date, volunteering_end_date from(select cb.board_no, cb.title, cb.field, cb.location, cb.age,volunteering_start_date,volunteering_end_date
    	from confirm c , confirm_board cb 
    	where c.board_no=cb.board_no and c.member_no=#{memberNo} ) order by board_no desc ) )
    	where page=#{pageNo}
@@ -50,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select count(*) from confirm where member_no=#{value}
 </select>
 <select id="findConfirmBoardByConfirm" resultMap="confirmRM" resultType="confirmvo">
-	select board_no,title,field,location,age,start_date,end_date,content,
+	select board_no,title,field,location,age,volunteering_start_date,volunteering_end_date,content,
 	member_no,time_posted,hit from confirm_board 
 	where board_no=#{boardNo}
 </select>

@@ -31,8 +31,8 @@
                         ${bvo.title }</a></td>
                   <td>${bvo.field }</td>
                   <td>${bvo.location }</td>
-                  <td>${bvo.recruitingStart }</td>
-                  <td>${bvo.recruitingEnd }</td>
+                  <td>${bvo.volunteeringStartDate }</td>
+                  <td>${bvo.volunteeringEndDate }</td>
                </tr>
             </c:forEach>
          </tbody>

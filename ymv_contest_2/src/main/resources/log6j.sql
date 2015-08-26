@@ -183,7 +183,7 @@ select * from voluntary_applicant_ok
 
 -- LYH - confirm_board
 
-drop table confirm_board
+drop table confirm_board cascade constraints;
 
 create table confirm_board(
    board_no number primary key,
@@ -191,12 +191,16 @@ create table confirm_board(
    field varchar2(100) not null,
    location varchar2(100) not null,
    age varchar2(100) not null,
-   start_date date not null,
-   end_date date not null,
+   recruiting_start varchar2(30) not null,
+   recruiting_end varchar2(30) not null,
    content clob not null,
    member_no number constraint fk_member_no_7 references member(member_no),
    time_posted date not null,
-   hit number default 0
+   hit number default 0,
+   volunteering_start_date varchar2(30) not null,
+   volunteering_end_date varchar2(30) not null,
+   volunteering_start_time varchar2(30) not null,
+   volunteering_end_time varchar2(30) not null
 )
 
 select * from confirm_board
