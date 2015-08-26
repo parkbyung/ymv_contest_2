@@ -87,7 +87,6 @@ $(document).ready(function(){
 					        	memberNoOkList+=$(this).val() + ",";
 					        });
 					        $("#memberOkList").val(memberNoOkList);
-					        alert("2222   " + memberNoOkList);
 							$("#checkForm2").submit();
 						});
 						
@@ -103,18 +102,10 @@ $(document).ready(function(){
 		$("#checkForm").submit();
 	});
 	
-	/* $("#memberBtn2").click(function(){
-		var memberNoOkList="";
-        $("input:checkbox:checked").each(function (index){
-        	memberNoOkList+=$(this).val() + ",";
-        });
-        $("#memberOkList").val(memberNoOkList);
-		$("#checkForm2").submit();
-	}); */
+	$("#memberChoice").click(function(){
+		location.href="applicant_choice.ymv?applicationChoice=${requestScope.rvo.applicantChoice}&recruitNo=${requestScope.rvo.recruitNo }";
+	});
 	
-	/* $("#applicantOklist").click(function(){
-		location.href="voluntary_OKList.ymv?recruitNo=${requestScope.rvo.recruitNo}";
-	}); */
 });
 </script>
 <h3 align="center">봉사 상세 글보기</h3>
@@ -181,8 +172,7 @@ $(document).ready(function(){
 								<c:when test="${sessionScope.mvo.memberType=='normal'}">
 									<c:choose>
 										<c:when test="${requestScope.rvo.mojib=='모집중' }">
-											<input type="button" class="btn btn-default btn-xs"
-												value="신청하기" id="applicant">
+											<input type="button" class="btn btn-default btn-xs" value="신청하기" id="applicant">
 										</c:when>
 										<c:otherwise>
 
@@ -191,15 +181,11 @@ $(document).ready(function(){
 								</c:when>
 								<c:when test="${sessionScope.mvo.memberType=='company'}">
 									<c:choose>
-										<c:when test="${requestScope.rvo.mojib=='모집중' }">
+										<c:when test="${requestScope.rvo.applicantChoice=='N' }">
 											<a href="#modal2" data-toggle="modal"><p id="applicantlist" class="btn btn-default btn-xs">신청자리스트보기</p></a>
 										</c:when>
 										<c:otherwise>
-										
 											<a href="#model3" data-toggle="modal"><p id="applicantOklist" class="btn btn-default btn-xs">선정된 인원 보기</p></a>
-												<%-- <a href="voluntary_OKList.ymv?recruitNo=${requestScope.rvo.recruitNo }" class="btn btn-default btn-xs">선정된 인원 보기</a> --%>
-												<!-- <input type="button" value="선정된 인원 보기" id="applicantOklist" class="btn btn-default btn-xs"> -->
-												
 										</c:otherwise>
 									</c:choose>
 								</c:when>
@@ -215,8 +201,6 @@ $(document).ready(function(){
 		<br> <span id="motivateForm"></span><br><br>
 	</div>
 	
-	
-	
  <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-content">
     <div class="modal-content">
@@ -229,8 +213,8 @@ $(document).ready(function(){
 					<p id="applicant_modal"></p>
 					<input type="hidden" id="memberList" name="memberList" value="">
 					<input type="hidden" name="title" value="${requestScope.rvo.title}">
-					<button type="button" class="btn btn-primary" id="memberBtn">신청자
-						뽑기</button>
+					<button type="button" class="btn btn-primary" id="memberBtn">신청자 뽑기</button>
+					<button type="button" class="btn btn-primary" id="memberChoice">신청자 뽑기 마감</button>
 				</form>
 		</div>
       <div class="modal-footer">
@@ -240,8 +224,6 @@ $(document).ready(function(){
   </div>
 </div>
 
-
-
 <div class="modal fade" id="model3" tabindex="-2" role="dialog" aria-hidden="true">
   <div class="modal-content">
     <div class="modal-content">
@@ -250,12 +232,12 @@ $(document).ready(function(){
         <h4 class="modal-title">봉사활동 참여자 리스트</h4>
       </div>
       <div class="modal-body">
-      			<form action='voluntary_confirm.ymv' id='checkForm2' method='get'>
-					<input type="hidden" id="memberOkList" name="memberList" value="">
-					<p id="applicantOk_modal"></p>
-					<input type="hidden" name="title" value="${requestScope.rvo.title}">
-					<button type="button" class="btn btn-primary" id="memberBtn2">봉사활동 참여자 뽑기</button>
-				</form>
+      		<form action='voluntary_confirm.ymv' id='checkForm2' method='get'>
+				<input type="hidden" id="memberOkList" name="memberList" value="">
+				<p id="applicantOk_modal"></p>
+				<input type="hidden" name="title" value="${requestScope.rvo.title}">
+				<button type="button" class="btn btn-primary" id="memberBtn2">봉사활동 참여자 뽑기</button>
+			</form>
 		</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
