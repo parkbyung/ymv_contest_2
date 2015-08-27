@@ -3,7 +3,6 @@
 drop sequence ymv_seq;
 create sequence ymv_seq;
 
-
 -- LYH - member
 
 drop table member

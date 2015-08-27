@@ -12,6 +12,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="timePosted" column="time_posted"/>
       <result property="recruitNo" column="recruit_no"/>         
    </resultMap>
+   <resultMap type="mgbvo" id="messageboardRM">      
+      <result property="memberNo" column="member_no"/>           
+   </resultMap>
  
 	<insert id="sendMessageApplicate" parameterType="mgvo">
 		<selectKey keyProperty="messageNo" resultType="int" order="BEFORE">
@@ -22,6 +25,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findMessageByMemberNo" resultType="mgvo" resultMap="messageRM">
    	select message_no, message_type, title, content, receive_no, receiver_name, time_posted, recruit_no from message where receive_no=#{value}
    </select>
+   
+   <select id="findMessageBoardList" parameterType="mgbvo" resultType="mgvo" resultMap="messageRM">
+    	select message_no, message_type, title, content, receive_no, receiver_name, time_posted, recruit_no 
+		from(select message_no, message_type, title, content, receive_no, receiver_name, time_posted, recruit_no, CEIL(rownum/5) AS page 
+		from(select message_no , message_type,title, content, receive_no , receiver_name , time_posted , recruit_no from message order by message_no desc)) 
+		where page=#{pageNo} and receive_no=#{memberNo}
+   </select>
+    <select id="totalContent" resultType="int">
+    	select count(*) from message
+    </select>
+   
  </mapper>
  
  

@@ -116,8 +116,8 @@ $("#modalBtn").click(function(){
 					<c:choose>
 						<c:when test="${sessionScope.mvo.memberType=='company' }">
 							<c:choose>
-								<c:when test="${requestScope.messagelist!=null }">
-									<a href="#"
+								<c:when test="${sessionScope.messagelist!=null }">
+									<a href="message_board.ymv"
 										class="btn btn-default btn-xs glyphicon glyphicon-briefcase">
 										${fn:length(messagelist)}개의쪽지 </a>
 								</c:when>
@@ -131,8 +131,8 @@ $("#modalBtn").click(function(){
 						</c:when>
 						<c:when test="${sessionScope.mvo.memberType=='normal' }">
 							<c:choose>
-								<c:when test="${requestScope.messagelist!=null }">
-									<a href="#"
+								<c:when test="${sessionScope.messagelist!=null }">
+									<a href="message_board.ymv"
 										class="btn btn-default btn-xs glyphicon glyphicon-heart ">
 										${fn:length(messagelist)}개의쪽지</a>
 									<br>
@@ -146,8 +146,8 @@ $("#modalBtn").click(function(){
 						</c:when>
 						<c:when test="${sessionScope.mvo.memberType=='admin' }">
 							<c:choose>
-								<c:when test="${requestScope.messagelist!=null }">
-									<a href="#"
+								<c:when test="${sessionScope.messagelist!=null }">
+									<a href="message_board.ymv"
 										class="btn btn-default btn-xs glyphicon glyphicon-lock">
 										${fn:length(messagelist)}개의쪽지</a>
 									<br>

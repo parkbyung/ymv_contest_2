@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.log5j.ymv.model.board.BoardVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +22,17 @@ public class MessageDAOImpl implements MessageDAO{
 	public List<MessageVO> findMessageByMemberNo(int memberNo) {
 		List<MessageVO> list = sqlSessionTemplate.selectList("message.findMessageByMemberNo",memberNo);
 		return list;
+	}
+
+	@Override
+	public List<BoardVO> findMessageBoardList(MessageBoardVO mgbvo) {
+		List<BoardVO> list=sqlSessionTemplate.selectList("message.findMessageBoardList",mgbvo);
+		return list;
+	}
+
+	@Override
+	public int totalContent() {
+		return sqlSessionTemplate.selectOne("message.totalContent");
 	}
 
 }

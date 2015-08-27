@@ -34,8 +34,9 @@ public class HomeController {
 					messagelist.add(mglist.get(i));
 				}
 			}
+			request.getSession().setAttribute("messagelist", messagelist);
 		}
-		return new ModelAndView("home","messagelist",messagelist);
+		return new ModelAndView("home");
 	}
 	/**
 	 * 

@@ -68,7 +68,6 @@ public class MemberController {
 					messagelist.add(mglist.get(i));
 				}
 			}
-
 			//message list를 받아옴
 			//리스트 돌려서 mvo의 넘버와 리스트의 memberNo가 있는지 확인 있으면 리스트를 담아서 보내줌
 			//뷰에서는 받은 리스트를 돌려서 쪽지의 갯수만큼 숫자를 나타내고 확인하는 버튼 누르면 새로운 .ymv로 보내서 쪽지 확인하는 보드페이지 만들기.
@@ -76,7 +75,8 @@ public class MemberController {
 		}else{
 			loginSession="X";
 		}
-		return new ModelAndView("home","loginSession",loginSession).addObject("messagelist",messagelist);
+		request.getSession().setAttribute("messagelist", messagelist);
+		return new ModelAndView("home","loginSession",loginSession);
 	}
 	
 	/**
