@@ -19,7 +19,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</selectKey>  
   		insert into message(message_no, message_type, title, content, receive_no, receiver_name, time_posted, recruit_no)  values(#{messageNo}, #{messageType}, #{title}, #{content}, #{receiveNo}, #{receiverName}, sysdate, #{recruitNo})
 	</insert>
-
+	<select id="findMessageByMemberNo" resultType="mgvo">
+   	select * from message where receive_no=#{value}
+   </select>
  </mapper>
  
  

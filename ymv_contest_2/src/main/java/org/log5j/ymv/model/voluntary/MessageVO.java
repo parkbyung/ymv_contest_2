@@ -2,7 +2,9 @@ package org.log5j.ymv.model.voluntary;
 
 import java.util.Date;
 
-public class MessageVO {
+import org.log5j.ymv.model.board.BoardVO;
+
+public class MessageVO implements BoardVO {
 	private int messageNo;
 	private String messageType;
 	private String title;
