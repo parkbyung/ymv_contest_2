@@ -16,4 +16,8 @@ public interface MessageService {
 
 	ListVO findMessageBoardList(String pageNo, int memberNo);
 
+	MessageVO findMessageBoardByMessageNo(int messageNo);
+
+	void messageDelete(String messageNo);
+
 }

@@ -49,7 +49,7 @@
 	<br></br>
 	<div class="text-center">
 		<ul class="pagination">
-			<c:choose>
+		<c:choose>
 				<c:when test="${requestScope.lvo.pagingBean.previousPageGroup}">
 					<li class="active"><a
 						href="message_board.ymv?pageNo=${requestScope.lvo.pagingBean.

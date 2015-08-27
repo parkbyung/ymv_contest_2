@@ -14,4 +14,8 @@ public interface MessageDAO {
 
 	int totalContent();
 
+	MessageVO findMessageBoardByMessageNo(int messageNo);
+
+	void messageDelete(int messageNo);
+
 }

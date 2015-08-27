@@ -35,4 +35,14 @@ public class MessageDAOImpl implements MessageDAO{
 		return sqlSessionTemplate.selectOne("message.totalContent");
 	}
 
+	@Override
+	public MessageVO findMessageBoardByMessageNo(int messageNo) {
+		return sqlSessionTemplate.selectOne("message.findMessageBoardByMessageNo",messageNo);
+	}
+
+	@Override
+	public void messageDelete(int messageNo) {
+		sqlSessionTemplate.delete("message.messageDelete",messageNo);
+	}
+
 }

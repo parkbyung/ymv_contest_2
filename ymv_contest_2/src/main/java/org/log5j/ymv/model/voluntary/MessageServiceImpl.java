@@ -74,5 +74,15 @@ public class MessageServiceImpl implements MessageService {
 		System.out.println("ServiceImpl lvo: "+lvo);
 		return lvo;
 	}
+
+	@Override
+	public MessageVO findMessageBoardByMessageNo(int messageNo) {
+		return messageDAO.findMessageBoardByMessageNo(messageNo);
+	}
+
+	@Override
+	public void messageDelete(String messageNo) {
+		messageDAO.messageDelete(Integer.parseInt(messageNo));
+	}
 	
 }

@@ -23,7 +23,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		insert into message(message_no, message_type, title, content, receive_no, receiver_name, time_posted, recruit_no)  values(#{messageNo}, #{messageType}, #{title}, #{content}, #{receiveNo}, #{receiverName}, sysdate, #{recruitNo})
 	</insert>
 	<select id="findMessageByMemberNo" resultType="mgvo" resultMap="messageRM">
-   	select message_no, message_type, title, content, receive_no, receiver_name, time_posted, recruit_no from message where receive_no=#{value}
+	select message_no, message_type, title, content, receive_no,
+	receiver_name, time_posted, recruit_no from message where
+	receive_no=#{value}
    </select>
    
    <select id="findMessageBoardList" parameterType="mgbvo" resultType="mgvo" resultMap="messageRM">
@@ -35,7 +37,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="totalContent" resultType="int">
     	select count(*) from message
     </select>
-   
+       <select id="findMessageBoardByMessageNo" resultMap="messageRM" resultType="mgvo">   
+		select message_no, message_type, title, content, receive_no, receiver_name, time_posted, recruit_no from message where message_no=#{value}
+	</select>
+	<delete id="messageDelete" parameterType="int">
+		delete from message where message_no=#{value}
+	</delete>
  </mapper>
  
  
