@@ -63,7 +63,7 @@ select * from statistics
 
 drop table recruit cascade constraints;
 
-
+create table recruit(
    recruit_no number primary key,
    title varchar2(100) not null,
    field varchar2(100) not null,
