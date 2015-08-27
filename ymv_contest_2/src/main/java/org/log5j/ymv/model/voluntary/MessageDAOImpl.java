@@ -13,7 +13,7 @@ public class MessageDAOImpl implements MessageDAO{
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public void sendMessageApplicate(MessageVO messageVO) {
+	public void sendMessage(MessageVO messageVO) {
 		sqlSessionTemplate.insert("message.sendMessageApplicate",messageVO);
 	}
 

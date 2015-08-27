@@ -323,21 +323,13 @@ public class RecruitBoardController {
 	@Transactional
 	public ModelAndView applicantOK(HttpServletRequest request,ApplicantListVO alvo) throws Exception{
 		//신청자를 뽑았으니 선정되었다고 쪽지 보내주기
-		MessageVO mgvo = new MessageVO();
+		System.out.println("alvo"+alvo);
 		String memberList=request.getParameter("memberList");
-		String title=request.getParameter("title");
 		String member[]=memberList.split(",");
 		for(int i=0;i<member.length;i++){
 			alvo.setMemberNo(Integer.parseInt(member[i])); 
-			mgvo.setReceiveNo(Integer.parseInt(member[i]));
 			recruitBoardService.registerApplicantOK(alvo);
-			//messageService.sendApplicant()
-			//선정된 인원에게 메일 발송 memberNo로 메일 뽑아오기
-			MemberVO mailList=recruitBoardService.findMailAddressByMemberNo(Integer.parseInt(member[i]));
-			String reciver = mailList.getMailAddress(); //받을사람의 이메일입니다.
-	        String subject = "안녕하세요. 너나봉 관리자입니다";
-	        String content = mailList.getName()+"님 봉사활동인원으로 선정되었습니다.\n"
-	        		+ "홈페이지에서 신청하신 ["+title+"] 봉사활동의 일시와 장소를 확인해주세요.";
+			messageService.sendMessageApplicateOK(alvo.getRecruitNo(),Integer.parseInt(member[i]));
 		}
 			List<ApplicantListVO> list=recruitBoardService.findApplicantOkList(alvo.getRecruitNo());
 		return new ModelAndView("voluntary_applicantOK","list",list);

@@ -8,4 +8,6 @@ public interface MessageService {
 
 	List<MessageVO> findMessageByMemberNo(int memberNo);
 
+	void sendMessageApplicateOK(int recruitNo, int parseInt);
+
 }

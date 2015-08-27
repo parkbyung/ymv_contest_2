@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface MessageDAO {
 
-	void sendMessageApplicate(MessageVO messageVO);
+	void sendMessage(MessageVO messageVO);
 
 	List<MessageVO> findMessageByMemberNo(int memberNo);
 
