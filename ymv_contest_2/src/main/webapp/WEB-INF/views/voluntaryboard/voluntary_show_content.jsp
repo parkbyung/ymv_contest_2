@@ -145,6 +145,13 @@ $(document).ready(function(){
 				<td colspan="10"><pre>${requestScope.rvo.content}</pre></td>
 			</tr>
 					<tr>
+						<c:choose>
+						<c:when test="${requestScope.noApplicate=='no'}">
+						<td valign="middle" align="center" colspan="3"><a
+							href="${initParam.root}voluntary_board.ymv"> <input
+								type="button" class="btn btn-default btn-xs" value="목록"></a></td>
+						</c:when>
+						<c:otherwise>
 						<td valign="middle" align="center" colspan="3"><a
 							href="${initParam.root}voluntary_board.ymv"> <input
 								type="button" class="btn btn-default btn-xs" value="목록"></a>
@@ -191,6 +198,9 @@ $(document).ready(function(){
 						<c:when test="">
 								</c:when> --%>
 							</c:choose></td>
+						</c:otherwise>
+						</c:choose>
+						
 					</tr>
 				</tbody>
 		</table>

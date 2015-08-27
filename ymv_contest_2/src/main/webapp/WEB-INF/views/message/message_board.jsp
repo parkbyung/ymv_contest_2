@@ -34,7 +34,9 @@
 					<td>${bvo.messageType }</td>
 					<td>${bvo.timePosted }</td>
 					<!-- recruitNo를 통해 해당 게시판으로 이동 하게 링크 걸기 -->
-					<td>${bvo.recruitNo }</td>
+					<td><a
+						href="${initParam.root}voluntary_show_content.ymv?recruitNo=${bvo.recruitNo }&noApplicate=no">
+							바로가기</a></td>
 				</tr>
 				
 			</c:forEach>

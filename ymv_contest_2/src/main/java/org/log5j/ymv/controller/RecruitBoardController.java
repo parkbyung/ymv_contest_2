@@ -96,8 +96,8 @@ public class RecruitBoardController {
 	@RequestMapping("voluntary_show_content.ymv")
 	public ModelAndView showContentRecruitVolType(HttpServletRequest request,
 			HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		session.getAttribute("mvo");
+		String noApplicate = request.getParameter("noApplicate");
+		System.out.println(noApplicate+"noapplicatelkajs;ldvkas;lvkanw;lkan;glkang;");
 		String url = "voluntary_show_content";
 		int recruitNo = Integer.parseInt(request.getParameter("recruitNo"));
 		Cookie[] cookies = request.getCookies();
@@ -117,7 +117,11 @@ public class RecruitBoardController {
 			}
 		// RecruitBoardVO에 있는 memberNo로 MemberVO의 정보를 찾아 model로 보냄
 		MemberVO vo = memberService.findMemberByMemberNo(rvo.getMemberNo());
-		return new ModelAndView(url, "rvo", rvo).addObject("vo", vo);
+		if(!noApplicate.equals("no") || noApplicate==null){
+			System.out.println("들어왔다");
+			return new ModelAndView(url, "rvo", rvo).addObject("vo", vo);
+		}
+		return new ModelAndView(url, "rvo", rvo).addObject("vo", vo).addObject("noApplicate","no");
 	}
 
     /**
@@ -190,7 +194,7 @@ public class RecruitBoardController {
 				rbvo.setMojib("모집중");
 			}
 	      mv.addObject("rvo",rbvo).addObject("mvo",mvo);
-	      return "redirect:voluntary_show_content.ymv?recruitNo=" + rbvo.getRecruitNo();
+	      return "redirect:voluntary_show_content.ymv?noApplicate=yes&recruitNo=" + rbvo.getRecruitNo();
 	   }
 	/**
 	 * 
@@ -230,7 +234,7 @@ public class RecruitBoardController {
 		//글 등록
 		recruitBoardService.registerVolunteer(rbvo);
 		System.out.println("등록전에 확인해보자 rbvo"+rbvo);
-		return "redirect:voluntary_show_content.ymv?recruitNo=" + rbvo.getRecruitNo();
+		return "redirect:voluntary_show_content.ymv?noApplicate=yes&recruitNo=" + rbvo.getRecruitNo();
 	}
 	/**
 	 * 
