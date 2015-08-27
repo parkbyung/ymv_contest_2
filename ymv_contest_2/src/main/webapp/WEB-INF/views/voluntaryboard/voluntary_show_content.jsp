@@ -148,8 +148,8 @@ $(document).ready(function(){
 						<c:choose>
 						<c:when test="${requestScope.noApplicate=='no'}">
 						<td valign="middle" align="center" colspan="3"><a
-							href="${initParam.root}voluntary_board.ymv"> <input
-								type="button" class="btn btn-default btn-xs" value="목록"></a></td>
+							href="${initParam.root}message_board.ymv"> <input
+								type="button" class="btn btn-default btn-xs" value="쪽지함으로"></a></td>
 						</c:when>
 						<c:otherwise>
 						<td valign="middle" align="center" colspan="3"><a
