@@ -112,8 +112,6 @@ $("#modalBtn").click(function(){
 					<h5 class="glyphicon glyphicon-ok">${sessionScope.mvo.name}님</h5>
 					<br>
 				</div>
-
-
 				<div class="btn-group-vertical btn-block">
 					<c:choose>
 						<c:when test="${sessionScope.mvo.memberType=='company' }">
@@ -175,7 +173,6 @@ $("#modalBtn").click(function(){
 			</div>
 		</div>
 	</c:otherwise>
-
 </c:choose>
 <c:choose>
 	<c:when test="${sessionScope.mvo==null }">
