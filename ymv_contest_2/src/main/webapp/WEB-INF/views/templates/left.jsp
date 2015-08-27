@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%>
 <script>
 	$(document).ready(function(){
 		$("#loginForm").submit(function(){
@@ -14,12 +15,6 @@
 			}
 		});
 		
-/* $("#profile").click(function(){
-			$("#profileView").html("<form action='member_profileUpload.ymv' enctype='multipart/form-data' method='post'><input type='file' class = 'btn btn-default btn-xs' name='fileName' accept='.gif, .jpg, .png'><input type='submit' class = 'btn btn-default btn-xs' value='프로필사진등록' style='position: relative;margin-left: 5%;'>");
-		}); */
-/* $("#profile").click(function(){
-	$("#profileView").html("<form action='member_profileUpload.ymv' enctype='multipart/form-data' method='post'><input type='file' class = 'btn btn-default btn-xs' name='fileName' accept='.gif, .jpg, .png'><input type='submit' class = 'btn btn-default btn-xs' value='프로필사진등록' style='position: relative;margin-left: 5%;'>");
-}); */
 $("#modalBtn").click(function(){
        $.ajax({
             type : "post",
@@ -122,22 +117,50 @@ $("#modalBtn").click(function(){
 				<div class="btn-group-vertical btn-block">
 					<c:choose>
 						<c:when test="${sessionScope.mvo.memberType=='company' }">
-							<a href="#"
-								class="btn btn-default btn-xs glyphicon glyphicon-briefcase">
-								기업회원</a>
+							<c:choose>
+								<c:when test="${requestScope.messagelist!=null }">
+									<a href="#"
+										class="btn btn-default btn-xs glyphicon glyphicon-briefcase">
+										${fn:length(messagelist)}개의쪽지 </a>
+								</c:when>
+								<c:otherwise>
+									<a href="#"
+										class="btn btn-default btn-xs glyphicon glyphicon-briefcase">
+										기업회원</a>
+								</c:otherwise>
+							</c:choose>
 							<br>
 						</c:when>
 						<c:when test="${sessionScope.mvo.memberType=='normal' }">
-							<a href="#"
-								class="btn btn-default btn-xs glyphicon glyphicon-heart ">
-								일반회원</a>
-							<br>
+							<c:choose>
+								<c:when test="${requestScope.messagelist!=null }">
+									<a href="#"
+										class="btn btn-default btn-xs glyphicon glyphicon-heart ">
+										${fn:length(messagelist)}개의쪽지</a>
+									<br>
+								</c:when>
+								<c:otherwise>
+									<a href="#"
+										class="btn btn-default btn-xs glyphicon glyphicon-heart ">
+										일반회원</a>
+								</c:otherwise>
+							</c:choose>
 						</c:when>
 						<c:when test="${sessionScope.mvo.memberType=='admin' }">
-							<a href="#"
-								class="btn btn-default btn-xs glyphicon glyphicon-lock">
-								관리자</a>
-							<br>
+							<c:choose>
+								<c:when test="${requestScope.messagelist!=null }">
+									<a href="#"
+										class="btn btn-default btn-xs glyphicon glyphicon-lock">
+										${fn:length(messagelist)}개의쪽지</a>
+									<br>
+								</c:when>
+								<c:otherwise>
+									<a href="#"
+										class="btn btn-default btn-xs glyphicon glyphicon-lock">
+										관리자</a>
+									<br>
+								</c:otherwise>
+							</c:choose>
 						</c:when>
 					</c:choose>
 					<a href="${initParam.root }member_update_form.ymv"

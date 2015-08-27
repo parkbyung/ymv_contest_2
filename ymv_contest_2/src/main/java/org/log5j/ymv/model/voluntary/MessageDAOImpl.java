@@ -19,7 +19,8 @@ public class MessageDAOImpl implements MessageDAO{
 
 	@Override
 	public List<MessageVO> findMessageByMemberNo(int memberNo) {
-		return sqlSessionTemplate.selectList("message.findMessageByMemberNo",memberNo);
+		List<MessageVO> list = sqlSessionTemplate.selectList("message.findMessageByMemberNo",memberNo);
+		return list;
 	}
 
 }
