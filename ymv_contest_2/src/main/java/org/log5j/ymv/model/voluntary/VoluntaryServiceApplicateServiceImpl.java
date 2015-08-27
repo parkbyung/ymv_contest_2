@@ -58,12 +58,12 @@ public class VoluntaryServiceApplicateServiceImpl implements VoluntaryServiceApp
 	 * @return List
 	 */
 	@Override
-	public List<ApplicantListVO> findApplicantList(int recruitNo) {
+	public List<ApplicantVO> findApplicantList(int recruitNo) {
 		return voluntaryServiceApplicateDAO.findApplicantList(recruitNo);
 	}
 
 	@Override
-	public void deleteApplicant(ApplicantListVO alvo) {
+	public void deleteApplicant(ApplicantVO alvo) {
 		voluntaryServiceApplicateDAO.deleteApplicant(alvo);
 	}
 

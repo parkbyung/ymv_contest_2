@@ -6,7 +6,7 @@ import java.util.Map;
 public interface VoluntaryServiceApplicateDAO {
 	public void registerVolunteerApplicant(VoluntaryServiceApplicateVO vsavo);
 	public Integer checkVolunteerApplicant(Map<String,Object> map);
-	public List<ApplicantListVO> findApplicantList(int recruitNo);
-	public void deleteApplicant(ApplicantListVO alvo);
+	public List<ApplicantVO> findApplicantList(int recruitNo);
+	public void deleteApplicant(ApplicantVO alvo);
 	public void deleteVoluntaryApplicantOK(int recruitNo);
 }

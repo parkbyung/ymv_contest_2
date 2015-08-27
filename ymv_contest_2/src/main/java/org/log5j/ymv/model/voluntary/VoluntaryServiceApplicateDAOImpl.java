@@ -20,7 +20,7 @@ public class VoluntaryServiceApplicateDAOImpl implements VoluntaryServiceApplica
 	 */
 	@Override
 	public void registerVolunteerApplicant(VoluntaryServiceApplicateVO vsavo) {
-		sqlSessionTemplate.insert("member.registerVoluntaryApplicant",vsavo);
+		sqlSessionTemplate.insert("applicant.registerVoluntaryApplicant",vsavo);
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class VoluntaryServiceApplicateDAOImpl implements VoluntaryServiceApplica
 		vsvo.setMemberNo(memberNo);
 		System.out.println(vsvo);*/
 		System.out.println("map   "+map);
-		return sqlSessionTemplate.selectOne("member.checkVolunteerApplicant",map);
+		return sqlSessionTemplate.selectOne("applicant.checkVolunteerApplicant",map);
 	}
 
 	/**
@@ -48,12 +48,12 @@ public class VoluntaryServiceApplicateDAOImpl implements VoluntaryServiceApplica
 	 * @return List
 	 */
 	@Override
-	public List<ApplicantListVO> findApplicantList(int recruitNo) {
+	public List<ApplicantVO> findApplicantList(int recruitNo) {
 		return sqlSessionTemplate.selectList("applicant.findApplicantList",recruitNo);
 	}
 
 	@Override
-	public void deleteApplicant(ApplicantListVO alvo) {
+	public void deleteApplicant(ApplicantVO alvo) {
 		sqlSessionTemplate.delete("applicant.deleteApplicant",alvo);
 	}
 

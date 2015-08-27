@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="org.log5j.ymv.model.scheduler.SearchVO" alias="scvo" />
 		<typeAlias type="org.log5j.ymv.model.statistics.StatisticsVO" alias="stvo"/>
 		<typeAlias type="org.log5j.ymv.model.scheduler.SchedulerVO" alias="sdvo"/>
-		<typeAlias type="org.log5j.ymv.model.voluntary.ApplicantListVO" alias="alvo"/>
+		<typeAlias type="org.log5j.ymv.model.voluntary.ApplicantVO" alias="alvo"/>
 		<typeAlias type="org.log5j.ymv.model.voluntary.ConfirmVO" alias="confirmvo"/>
 		<typeAlias type="org.log5j.ymv.model.voluntary.ConfirmBoardVO" alias="confirmbvo"/>
 		<typeAlias type="org.log5j.ymv.model.voluntary.ConfirmPageVO" alias="confirmpvo"/>

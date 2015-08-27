@@ -21,7 +21,7 @@ import org.log5j.ymv.model.board.RecruitBoardVO;
 import org.log5j.ymv.model.cookie.CookieService;
 import org.log5j.ymv.model.member.MemberService;
 import org.log5j.ymv.model.member.MemberVO;
-import org.log5j.ymv.model.voluntary.ApplicantListVO;
+import org.log5j.ymv.model.voluntary.ApplicantVO;
 import org.log5j.ymv.model.voluntary.ConfirmBoardVO;
 import org.log5j.ymv.model.voluntary.ConfirmPageVO;
 import org.log5j.ymv.model.voluntary.ConfirmVO;
@@ -137,7 +137,7 @@ public class RecruitBoardController {
     	HttpSession session=request.getSession();
 		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
 		int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
-		List<ApplicantListVO> list=null;
+		List<ApplicantVO> list=null;
     	if(mvo.getMemberType().equals("company")){
     		list=voluntaryServiceApplicateService.findApplicantList(recruitNo);
     		System.out.println("getApplicantList list: "+list);
@@ -325,7 +325,7 @@ public class RecruitBoardController {
 	@RequestMapping("voluntary_applicantOK.ymv")
 	@NoLoginCheck
 	@Transactional
-	public ModelAndView applicantOK(HttpServletRequest request,ApplicantListVO alvo) throws Exception{
+	public ModelAndView applicantOK(HttpServletRequest request,ApplicantVO alvo) throws Exception{
 		//신청자를 뽑았으니 선정되었다고 쪽지 보내주기
 		System.out.println("alvo"+alvo);
 		String memberList=request.getParameter("memberList");
@@ -337,7 +337,7 @@ public class RecruitBoardController {
 			voluntaryServiceApplicateService.deleteApplicant(alvo);
 			messageService.sendMessageApplicateOK(alvo.getRecruitNo(),Integer.parseInt(member[i]));
 		}
-			List<ApplicantListVO> list=recruitBoardService.findApplicantOkList(alvo.getRecruitNo());
+			List<ApplicantVO> list=recruitBoardService.findApplicantOkList(alvo.getRecruitNo());
 		return new ModelAndView("voluntary_applicantOK","list",list);
 	}
 	/**
@@ -350,8 +350,8 @@ public class RecruitBoardController {
 	 */
 	@RequestMapping("voluntary_OKList.ymv")
 	@ResponseBody
-	public List voluntary_OKList(HttpServletRequest request,ApplicantListVO alvo){
-		List<ApplicantListVO> list=recruitBoardService.findApplicantOkList(alvo.getRecruitNo());
+	public List voluntary_OKList(HttpServletRequest request,ApplicantVO alvo){
+		List<ApplicantVO> list=recruitBoardService.findApplicantOkList(alvo.getRecruitNo());
 		System.out.println("list  " + list);
 		return list;
 	}
@@ -364,7 +364,7 @@ public class RecruitBoardController {
 	 * @return
 	 */
 	@RequestMapping("voluntary_confirm.ymv")
-	public ModelAndView voluntary_confirm(HttpServletRequest request,ApplicantListVO alvo){
+	public ModelAndView voluntary_confirm(HttpServletRequest request,ApplicantVO alvo){
 		//선택된 인원들 새로운 디비에 저장(confirm)
 		//봉사활동 활동내역이 확인 되었다는 쪽지 보내기
 		String memberList=request.getParameter("memberList");

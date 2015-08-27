@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.log5j.ymv.model.member.MemberVO;
-import org.log5j.ymv.model.voluntary.ApplicantListVO;
+import org.log5j.ymv.model.voluntary.ApplicantVO;
 import org.log5j.ymv.model.voluntary.ConfirmBoardVO;
 import org.log5j.ymv.model.voluntary.ConfirmPageVO;
 import org.log5j.ymv.model.voluntary.ConfirmVO;
@@ -115,12 +115,12 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 	}
 
 	@Override
-	public void registerApplicantOK(ApplicantListVO alvo) {
+	public void registerApplicantOK(ApplicantVO alvo) {
 		sqlSessionTemplate.insert("applicant.registerApplicantOK",alvo);
 	}
 
 	@Override
-	public List<ApplicantListVO> findApplicantOkList(int recruitNo) {
+	public List<ApplicantVO> findApplicantOkList(int recruitNo) {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectList("applicant.findApplicantOkList",recruitNo);
 	}

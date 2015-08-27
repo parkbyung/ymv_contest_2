@@ -1,6 +1,6 @@
 package org.log5j.ymv.model.voluntary;
 
-public class ApplicantListVO {
+public class ApplicantVO {
 	private int recruitNo;
 	private int memberNo;
 	private String motivate;

@@ -22,46 +22,76 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="volunteeringEndDate" column="volunteering_end_date"/>
    </resultMap>
    
- <select id="findApplicantList" parameterType="int" resultMap="applicantRM">
-    select vsa.recruit_no, vsa.member_no, vsa.motivate, m.id, m.name, m.mail_address from voluntary_service_applicate vsa, member m where vsa.member_no=m.member_no and recruit_no=#{value}
- </select>
- <insert id="registerApplicantOK" parameterType="alvo">
- 	insert into voluntary_applicant_ok(recruit_no,member_no) values(#{recruitNo},#{memberNo})
- </insert>
- <select id="findApplicantOkList" parameterType="int" resultMap="applicantRM">
- 	select vao.recruit_no, m.member_no, m.id, m.name, m.mail_address from voluntary_applicant_ok vao, member m where vao.member_no=m.member_no and recruit_no=#{value}
- </select>
-  <delete id="deleteApplicant" parameterType="alvo">
- 	delete from voluntary_service_applicate where recruit_no=#{recruitNo} and member_no=#{memberNo}
- </delete>
-  <delete id="deleteApplicantOK" parameterType="int">
- 	delete from voluntary_applicant_ok where recruit_no=#{value}
- </delete>
- 
- <insert id="registerConfirm" parameterType="confirmvo">
- 	insert into confirm(board_no,member_no) values(#{boardNo},#{memberNo})
- </insert>
- <insert id="registerConfirmBoard" parameterType="confirmbvo">
- 	insert into confirm_board(board_no,title,field,location,age,recruiting_start,recruiting_end,content,member_no,time_posted,hit,volunteering_start_date,volunteering_end_date,volunteering_start_time,volunteering_end_time) 
-       values(#{boardNo},#{title},#{field},#{location},#{age},#{recruitingStart},#{recruitingEnd},#{content},#{memberNo}, sysdate ,0,#{volunteeringStartDate},#{volunteeringEndDate},#{volunteeringStartTime},#{volunteeringEndTime})
- </insert>
- <select id="findMailAddressByMemberNo" parameterType="int" resultMap="memberRM">
- 	select member_no, id, name, mail_address from member where member_no=#{value}
- </select>
-<select id="findConfirmBoardListByMemberNo" parameterType="confirmbvo" resultMap="confirmRM">
-	select board_no, title, field, location, age, volunteering_start_date, volunteering_end_date 
-   	from(select board_no, title, field, location, age, volunteering_start_date, volunteering_end_date, CEIL(rownum/5) AS page from(select board_no, title, field, location, age, volunteering_start_date, volunteering_end_date from(select cb.board_no, cb.title, cb.field, cb.location, cb.age,volunteering_start_date,volunteering_end_date
-   	from confirm c , confirm_board cb 
-   	where c.board_no=cb.board_no and c.member_no=#{memberNo} ) order by board_no desc ) )
-   	where page=#{pageNo}
-</select>
-<select id="totalContentConfirm" parameterType="int" resultType="int">
-	select count(*) from confirm where member_no=#{value}
-</select>
-<select id="findConfirmBoardByConfirm" resultMap="confirmRM" resultType="confirmvo">
-	select board_no,title,field,location,age,volunteering_start_date,volunteering_end_date,content,
-	member_no,time_posted,hit from confirm_board 
-	where board_no=#{boardNo}
-</select>
+	<insert id="registerVoluntaryApplicant" parameterType="vsavo">
+		insert
+		into voluntary_service_applicate(recruit_no,member_no,motivate)
+		values(#{recruitNo},#{memberNo},#{motivate})
+	</insert>
+	<select id="checkVolunteerApplicant" resultType="int"
+		parameterType="map">
+		select count(*) from voluntary_service_applicate where
+		recruit_no=#{recruitNo} and member_no=#{memberNo}
+	</select>
+	<select id="findApplicantList" parameterType="int" resultMap="applicantRM">
+		select vsa.recruit_no, vsa.member_no, vsa.motivate, m.id, m.name,
+		m.mail_address from voluntary_service_applicate vsa, member m where
+		vsa.member_no=m.member_no and recruit_no=#{value}
+	</select>
+	<insert id="registerApplicantOK" parameterType="alvo">
+		insert into voluntary_applicant_ok(recruit_no,member_no)
+		values(#{recruitNo},#{memberNo})
+	</insert>
+	<select id="findApplicantOkList" parameterType="int" resultMap="applicantRM">
+		select vao.recruit_no, m.member_no, m.id, m.name, m.mail_address from
+		voluntary_applicant_ok vao, member m where vao.member_no=m.member_no
+		and recruit_no=#{value}
+	</select>
+	<delete id="deleteApplicant" parameterType="alvo">
+		delete from voluntary_service_applicate where recruit_no=#{recruitNo} and
+		member_no=#{memberNo}
+	</delete>
+	<delete id="deleteApplicantOK" parameterType="int">
+		delete from voluntary_applicant_ok where recruit_no=#{value}
+	</delete>
+
+	<insert id="registerConfirm" parameterType="confirmvo">
+		insert into confirm(board_no,member_no) values(#{boardNo},#{memberNo})
+	</insert>
+	<insert id="registerConfirmBoard" parameterType="confirmbvo">
+		insert into
+		confirm_board(board_no,title,field,location,age,recruiting_start,recruiting_end,content,member_no,time_posted,hit,volunteering_start_date,volunteering_end_date,volunteering_start_time,volunteering_end_time)
+		values(#{boardNo},#{title},#{field},#{location},#{age},#{recruitingStart},#{recruitingEnd},#{content},#{memberNo},
+		sysdate
+		,0,#{volunteeringStartDate},#{volunteeringEndDate},#{volunteeringStartTime},#{volunteeringEndTime})
+	</insert>
+	<select id="findMailAddressByMemberNo" parameterType="int"
+		resultMap="memberRM">
+		select member_no, id, name, mail_address from member where
+		member_no=#{value}
+	</select>
+	<select id="findConfirmBoardListByMemberNo" parameterType="confirmbvo"
+		resultMap="confirmRM">
+		select board_no, title, field, location, age, volunteering_start_date,
+		volunteering_end_date
+		from(select board_no, title, field, location, age, volunteering_start_date,
+		volunteering_end_date, CEIL(rownum/5) AS page from(select board_no,
+		title, field, location, age, volunteering_start_date,
+		volunteering_end_date from(select cb.board_no, cb.title, cb.field,
+		cb.location, cb.age,volunteering_start_date,volunteering_end_date
+		from confirm c , confirm_board cb
+		where c.board_no=cb.board_no and c.member_no=#{memberNo} ) order by
+		board_no desc ) )
+		where page=#{pageNo}
+	</select>
+	<select id="totalContentConfirm" parameterType="int" resultType="int">
+		select count(*) from confirm where member_no=#{value}
+	</select>
+	<select id="findConfirmBoardByConfirm" resultMap="confirmRM"
+		resultType="confirmvo">
+		select
+		board_no,title,field,location,age,volunteering_start_date,volunteering_end_date,content,
+		member_no,time_posted,hit from confirm_board
+		where board_no=#{boardNo}
+	</select>
 
  </mapper>

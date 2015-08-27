@@ -3,7 +3,7 @@ package org.log5j.ymv.model.board;
 import java.util.List;
 
 import org.log5j.ymv.model.member.MemberVO;
-import org.log5j.ymv.model.voluntary.ApplicantListVO;
+import org.log5j.ymv.model.voluntary.ApplicantVO;
 import org.log5j.ymv.model.voluntary.ConfirmBoardVO;
 import org.log5j.ymv.model.voluntary.ConfirmPageVO;
 import org.log5j.ymv.model.voluntary.ConfirmVO;
@@ -21,8 +21,8 @@ public interface RecruitBoardService {
 	public ListVO findCompanyBoardList(CompanyVO cpvo);
 	public void deletePicture(int pictureNo);
 	public ListVO findNormalBoardList(CompanyVO cpvo);
-	public void registerApplicantOK(ApplicantListVO alvo);
-	public List<ApplicantListVO> findApplicantOkList(int recruitNo);
+	public void registerApplicantOK(ApplicantVO alvo);
+	public List<ApplicantVO> findApplicantOkList(int recruitNo);
 	public MemberVO findMailAddressByMemberNo(int memberNo);
 	public void registerConfirm(ConfirmVO confirmvo);
 	public void registerConfirmBoard(ConfirmBoardVO confirmbvo);
