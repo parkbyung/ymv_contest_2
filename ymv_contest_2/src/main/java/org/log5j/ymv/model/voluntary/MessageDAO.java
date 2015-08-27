@@ -12,7 +12,7 @@ public interface MessageDAO {
 
 	List<BoardVO> findMessageBoardList(MessageBoardVO mgbvo);
 
-	int totalContent();
+	int totalContent(int memberNo);
 
 	MessageVO findMessageBoardByMessageNo(int messageNo);
 

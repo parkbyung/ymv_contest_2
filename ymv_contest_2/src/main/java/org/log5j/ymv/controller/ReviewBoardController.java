@@ -41,6 +41,10 @@ public class ReviewBoardController {
 	@NoLoginCheck
 	public ModelAndView reviewBoard(String pageNo) {	
 		ListVO lvo = reviewBoardService.findReviewBoardList(pageNo);
+		System.out.println("s;knas;lkajnlbjerbnlekrjgnalkergrg");
+		System.out.println(lvo.getPagingBean().getStartPageOfPageGroup());
+		System.out.println(lvo.getPagingBean().getEndPageOfPageGroup());
+		System.out.println(lvo.getPagingBean().getNowPageGroup());
 		return new ModelAndView("review_board","lvo",lvo);
 	}
 	/**

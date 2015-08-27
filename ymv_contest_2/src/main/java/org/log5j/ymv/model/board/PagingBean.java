@@ -149,6 +149,14 @@ public class PagingBean {
 		System.out.println(bean.getTotalPageGroup()+"페이지 그룹");
 		System.out.println(bean.getNowPageGroup()+" 현재 페이지 그룹");
 	}
+	@Override
+	public String toString() {
+		return "PagingBean [totalContent=" + totalContent + ", nowPage="
+				+ nowPage + ", numberOfContentPerPage="
+				+ numberOfContentPerPage + ", numberOfPageGroup="
+				+ numberOfPageGroup + "]";
+	}
+	
 }
 
 

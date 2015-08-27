@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where page=#{pageNo} and receive_no=#{memberNo}
    </select>
     <select id="totalContent" resultType="int">
-    	select count(*) from message
+    	select count(*) from message where receive_no=#{value}
     </select>
        <select id="findMessageBoardByMessageNo" resultMap="messageRM" resultType="mgvo">   
 		select message_no, message_type, title, content, receive_no, receiver_name, time_posted, recruit_no from message where message_no=#{value}

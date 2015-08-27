@@ -65,13 +65,9 @@ public class MessageServiceImpl implements MessageService {
 			pageNo = "1";
 		MessageBoardVO mgbvo = new MessageBoardVO(memberNo, Integer.parseInt(pageNo));
 		List<BoardVO> list = messageDAO.findMessageBoardList(mgbvo);
-		System.out.println("ServiceImpl list: "+list);
-		int total = messageDAO.totalContent();
-		System.out.println("ServiceImpl total: "+total);
+		int total = messageDAO.totalContent(memberNo);
 		PagingBean paging = new PagingBean(total, Integer.parseInt(pageNo));
-		System.out.println("ServiceImpl paging: "+paging);
 		ListVO lvo = new ListVO(list, paging);
-		System.out.println("ServiceImpl lvo: "+lvo);
 		return lvo;
 	}
 

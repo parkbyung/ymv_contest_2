@@ -28,9 +28,7 @@ public class MessageBoardController {
 	@RequestMapping("message_board.ymv")
 	public ModelAndView messageBoard(String pageNo, HttpServletRequest request) {	
 		MemberVO mvo = (MemberVO) request.getSession().getAttribute("mvo");
-		System.out.println(mvo);
 		ListVO lvo = messageService.findMessageBoardList(pageNo,mvo.getMemberNo());
-		System.out.println("lvo"+lvo);
 		return new ModelAndView("message_board","lvo",lvo);
 	}
 
