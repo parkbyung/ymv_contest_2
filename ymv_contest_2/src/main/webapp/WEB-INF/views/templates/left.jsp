@@ -60,7 +60,7 @@ $("#modalBtn").click(function(){
 
 <c:choose>
 	<c:when test="${sessionScope.mvo==null}">
-		<form id="loginForm" class="form-horizontal"
+		<form id="loginForm" class="form-horizontal" method="post"
 			style="position: relative; left: 5%;" action="login.ymv">
 			<fieldset>
 				<div class="form-group">
