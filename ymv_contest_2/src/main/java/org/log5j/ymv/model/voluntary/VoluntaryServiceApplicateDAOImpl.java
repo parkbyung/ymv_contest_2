@@ -52,6 +52,16 @@ public class VoluntaryServiceApplicateDAOImpl implements VoluntaryServiceApplica
 		return sqlSessionTemplate.selectList("applicant.findApplicantList",recruitNo);
 	}
 
+	@Override
+	public void deleteApplicant(ApplicantListVO alvo) {
+		sqlSessionTemplate.delete("applicant.deleteApplicant",alvo);
+	}
+
+	@Override
+	public void deleteVoluntaryApplicantOK(int recruitNo) {
+		sqlSessionTemplate.delete("applicant.deleteApplicantOK",recruitNo);
+	}
+
 
 
 }

@@ -62,6 +62,16 @@ public class VoluntaryServiceApplicateServiceImpl implements VoluntaryServiceApp
 		return voluntaryServiceApplicateDAO.findApplicantList(recruitNo);
 	}
 
+	@Override
+	public void deleteApplicant(ApplicantListVO alvo) {
+		voluntaryServiceApplicateDAO.deleteApplicant(alvo);
+	}
+
+	@Override
+	public void deleteVoluntaryApplicantOK(int recruitNo) {
+		voluntaryServiceApplicateDAO.deleteVoluntaryApplicantOK(recruitNo);
+	}
+
 	/**
 	 * 작성자 : 백지영
 	 * 내용 : voluntaryServiceApplicateDAO에서 deleteApplicant를 수행한 값을 return한다.

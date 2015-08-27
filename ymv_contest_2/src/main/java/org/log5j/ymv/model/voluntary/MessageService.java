@@ -10,4 +10,6 @@ public interface MessageService {
 
 	void sendMessageApplicateOK(int recruitNo, int parseInt);
 
+	void sendMessageConfirm(int recruitNo, int parseInt);
+
 }

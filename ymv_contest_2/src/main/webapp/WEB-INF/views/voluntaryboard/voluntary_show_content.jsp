@@ -72,24 +72,22 @@ $(document).ready(function(){
 			data:"recruitNo=${requestScope.rvo.recruitNo }",
 			dataType:"json", 
 			success:function(data){
-					modaltable+="<table class='table table-striped table-hover '><thead><tr><th>체크</th><th>이름</th><th>메일주소</th></tr></thead><tbody>";
+					modaltable+="<table class='table table-striped table-hover '><thead><tr><th>체크</th><th>이름</th><th>메일주소</th><th>지원동기</th></tr></thead><tbody>";
 				$(data).each(function(index,e){
 					modaltable+="<input type='hidden' name='recruitNo' value='"+e.recruitNo+"'>";
 					modaltable+="<tr><td><input class = 'tr_check' type='checkbox' name='memberNo' value='"+e.memberNo+"'></td>";
-					modaltable+="<td>"+e.name+"</td><td>"+e.mailAddress+"</td></tr>";
+					modaltable+="<td>"+e.name+"</td><td>"+e.mailAddress+"</td><td>"+e.motivate+"</td></tr>";
 				});
 				modaltable+="</tbody></table>";
-					$("#applicantOk_modal").html(modaltable);
-					
-						$("#memberBtn2").click(function(){
-							var memberNoOkList="";
-					        $("input:checkbox:checked").each(function (index){
-					        	memberNoOkList+=$(this).val() + ",";
-					        });
-					        $("#memberOkList").val(memberNoOkList);
-							$("#checkForm2").submit();
-						});
-						
+				$("#applicantOk_modal").html(modaltable);
+				$("#memberBtn2").click(function(){
+				var memberNoOkList="";
+				$("input:checkbox:checked").each(function (index){
+					    memberNoOkList+=$(this).val() + ",";
+					    });
+					    $("#memberOkList").val(memberNoOkList);
+						$("#checkForm2").submit();
+				});
 			}
 		});
 	});

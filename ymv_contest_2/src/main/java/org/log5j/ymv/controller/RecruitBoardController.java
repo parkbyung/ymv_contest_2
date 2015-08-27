@@ -329,6 +329,8 @@ public class RecruitBoardController {
 		for(int i=0;i<member.length;i++){
 			alvo.setMemberNo(Integer.parseInt(member[i])); 
 			recruitBoardService.registerApplicantOK(alvo);
+			//신청자를 뽑은 후 지우지 않으면 다음에 다시 보고 또 뽑을 경우 중복키 이셉션 발생
+			voluntaryServiceApplicateService.deleteApplicant(alvo);
 			messageService.sendMessageApplicateOK(alvo.getRecruitNo(),Integer.parseInt(member[i]));
 		}
 			List<ApplicantListVO> list=recruitBoardService.findApplicantOkList(alvo.getRecruitNo());
@@ -376,7 +378,13 @@ public class RecruitBoardController {
 			recruitBoardService.registerConfirmBoard(confirmbvo);
 			//글등록 먼저하고나서 컨펌등록
 			ConfirmVO confirmvo=new ConfirmVO(alvo.getRecruitNo(),alvo.getMemberNo());
-			recruitBoardService.registerConfirm(confirmvo);			
+			recruitBoardService.registerConfirm(confirmvo);
+			messageService.sendMessageConfirm(alvo.getRecruitNo(),Integer.parseInt(member[i]));
+			voluntaryServiceApplicateService.deleteVoluntaryApplicantOK(recruitbvo.getRecruitNo());
+			//신청자 신청내역을 확인 할 수 있다.
+			//recruitBoardService.deleteVoluntaryServiceApplicateByRecruitNo(recruitbvo.getRecruitNo());
+			//게시글을 지울 필요가 있을까?
+			//recruitBoardService.deleteRecruitVolunteer(recruitbvo.getRecruitNo());
 		}
 		return new ModelAndView("voluntary_confirm");
 	}
