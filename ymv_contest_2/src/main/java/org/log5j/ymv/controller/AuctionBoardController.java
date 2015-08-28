@@ -43,7 +43,6 @@ public class AuctionBoardController {
 	}
 
 	@RequestMapping("auction_show_content.ymv")
-	@NoLoginCheck
 	 public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		ModelAndView mv=new ModelAndView("auction_show_content");
@@ -69,7 +68,6 @@ public class AuctionBoardController {
 }	
 	
 	@RequestMapping("auction_update_view.ymv")
-	@NoLoginCheck
 	public ModelAndView auctionBoardUpdateView(int boardNo) {		
 		AuctionBoardVO abvo = (AuctionBoardVO) auctionBoardService.findAuctionBoardByBoardNo(boardNo);
 		/*abvo=auctionBoardService.setDate(abvo);*/
@@ -77,7 +75,6 @@ public class AuctionBoardController {
 	}
 
 	@RequestMapping("auction_board_update.ymv")
-	@NoLoginCheck
 	public String auctionBoardUpdate(AuctionBoardVO abvo, PictureVO pvo, HttpServletRequest request,String hidden){
 		auctionBoardService.updateAuctionBoard(abvo);
 		abvo = (AuctionBoardVO) auctionBoardService.findAuctionBoardByBoardNo(abvo.getBoardNo());
@@ -109,7 +106,6 @@ public class AuctionBoardController {
 	}
 	
 	@RequestMapping("auction_register_view.ymv")
-	@NoLoginCheck
 	public ModelAndView auctionRegisterView(){		
 		return new ModelAndView("auction_register_view");
 	}
@@ -123,7 +119,6 @@ public class AuctionBoardController {
 	 * @return
 	 */
 	@RequestMapping("auction_register.ymv")
-	@NoLoginCheck
 	public String auctionRegister(AuctionBoardVO abvo,PictureVO pvo,HttpServletRequest request){
 		System.out.println("등록할 정보 입니다. " + abvo +"pvo 입니다  " + pvo);
 		abvo.setEndDate(abvo.getEndDate());
@@ -151,7 +146,6 @@ public class AuctionBoardController {
 	}
 
 	@RequestMapping("auction_update_currentPrice.ymv")
-	@NoLoginCheck
 	public ModelAndView updateCurrentPrice(AuctionBoardVO abvo) {
 		auctionBoardService.updateCurrentPrice(abvo);
 		return new ModelAndView("redirect:auction_show_content.ymv?boardNo="
@@ -160,7 +154,6 @@ public class AuctionBoardController {
 	
 	@RequestMapping("auction_update_price.ymv")
 	@ResponseBody
-	@NoLoginCheck
 	public AuctionBoardVO updatePrice(AuctionBoardVO auvo){
 		System.out.println("경매 시작 "+auvo);
 		int resultPrice = auctionBoardService.updatePrice(auvo);
