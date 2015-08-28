@@ -9,10 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="memberNo" column="member_no"/>
       <result property="timePosted" column="time_posted"/>
    </resultMap>
- 
-    <select id="findByReviewNo" parameterType="int" resultType="rbvo">
-       select * from board where board_no=#{value}
-    </select>
+
     <select id="findReviewBoardList" resultType="rbvo">
     	select boardNo, title, writer, content, memberNo, timePosted, hit 
     	from(select boardNo, title, writer, content, memberNo, timePosted, hit, CEIL(rownum/5) AS page 

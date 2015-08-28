@@ -3,7 +3,6 @@ package org.log5j.ymv.model.board;
 import java.util.List;
 
 public interface ReviewBoardDAO {
-	ReviewBoardVO findByReviewNo(ReviewBoardVO vo);
 	List<BoardVO> findReviewBoardList(String pageNo);
 	int totalContent();
 	BoardVO findReviewBoardByBoardNo(int boardNo);

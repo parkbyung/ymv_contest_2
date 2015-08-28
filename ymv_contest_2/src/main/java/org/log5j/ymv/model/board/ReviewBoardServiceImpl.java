@@ -12,12 +12,6 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 	private ReviewBoardDAO reviewBoardDAO;
 
 	@Override
-	public ReviewBoardVO findByReviewNo(ReviewBoardVO vo) {
-		// TODO Auto-generated method stub
-		return reviewBoardDAO.findByReviewNo(vo);
-	}
-
-	@Override
 	public ListVO findReviewBoardList(String pageNo) {
 		if (pageNo == null || pageNo == "")
 			pageNo = "1";
