@@ -52,7 +52,7 @@ $(document).ready(function(){
 			dataType:"json", 
 			success:function(data){
 				var modalinfo = "";
-				modalinfo+="<table class='table table-striped table-hover'><thead><tr><th>체크</th><th>이름</th><th>신청동기</th><th>메일주소</th></thead><tbody>";
+				modalinfo+="<table class='table table-striped table-hover' id='applicantTable'><thead><tr><th>체크</th><th>이름</th><th>신청동기</th><th>메일주소</th></thead><tbody>";
 				if(data == null || data == 0){
 					modalinfo+="<tr><td colspan='5'><center><font size='3'>신청한 참여자가 없습니다.</font></center></td></tr>";
 				}else{
@@ -76,9 +76,9 @@ $(document).ready(function(){
 			data:"recruitNo=${requestScope.rvo.recruitNo }",
 			dataType:"json", 
 			success:function(data){
-				modaltable+="<table class='table table-striped table-hover'><thead><tr><th>체크</th><th>이름</th><th>메일주소</th></tr></thead><tbody>";
+				modaltable+="<table class='table table-striped table-hover' id='applicantOKTable'><thead><tr><th>체크</th><th>이름</th><th>메일주소</th></tr></thead><tbody>";
 				if(data == null || data == 0){
-					modaltable+="<tr><td colspan='4'><center><font size='3'>선택하신 봉사 참여자가 없습니다.</font></center></td></tr>";
+					modaltable+="<tr><td colspan='4' id='aa'><center><font size='3'>선택하신 봉사 참여자가 없습니다.</font></center></td></tr>";
 				}else{
 					$(data).each(function(index,e){
 						modaltable+="<input type='hidden' name='recruitNo' value='"+e.recruitNo+"'>";
@@ -94,8 +94,11 @@ $(document).ready(function(){
 	});//click
 	
 	$("#memberBtn").click(function(){
-		if($("input:checkbox:checked").val() == 0 || $("input:checkbox:checked").val() == null){
-			alert("뽑을 신청자를 선택 해주세요.");
+		if($("#applicantTable tbody td").text() == "신청한 참여자가 없습니다."){
+			alert("봉사 참여 희망자가 없습니다.");
+			return;
+		}else if($("input:checkbox:checked").val() == 0 || $("input:checkbox:checked").val() == null){
+			alert("신청자를 선택 해주세요.");
 			return;
 		}else{
 	        $("input:checkbox:checked").each(function (index){
@@ -108,7 +111,11 @@ $(document).ready(function(){
 	
 	$("#memberBtn2").click(function(){
 		var memberNoOkList="";
-		if($("input:checkbox:checked").val() == 0 || $("input:checkbox:checked").val() == null){
+		
+		if($("#applicantOKTable tbody td").text() == "선택하신 봉사 참여자가 없습니다."){
+			alert("봉사 참여자가 없습니다.");
+			return;
+		}else if($("input:checkbox:checked").val() == 0 || $("input:checkbox:checked").val() == null){
 			alert("봉사에 참여한 회원을 선택해 주세요.");
 			return;
 		}else{
