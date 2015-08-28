@@ -32,4 +32,6 @@ public interface ReviewBoardService {
 	
 	ReviewBoardVO getPostingByNoticeBoardNoUpdateHit(int boardNo);
 
+	void updatePicture(PictureVO pvo);
+
 }

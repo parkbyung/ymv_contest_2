@@ -96,5 +96,10 @@ public void updateHit(int boardNo) {
 	
 }
 
+@Override
+public void updatePicture(PictureVO pvo) {
+	sqlSessionTemplate.update("reviewBoard.updatePicture",pvo);	
+}
+
 
 }

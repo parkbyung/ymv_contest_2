@@ -123,9 +123,25 @@ public class ReviewBoardController {
 	 * @return
 	 */
 	@RequestMapping("review_board_update.ymv")
-	public ModelAndView reviewBoardUpdate(ReviewBoardVO rbvo){
+	public String reviewBoardUpdate(ReviewBoardVO rbvo, PictureVO pvo, HttpServletRequest request,String hidden){
 		reviewBoardService.updateReviewBoard(rbvo);
-		return new ModelAndView("redirect:review_showContent.ymv?boardNo="+rbvo.getBoardNo(),"rvo",rbvo);
+		reviewBoardService.findReviewBoardByBoardNo(rbvo.getBoardNo());
+		int hid = Integer.parseInt(hidden);
+		HttpSession session=request.getSession(false);
+		session.setAttribute("rbvo", rbvo);
+		session.setAttribute("pvo", pvo);
+		session.setAttribute("hidden", "update");
+		if(hid==2){
+			return "redirect:review_showContent.ymv?boardNo="+rbvo.getBoardNo();
+		}
+		return "forward:upload_review_path.ymv";
+	}
+	
+	@RequestMapping("review_update_file.ymv")
+	public ModelAndView sponsorUpdate(HttpServletRequest request) {
+		PictureVO pvo = (PictureVO) request.getSession().getAttribute("pvo");
+		reviewBoardService.updatePicture(pvo);
+		return new ModelAndView("redirect:review_showContent.ymv?boardNo="+pvo.getPictureNo());
 	}
 	/**
 	 * 

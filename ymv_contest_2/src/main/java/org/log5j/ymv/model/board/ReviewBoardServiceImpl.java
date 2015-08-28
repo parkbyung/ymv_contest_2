@@ -92,4 +92,9 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 		return (ReviewBoardVO) reviewBoardDAO.findReviewBoardByBoardNo(boardNo);
 	}
 
+	@Override
+	public void updatePicture(PictureVO pvo) {
+		reviewBoardDAO.updatePicture(pvo);		
+	}
+
 }

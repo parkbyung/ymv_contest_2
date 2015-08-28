@@ -82,7 +82,6 @@ public class AuctionBoardController {
 		auctionBoardService.updateAuctionBoard(abvo);
 		abvo = (AuctionBoardVO) auctionBoardService.findAuctionBoardByBoardNo(abvo.getBoardNo());
 		HttpSession session=request.getSession(false);
-		System.out.println(pvo);
 		int hid = Integer.parseInt(hidden);
 		session.setAttribute("abvo", abvo);
 		session.setAttribute("pvo", pvo);
