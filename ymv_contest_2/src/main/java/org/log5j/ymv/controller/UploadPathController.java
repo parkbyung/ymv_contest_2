@@ -61,23 +61,29 @@ public class UploadPathController {
 	}
 
 	@RequestMapping("upload_notice_path.ymv")
-	public String registerNoticeFilePath(NoticeBoardVO nvo, PictureVO pvo) {
-		MultipartFile file = pvo.getFileName();
-		ModelAndView mav = new ModelAndView();
-		String fileName = "[" + nvo.getBoardNo() + "]"
-				+ file.getOriginalFilename();
-		String filePath = "noticeupload\\" + fileName;
+	public String registerNoticeFilePath(HttpServletRequest request) {
+		HttpSession session=request.getSession(false);
+		PictureVO pvo=(PictureVO)request.getSession().getAttribute("pvo");
+		NoticeBoardVO nvo=(NoticeBoardVO)request.getSession().getAttribute("nvo");
+		String hidden = (String) request.getSession().getAttribute("hidden");
+		MultipartFile file=pvo.getFileName();
+		String fileName="["+nvo.getBoardNo()+"]"+file.getOriginalFilename();			
+		String filePath="noticeupload\\"+fileName;
 		pvo.setFilePath(filePath);
 		pvo.setPictureNo(nvo.getBoardNo());
 		if (!fileName.equals("")) {
 			try {
 				file.transferTo(new File(noticePath + fileName));
-				mav.addObject("pvo", pvo);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return "notice_register_file.ymv";
+		session.setAttribute("pvo", pvo);
+		session.setAttribute("nvo", nvo);
+		if(hidden.equals("register")){
+			return "forward:notice_register_file.ymv";
+		}
+		return "forward:notice_update_file.ymv";
 	}
 
 	@RequestMapping("upload_review_path.ymv")
@@ -105,24 +111,6 @@ public class UploadPathController {
 		}
 		return "forward:review_update_file.ymv";
 	}
-		/*MultipartFile file = pvo.getFileName();
-		ModelAndView mav = new ModelAndView();
-		String fileName = "[" + rbvo.getBoardNo() + "]"
-				+ file.getOriginalFilename();
-		String filePath = "reviewupload\\" + fileName;
-		pvo.setFilePath(filePath);
-		pvo.setPictureNo(rbvo.getBoardNo());
-		if (!fileName.equals("")) {
-			try {
-				file.transferTo(new File(reviewPath + fileName));
-				// 픽쳐 디비에 파일정보 저장
-				mav.addObject("pvo", pvo);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return "forward:review_register_file.ymv";
-	}*/
 	
 	@RequestMapping("upload_auction_path.ymv")
 	public String registerAuctionFilePath(HttpServletRequest request) {

@@ -4,12 +4,14 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.log5j.ymv.model.board.BoardVO;
 import org.log5j.ymv.model.board.ListVO;
 import org.log5j.ymv.model.board.NoticeBoardService;
 import org.log5j.ymv.model.board.NoticeBoardVO;
 import org.log5j.ymv.model.board.PictureVO;
+import org.log5j.ymv.model.board.ReviewBoardVO;
 import org.log5j.ymv.model.cookie.CookieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,10 +66,14 @@ public class NoticeBoardController {
     * @return
     */
    @RequestMapping("notice_register.ymv")
-   public String noticeRegister(NoticeBoardVO nvo,PictureVO pvo){
+   public String noticeRegister(NoticeBoardVO nvo,PictureVO pvo,HttpServletRequest request){
+	   //ModelAndView로 객체들을 넘겨주게되면 jsp에서 받은 것만 넘겨주고 컨트롤에서 바뀐 객체들은 전해주지 않는다. 그래서 세션을 사용했다.
 	   noticeBoardService.registerNoticeBoard(nvo);
-	   ModelAndView mav = new ModelAndView();
-	   mav.addObject("nvo",nvo).addObject("pvo",pvo);
+	   NoticeBoardVO nbvo = (NoticeBoardVO) noticeBoardService.findNoticeBoardByBoardNo(nvo.getBoardNo());
+	   HttpSession session=request.getSession(false);
+	   session.setAttribute("pvo", pvo);
+	   session.setAttribute("nvo", nbvo);
+	   session.setAttribute("hidden", "register");
 	   return "forward:upload_notice_path.ymv";
    }
 	/**
@@ -77,11 +83,12 @@ public class NoticeBoardController {
 	 * @param pvo : 업로드하기 위한 기초 정보
 	 * @return
 	 */
-   @RequestMapping("notice_register_file.ymv")
-   public ModelAndView noticeRegisterPicture(PictureVO pvo){
-	   noticeBoardService.registerPicture(pvo);
-	   return new ModelAndView("redirect:notice_board.ymv");
-   }
+	@RequestMapping("notice_register_file.ymv")
+	public String noticeRegisterPicture(HttpServletRequest request) {
+		PictureVO pvo = (PictureVO) request.getSession().getAttribute("pvo");
+		noticeBoardService.registerPicture(pvo);
+		return "redirect:notice_board.ymv?boardNo=" + pvo.getPictureNo();
+	}
    /**
     * 
     * @작성자 : 임영학

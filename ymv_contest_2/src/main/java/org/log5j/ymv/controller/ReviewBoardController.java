@@ -192,10 +192,9 @@ public class ReviewBoardController {
 	 * @return
 	 */
 	@RequestMapping("review_register_file.ymv")
-	public ModelAndView noticeRegisterPicture(HttpServletRequest request) {
+	public String noticeRegisterPicture(HttpServletRequest request) {
 		PictureVO pvo=(PictureVO)request.getSession().getAttribute("pvo");
 		reviewBoardService.registerPicture(pvo);
-		ReviewBoardVO rbvo=(ReviewBoardVO)request.getSession().getAttribute("rbvo");
-		return new ModelAndView("redirect:review_showContent.ymv?boardNo="+rbvo.getBoardNo());
+		return "redirect:review_showContent.ymv?boardNo="+pvo.getPictureNo();
 	}
 }
