@@ -51,13 +51,17 @@ $(document).ready(function(){
 			data:"recruitNo=${requestScope.rvo.recruitNo }",
 			dataType:"json", 
 			success:function(data){
-					var modalinfo = "";
-					modalinfo+="<table class='table table-striped table-hover '><thead><tr><th>체크</th><th>이름</th><th>신청동기</th><th>메일주소</th></thead><tbody>";
-				$(data).each(function(index,e){
-					modalinfo+="<input type='hidden' name='recruitNo' value='"+e.recruitNo+"'>";
-					modalinfo+="<tr><td><input class = 'tr_check' type='checkbox' name='memberNo' value='"+e.memberNo+"'></td>";
-					modalinfo+="<td>"+e.name+"</td><td>"+e.motivate+"</td><td>"+e.mailAddress+"</td></tr>";
-				});
+				var modalinfo = "";
+				modalinfo+="<table class='table table-striped table-hover '><thead><tr><th>체크</th><th>이름</th><th>신청동기</th><th>메일주소</th></thead><tbody>";
+				if(data == null || data == 0){
+					modalinfo+="<tr><td colspan='5'><center><font size='3'>신청한 참여자가 없습니다.</font></center></td></tr>";
+				}else{
+					$(data).each(function(index,e){
+						modalinfo+="<input type='hidden' name='recruitNo' value='"+e.recruitNo+"'>";
+						modalinfo+="<tr><td><input class = 'tr_check' type='checkbox' name='memberNo' value='"+e.memberNo+"'></td>";
+						modalinfo+="<td>"+e.name+"</td><td>"+e.motivate+"</td><td>"+e.mailAddress+"</td></tr>";
+					});
+				}
 				modalinfo+="</tbody></table>";
 					$("#applicant_modal").html(modalinfo);
 			}
@@ -72,14 +76,19 @@ $(document).ready(function(){
 			data:"recruitNo=${requestScope.rvo.recruitNo }",
 			dataType:"json", 
 			success:function(data){
-					modaltable+="<table class='table table-striped table-hover '><thead><tr><th>체크</th><th>이름</th><th>메일주소</th><th>지원동기</th></tr></thead><tbody>";
-				$(data).each(function(index,e){
-					modaltable+="<input type='hidden' name='recruitNo' value='"+e.recruitNo+"'>";
-					modaltable+="<tr><td><input class = 'tr_check' type='checkbox' name='memberNo' value='"+e.memberNo+"'></td>";
-					modaltable+="<td>"+e.name+"</td><td>"+e.mailAddress+"</td><td>"+e.motivate+"</td></tr>";
-				});
+				modaltable+="<table class='table table-striped table-hover '><thead><tr><th>체크</th><th>이름</th><th>메일주소</th><th>지원동기</th></tr></thead><tbody>";
+				if(data == null || data == 0){
+					modaltable+="<tr><td colspan='4'><center><font size='3'>선택하신 봉사 참여자가 없습니다.</font></center></td></tr>";
+				}else{
+					$(data).each(function(index,e){
+						modaltable+="<input type='hidden' name='recruitNo' value='"+e.recruitNo+"'>";
+						modaltable+="<tr><td><input class = 'tr_check' type='checkbox' name='memberNo' value='"+e.memberNo+"'></td>";
+						modaltable+="<td>"+e.name+"</td><td>"+e.mailAddress+"</td><td>"+e.motivate+"</td></tr>";
+					});
+				}
 				modaltable+="</tbody></table>";
 				$("#applicantOk_modal").html(modaltable);
+				
 				$("#memberBtn2").click(function(){
 				var memberNoOkList="";
 				$("input:checkbox:checked").each(function (index){
@@ -88,6 +97,7 @@ $(document).ready(function(){
 					    $("#memberOkList").val(memberNoOkList);
 						$("#checkForm2").submit();
 				});
+				
 			}
 		});
 	});
@@ -101,7 +111,11 @@ $(document).ready(function(){
 	});
 	
 	$("#memberChoice").click(function(){
-		location.href="applicant_choice.ymv?applicationChoice=${requestScope.rvo.applicantChoice}&recruitNo=${requestScope.rvo.recruitNo }";
+		if(confirm("신청자 뽑기를 마감하시면 다시 신청자를 뽑을 수 없습니다. 신청자 뽑기를 마감하시겠습니까?")){
+			location.href="applicant_choice.ymv?applicationChoice=${requestScope.rvo.applicantChoice}&recruitNo=${requestScope.rvo.recruitNo }";
+		}else{
+			return;
+		}
 	});
 	
 });
