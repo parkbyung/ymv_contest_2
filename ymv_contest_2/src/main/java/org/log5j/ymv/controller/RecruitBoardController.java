@@ -26,7 +26,6 @@ import org.log5j.ymv.model.voluntary.ConfirmBoardVO;
 import org.log5j.ymv.model.voluntary.ConfirmPageVO;
 import org.log5j.ymv.model.voluntary.ConfirmVO;
 import org.log5j.ymv.model.voluntary.MessageService;
-import org.log5j.ymv.model.voluntary.MessageVO;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateService;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateVO;
 import org.springframework.stereotype.Controller;
@@ -71,11 +70,19 @@ public class RecruitBoardController {
 		//lvo안에 있는 list들의 모집기한 마지막 날과 현재 날과 비교 함
 		for(int i = 0; i<lvo.getList().size(); i ++){
 			int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getRecruitingEnd());
+			String choice = ((RecruitBoardVO) lvo.getList().get(i)).getApplicantChoice();
 			//비교해서 today가 enddate보다 크면 compare가 0보다 크다.
+			System.out.println("초이스   " + choice);
 			if(compare > 0){
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
 			}else if(compare < 0){
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
+			}else{
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
+			}
+			
+			if(choice.equals("Y")){
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
 			}else{
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
 			}
@@ -273,10 +280,19 @@ public class RecruitBoardController {
 		ListVO lvo = recruitBoardService.findCompanyBoardList(cpvo);
 		for(int i = 0; i<lvo.getList().size(); i ++){
 			int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getRecruitingEnd());
+			String choice = ((RecruitBoardVO) lvo.getList().get(i)).getApplicantChoice();
+			//비교해서 today가 enddate보다 크면 compare가 0보다 크다.
+			System.out.println("초이스   " + choice);
 			if(compare > 0){
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
 			}else if(compare < 0){
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
+			}else{
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
+			}
+			
+			if(choice.equals("Y")){
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
 			}else{
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
 			}
