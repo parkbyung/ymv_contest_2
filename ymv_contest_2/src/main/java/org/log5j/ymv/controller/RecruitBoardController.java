@@ -73,16 +73,10 @@ public class RecruitBoardController {
 			String choice = ((RecruitBoardVO) lvo.getList().get(i)).getApplicantChoice();
 			//비교해서 today가 enddate보다 크면 compare가 0보다 크다.
 			System.out.println("초이스   " + choice);
-			if(compare > 0){
+			if(compare > 0 || choice.equals("Y")){
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
 			}else if(compare < 0){
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
-			}else{
-				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
-			}
-			
-			if(choice.equals("Y")){
-				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
 			}else{
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
 			}
@@ -283,7 +277,7 @@ public class RecruitBoardController {
 			String choice = ((RecruitBoardVO) lvo.getList().get(i)).getApplicantChoice();
 			//비교해서 today가 enddate보다 크면 compare가 0보다 크다.
 			System.out.println("초이스   " + choice);
-			if(compare > 0){
+			if(compare > 0 || choice.equals("Y")){
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
 			}else if(compare < 0){
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
