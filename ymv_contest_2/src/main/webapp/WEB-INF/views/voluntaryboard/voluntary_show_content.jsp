@@ -94,10 +94,7 @@ $(document).ready(function(){
 	});//click
 	
 	$("#memberBtn").click(function(){
-		if($("table tbody tr").val() == null || $("table tbody tr").val() == 0){
-			alert("신청자가 없습니다.");
-			return;
-		}else if($("input:checkbox:checked").val() == 0 || $("input:checkbox:checked").val() == null){
+		if($("input:checkbox:checked").val() == 0 || $("input:checkbox:checked").val() == null){
 			alert("뽑을 신청자를 선택 해주세요.");
 			return;
 		}else{
@@ -111,10 +108,7 @@ $(document).ready(function(){
 	
 	$("#memberBtn2").click(function(){
 		var memberNoOkList="";
-		if($("table tbody tr").val() == null || $("table tbody tr").val() == 0){
-			alert("봉사에 참여한 회원이 없습니다.");
-			return;
-		}else if($("input:checkbox:checked").val() == 0 || $("input:checkbox:checked").val() == null){
+		if($("input:checkbox:checked").val() == 0 || $("input:checkbox:checked").val() == null){
 			alert("봉사에 참여한 회원을 선택해 주세요.");
 			return;
 		}else{

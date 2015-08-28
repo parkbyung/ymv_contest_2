@@ -1,5 +1,6 @@
 package org.log5j.ymv.model.voluntary;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -62,6 +63,10 @@ public class VoluntaryServiceApplicateDAOImpl implements VoluntaryServiceApplica
 		sqlSessionTemplate.delete("applicant.deleteApplicantOK",recruitNo);
 	}
 
+	@Override
+	public Integer checkVolunteerApplicantOK(HashMap<String, Object> map) {
+		return sqlSessionTemplate.selectOne("applicant.checkVolunteerApplicantOK",map);
+	}
 
 
 }

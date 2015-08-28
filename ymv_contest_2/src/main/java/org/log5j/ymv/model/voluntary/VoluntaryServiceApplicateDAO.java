@@ -1,5 +1,6 @@
 package org.log5j.ymv.model.voluntary;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,4 +10,5 @@ public interface VoluntaryServiceApplicateDAO {
 	public List<ApplicantVO> findApplicantList(int recruitNo);
 	public void deleteApplicant(ApplicantVO alvo);
 	public void deleteVoluntaryApplicantOK(int recruitNo);
+	public Integer checkVolunteerApplicantOK(HashMap<String, Object> map);
 }

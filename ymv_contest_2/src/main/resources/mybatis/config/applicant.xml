@@ -93,5 +93,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		member_no,time_posted,hit from confirm_board
 		where board_no=#{boardNo}
 	</select>
+	<select id="checkVolunteerApplicantOK" parameterType="map" resultType="int">
+		select count(*) from voluntary_applicant_ok where recruit_no = #{recruitNo} and member_no=#{memberNo}
+	</select>
 
  </mapper>

@@ -42,9 +42,10 @@ public class VoluntaryServiceApplicateServiceImpl implements VoluntaryServiceApp
 		map.put("memberNo", memberNo);
 		System.out.println("map   "+map);
 		int count=voluntaryServiceApplicateDAO.checkVolunteerApplicant(map);
+		int countOk = voluntaryServiceApplicateDAO.checkVolunteerApplicantOK(map);
 		System.out.println("service    check  "+count);
 		boolean flag=false;
-		if(count>0)
+		if(count>0 || countOk>0)
 			flag=true;
 		return flag;
 	}
