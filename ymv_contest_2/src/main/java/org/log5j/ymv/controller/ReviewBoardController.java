@@ -138,7 +138,7 @@ public class ReviewBoardController {
 	}
 	
 	@RequestMapping("review_update_file.ymv")
-	public ModelAndView sponsorUpdate(HttpServletRequest request) {
+	public ModelAndView reviewUpdate(HttpServletRequest request) {
 		PictureVO pvo = (PictureVO) request.getSession().getAttribute("pvo");
 		reviewBoardService.updatePicture(pvo);
 		return new ModelAndView("redirect:review_showContent.ymv?boardNo="+pvo.getPictureNo());

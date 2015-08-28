@@ -147,12 +147,25 @@ public class NoticeBoardController {
     * @return
     */
    @RequestMapping("notice_board_update.ymv")
-	public ModelAndView noticeBoardUpdate(NoticeBoardVO vo){
-		ModelAndView mv=new ModelAndView();
-		noticeBoardService.noticeBoardUpdate(vo);
-		mv.setViewName("redirect:notice_showContent.ymv?boardNo="+vo.getBoardNo());
-		mv.addObject("rvo", vo);
-		return mv;
+   public String noticeBoardUpdate(NoticeBoardVO nvo, PictureVO pvo, HttpServletRequest request,String hidden){
+		noticeBoardService.noticeBoardUpdate(nvo);
+		noticeBoardService.findNoticeBoardByBoardNo(nvo.getBoardNo());
+		int hid = Integer.parseInt(hidden);
+		HttpSession session=request.getSession(false);
+		session.setAttribute("nvo", nvo);
+		session.setAttribute("pvo", pvo);
+		session.setAttribute("hidden", "update");
+		if(hid==2){
+			return "redirect:notice_showContent.ymv?boardNo="+nvo.getBoardNo();
+		}
+		return "forward:upload_notice_path.ymv";
+	}
+   
+	@RequestMapping("notice_update_file.ymv")
+	public ModelAndView noticeUpdate(HttpServletRequest request) {
+		PictureVO pvo = (PictureVO) request.getSession().getAttribute("pvo");
+		noticeBoardService.updatePicture(pvo);
+		return new ModelAndView("redirect:notice_showContent.ymv?boardNo="+pvo.getPictureNo());
 	}
    
    /**

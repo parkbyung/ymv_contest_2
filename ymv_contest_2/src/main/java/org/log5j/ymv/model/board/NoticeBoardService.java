@@ -21,4 +21,6 @@ public interface NoticeBoardService {
 	NoticeBoardVO findPostingByNoticeBoardNoUpdateHit(int boardNo);
 
 	void findPostingByNoticeBoardNoNotHit(int boardNo);
+
+	void updatePicture(PictureVO pvo);
 }

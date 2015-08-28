@@ -23,7 +23,7 @@ $(document).ready(function(){
 			else if ($("#fileName").val() == "") {
 				if (confirm("새로운 파일을 첨부하지 않으십니까?") == true) {
 					$("#hidden").val("2");
-					location.href = "auction_update.ymv";
+					location.href = "auction_board_update.ymv";
 				} else {
 					return false;			
 				}

@@ -93,7 +93,7 @@ public class AuctionBoardController {
 	}
 	
 	@RequestMapping("auction_update_file.ymv")
-	public ModelAndView sponsorUpdate(HttpServletRequest request) {
+	public ModelAndView auctionUpdate(HttpServletRequest request) {
 		PictureVO pvo = (PictureVO) request.getSession().getAttribute("pvo");
 		auctionBoardService.updatePicture(pvo);
 		return new ModelAndView("redirect:auction_show_content.ymv?boardNo="+pvo.getPictureNo());

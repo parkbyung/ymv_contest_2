@@ -13,4 +13,5 @@ public interface NoticeBoardDAO {
 	PictureVO findPicture(int pictureNo);
 	void deletePicture(int pictureNo);
 	void updateHit(int boardNo);
+	void updatePicture(PictureVO pvo);
 }

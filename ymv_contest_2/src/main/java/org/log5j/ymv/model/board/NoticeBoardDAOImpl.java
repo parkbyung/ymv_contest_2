@@ -74,5 +74,10 @@ public class NoticeBoardDAOImpl implements NoticeBoardDAO {
 		
 	}
 
+	@Override
+	public void updatePicture(PictureVO pvo) {
+		sqlSessionTemplate.update("noticeBoard.updatePicture",pvo)	;	
+	}
+
 
 }

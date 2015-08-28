@@ -82,4 +82,9 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 		return nvo;
 	}
 
+	@Override
+	public void updatePicture(PictureVO pvo) {
+		noticeBoardDAO.updatePicture(pvo);
+	}
+
 }

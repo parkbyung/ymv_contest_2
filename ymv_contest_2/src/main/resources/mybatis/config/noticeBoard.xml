@@ -19,10 +19,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="totalContent" resultType="int">
     	select count(*) from board where board_type='notice'
     </select>
-    <select id="findNoticeBoardByBoardNo" resultMap="boardRM" resultType="nbvo">   
-		select board_no, title, writer, content, member_no, time_posted,hit from board where board_no=#{value}
+    <select id="findNoticeBoardByBoardNo" resultMap="boardRM" resultType="nbvo">
+	select board_no, title, writer, content, member_no, time_posted,hit
+	from board where board_no=#{value}
 	</select>
-	
+	<update id="updatePicture" parameterType="pvo">
+ 	update PICTURE set file_path=#{filePath} where picture_no=#{pictureNo}
+ 	</update>
 	<update id="noticeBoardUpdate" parameterType="nbvo">
 		update board set title=#{title}, content=#{content} where board_no=#{boardNo}
 	</update>
