@@ -81,8 +81,31 @@ public class UploadPathController {
 	}
 
 	@RequestMapping("upload_review_path.ymv")
-	public String registerReviewFilePath(ReviewBoardVO rbvo, PictureVO pvo) {
-		MultipartFile file = pvo.getFileName();
+	public String registerReviewFilePath(HttpServletRequest request) {
+		HttpSession session=request.getSession(false);
+		PictureVO pvo=(PictureVO)request.getSession().getAttribute("pvo");
+		ReviewBoardVO rbvo=(ReviewBoardVO)request.getSession().getAttribute("rbvo");
+		String hidden = (String) request.getSession().getAttribute("hidden");
+		MultipartFile file=pvo.getFileName();
+		String fileName="["+rbvo.getBoardNo()+"]"+file.getOriginalFilename();			
+		String filePath="reviewupload\\"+fileName;
+		pvo.setFilePath(filePath);
+		pvo.setPictureNo(rbvo.getBoardNo());
+		if (!fileName.equals("")) {
+			try {
+				file.transferTo(new File(reviewPath + fileName));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		session.setAttribute("pvo", pvo);
+		session.setAttribute("rbvo", rbvo);
+		if(hidden.equals("register")){
+			return "forward:review_register_file.ymv";
+		}
+		return "forward:review_update_file.ymv";
+	}
+		/*MultipartFile file = pvo.getFileName();
 		ModelAndView mav = new ModelAndView();
 		String fileName = "[" + rbvo.getBoardNo() + "]"
 				+ file.getOriginalFilename();
@@ -99,7 +122,7 @@ public class UploadPathController {
 			}
 		}
 		return "forward:review_register_file.ymv";
-	}
+	}*/
 	
 	@RequestMapping("upload_auction_path.ymv")
 	public String registerAuctionFilePath(HttpServletRequest request) {

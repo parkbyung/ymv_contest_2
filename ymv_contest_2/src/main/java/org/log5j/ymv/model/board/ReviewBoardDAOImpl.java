@@ -75,8 +75,7 @@ public void registerReviewBoard(ReviewBoardVO vo) {
 
 @Override
 public void registerPicture(PictureVO pvo) {
-	// TODO Auto-generated method stub
-	sqlSessionTemplate.insert("reviewBoard.registerPicture",pvo);
+	sqlSessionTemplate.insert("reviewBoard.registerPicture", pvo);
 }
 
 @Override

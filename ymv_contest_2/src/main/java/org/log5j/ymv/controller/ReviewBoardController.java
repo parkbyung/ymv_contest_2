@@ -6,7 +6,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.log5j.ymv.model.board.AuctionBoardVO;
 import org.log5j.ymv.model.board.BoardVO;
 import org.log5j.ymv.model.board.CommentVO;
 import org.log5j.ymv.model.board.ListVO;
@@ -18,6 +20,8 @@ import org.log5j.ymv.model.cookie.CookieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.sun.xml.bind.v2.runtime.output.Pcdata;
 /**
  * 후기게시판
  * @author jjh
@@ -154,10 +158,14 @@ public class ReviewBoardController {
 	 * @return
 	 */
 	@RequestMapping("review_register.ymv")
-	public String reviewRegister(ReviewBoardVO rbvo, PictureVO pvo) {
-		reviewBoardService.registerReviewBoard(rbvo);
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("rbvo", rbvo).addObject("pvo", pvo);
+	public String reviewRegister(ReviewBoardVO rvo, PictureVO pvo, HttpServletRequest request) {
+		//ModelAndView로 객체들을 넘겨주게되면 jsp에서 받은 것만 넘겨주고 컨트롤에서 바뀐 객체들은 전해주지 않는다. 그래서 세션을 사용했다.
+		HttpSession session=request.getSession(false);
+		reviewBoardService.registerReviewBoard(rvo);
+		ReviewBoardVO rbvo = (ReviewBoardVO) reviewBoardService.findReviewBoardByBoardNo(rvo.getBoardNo());
+		session.setAttribute("pvo", pvo);
+		session.setAttribute("rbvo", rbvo);
+		session.setAttribute("hidden", "register");
 		return "forward:upload_review_path.ymv";
 	}
 	/**
@@ -168,9 +176,10 @@ public class ReviewBoardController {
 	 * @return
 	 */
 	@RequestMapping("review_register_file.ymv")
-	public ModelAndView noticeRegisterPicture(PictureVO pvo) {
+	public ModelAndView noticeRegisterPicture(HttpServletRequest request) {
+		PictureVO pvo=(PictureVO)request.getSession().getAttribute("pvo");
 		reviewBoardService.registerPicture(pvo);
-		return new ModelAndView("redirect:review_board.ymv");
+		ReviewBoardVO rbvo=(ReviewBoardVO)request.getSession().getAttribute("rbvo");
+		return new ModelAndView("redirect:review_showContent.ymv?boardNo="+rbvo.getBoardNo());
 	}
-	
 }

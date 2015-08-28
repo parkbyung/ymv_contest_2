@@ -56,7 +56,7 @@ public class AuctionBoardController {
 			mv.addObject("pvo",pvo);
 	    }
 		System.out.println("showContent : "+auvo+" picture:"+pvo);
-			int compare = today.compareTo(auvo.getEndDate());
+		int compare = today.compareTo(auvo.getEndDate());
 			if(compare > 0){
 				auvo.setGyeongmae("경매완료");
 			}else if(compare < 0){

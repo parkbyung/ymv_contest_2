@@ -54,9 +54,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</selectKey>  
   		insert into board(board_no, board_type, title, writer, content, member_no, time_posted)  values(#{boardNo}, 'review', #{title}, #{writer}, #{content}, #{memberNo}, sysdate)
 	</insert>
-	<insert id="registerPicture" parameterType="pvo">
-		insert into PICTURE(picture_no, file_path) values(#{pictureNo},#{filePath})
-	</insert>
+   <insert id="registerPicture" parameterType="pvo">
+      insert into PICTURE(picture_no, file_path) values(#{pictureNo},#{filePath})
+   </insert>
 	<select id="findPicture" parameterType="int" resultType="pvo">
 		select picture_no as pictureNo, file_path as filePath from picture where picture_no=#{value}
 	</select>
