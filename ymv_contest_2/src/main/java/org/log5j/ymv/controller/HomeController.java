@@ -49,4 +49,14 @@ public class HomeController {
 	public String loginCheck(){
 		return "loginCheck";
 	}
+	@RequestMapping("adminLoginCheck")
+	@NoLoginCheck
+	public String adminLoginCheck(){
+		return "adminLoginCheck";
+	}
+	@RequestMapping("companyLoginCheck")
+	@NoLoginCheck
+	public String companyLoginCheck(){
+		return "companyLoginCheck";
+	}
 }
