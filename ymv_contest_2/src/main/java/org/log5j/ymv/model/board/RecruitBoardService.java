@@ -31,4 +31,6 @@ public interface RecruitBoardService {
 	public ListVO findConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO);
 	public ConfirmBoardVO findConfirmBoardByConfirm(ConfirmVO cvo);
 	public void updateApplicationChoice(RecruitBoardVO rbvo);
+	RecruitBoardVO checkDate(RecruitBoardVO rbvo);
+	RecruitBoardVO checkDate(RecruitBoardVO rbvo, String choice);
 }

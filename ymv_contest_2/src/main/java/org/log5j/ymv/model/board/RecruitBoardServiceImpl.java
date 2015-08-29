@@ -1,5 +1,7 @@
 package org.log5j.ymv.model.board;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -148,5 +150,28 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 	@Override
 	public void updateApplicationChoice(RecruitBoardVO rbvo) {
 		recruitBoardDAO.updateApplicationChoice(rbvo);
+	}
+	@Override
+	public RecruitBoardVO checkDate(RecruitBoardVO rbvo){
+		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
+        int compare = today.compareTo(rbvo.getRecruitingEnd());
+        if(compare > 0){
+        	rbvo.setMojib("모집완료");
+			}else if(compare < 0){
+				rbvo.setMojib("모집중");
+			}else{
+				rbvo.setMojib("모집중");
+			}
+		return rbvo;
+	}
+	@Override
+	public RecruitBoardVO checkDate(RecruitBoardVO rbvo,String choice){
+		rbvo=checkDate(rbvo);
+		if(choice.equals("Y")){
+			rbvo.setMojib("모집완료");
+		}else{
+			rbvo.setMojib("모집중");
+		}
+		return rbvo;
 	}
 }
