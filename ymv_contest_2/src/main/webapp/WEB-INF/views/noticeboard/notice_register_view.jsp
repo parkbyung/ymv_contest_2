@@ -7,7 +7,7 @@
 			<table class ="table table-hover ">
 				<tr>
 					<td>제목</td>
-					<td colspan="2"><input type="text" name="title"></td>
+					<td colspan="2" style=""><input type="text" name="title" size="70"></td>
 				</tr>
 				<tr>
 					<td>작성자</td>
@@ -17,7 +17,7 @@
 				</tr>
 				<tr>
 					<td>상세정보</td>
-					<td colspan="2"><textarea rows="10" cols="50" id="content" name="content"></textarea></td>
+					<td colspan="2"><textarea rows="10" cols="70" id="content" name="content"></textarea></td>
 				</tr>
 			</table>
 			<br><div class="col-sm-12">
