@@ -39,7 +39,7 @@ public class LoginInterceptor extends WebContentInterceptor {
             }else if(admin!=null){
             	if(!memberVO.getMemberType().equals("admin")){
             		try {
-						response.sendRedirect("loginCheck.ymv");
+						response.sendRedirect("adminLoginCheck.ymv");
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -48,7 +48,7 @@ public class LoginInterceptor extends WebContentInterceptor {
             }else if(company!=null){
             	if(!memberVO.getMemberType().equals("company")){
             		try {
-						response.sendRedirect("loginCheck.ymv");
+						response.sendRedirect("companyLoginCheck.ymv");
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
