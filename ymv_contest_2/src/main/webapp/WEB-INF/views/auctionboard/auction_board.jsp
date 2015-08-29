@@ -5,6 +5,8 @@
 	<h3>
 		<p class="text-center">나눔 활동</p>
 	</h3>
+	<br><font style="text-align: center" size="2" >[나눔활동이란 물건 경매를 통하여 얻은 수익을 불우이웃들에게 전해주려는 목적을
+	가지고 있습니다. 다함께 참여하여 우리의 이웃들을 도와보아요.]</font><br><br>
 	<table class="table table-striped table-hover">
 		<colgroup>
 			<col style="width: 10%;" />

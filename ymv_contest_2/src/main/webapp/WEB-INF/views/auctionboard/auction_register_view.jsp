@@ -59,24 +59,24 @@
       <form id="auctionForm"  action="auction_register.ymv?memberNo=${sessionScope.mvo.memberNo }" enctype="multipart/form-data" method="post">
          <table class="table table-striped table-hover">
             <tr>
-               <th class="info"><h4 class="text-center">제목</h4></th>
-               <td><input type="text" name="title" id="title"></td>
+               <th class="info"><h4 class="text-center" >제목</h4></th>
+               <td><input type="text" name="title" id="title" size="50"> </td>
             </tr>
          	<tr>
                <th class="info"><h4 class="text-center">사진 업로드</h4></th>
                <td><input type="file" name="fileName" ></td>
             </tr>
                <tr>
-               <th class="info"><h4 class="text-center">물품명</h4></th>
-               <td><input type="text" name="article" id="article"></td>
+               <th class="info"><h4 class="text-center" >물품명</h4></th>
+               <td><input type="text" name="article" id="article"  size="30"></td>
                </tr>
             <tr>
                <th class="info"><h4 class="text-center">시작가격</h4></th>
-               <td><input type="text" name="firstPrice" id="firstPrice"></td>
+               <td><input type="text" name="firstPrice" id="firstPrice"  size="30">원</td>
                </tr>
             <tr>
                <th class="info"><h4 class="text-center">마감일</h4></th>
-               <td><input type="text" id="datepicker2" name="endDate" placeholder="종료날짜"></td>
+               <td><input type="text" id="datepicker2" name="endDate" placeholder="종료날짜"  size="30"></td>
             </tr>
             <tr>
                <th class="info"><h4 class="text-center">상세정보</h4></th>

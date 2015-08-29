@@ -58,10 +58,16 @@
    <div class="col-sm-8 col-sm-offset-2" align="center">
       <div class="panel panel-default">
          <div class="panel-body">
-         	<table class="col-sm-8" style="width: 700px;">
+         	<table class="col-sm-8" style="width: 650px;">
          		<tbody>
          			<tr>
-         				<td>NO : ${requestScope.auvo.boardNo }</td>
+         				<td colspan="2">NO : ${requestScope.auvo.boardNo }</td>
+         				<td colspan="5" style="font-weight: bold; font-size: 7;" >제목 : ${requestScope.auvo.title }</td>
+         				 <td colspan="3">물품명 : ${requestScope.auvo.article }</td>
+         			</tr>
+         			<tr>
+          			<tr>
+    
          				<td>
          					<c:choose>
          					<c:when test="${requestScope.auvo.gyeongmae == '경매중'}">
@@ -72,17 +78,10 @@
          					</c:otherwise>
          					</c:choose>
          				</td>
-         			</tr>
-         			<tr>
-         				<td colspan="2" style="font-weight: bold; font-size: 7;" >제목 : ${requestScope.auvo.title }</td>
-         			</tr>
-         			<tr>
-         				<td>시작일 : ${requestScope.auvo.timePosted} 
+         				  <td>시작일 : ${requestScope.auvo.timePosted} 
          				&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp; 마감일 : ${requestScope.auvo.endDate}</td>
          			</tr>
-         			<tr>
-         				<td><p>물품명 : ${requestScope.auvo.article }</p></td>
-         			</tr>
+
          			<tr>
                     <td colspan="15">
                     	<c:if test="${requestScope.pvo!=null }">
