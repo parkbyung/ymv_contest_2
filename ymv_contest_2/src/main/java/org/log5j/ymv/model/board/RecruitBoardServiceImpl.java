@@ -3,6 +3,7 @@ package org.log5j.ymv.model.board;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.ApplicantVO;
@@ -30,8 +31,8 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		return lvo;
 	}
 	@Override
-	public BoardVO showContent(int no) {
-		return recruitBoardDAO.showContent(no);
+	public RecruitBoardVO showContent(int recruitNo,HttpServletRequest request) {
+		return recruitBoardDAO.findRecruitBoardByRecruitNo(recruitNo);
 	}
 	@Override
 	public void updateBoard(BoardVO bvo) {

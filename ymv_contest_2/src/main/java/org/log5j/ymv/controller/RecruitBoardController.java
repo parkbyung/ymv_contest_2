@@ -106,7 +106,7 @@ public class RecruitBoardController {
 				new NoticeBoardVO());
 		response.addCookie(cookie);
 		RecruitBoardVO rvo = recruitBoardService
-				.findRecruitBoardByRecruitNo(recruitNo);
+				.showContent(recruitNo, request);
 		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
         int compare = today.compareTo(rvo.getRecruitingEnd());
         if(compare > 0){
