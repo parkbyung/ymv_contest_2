@@ -1,6 +1,7 @@
 package org.log5j.ymv.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -353,14 +354,15 @@ public class RecruitBoardController {
 		System.out.println("alvo"+alvo);
 		String memberList=request.getParameter("memberList");
 		String member[]=memberList.split(",");
+		List<String> list=new ArrayList<String>();
 		for(int i=0;i<member.length;i++){
 			alvo.setMemberNo(Integer.parseInt(member[i])); 
 			recruitBoardService.registerApplicantOK(alvo);
 			//신청자를 뽑은 후 지우지 않으면 다음에 다시 보고 또 뽑을 경우 중복키 이셉션 발생
 			voluntaryServiceApplicateService.deleteApplicant(alvo);
 			messageService.sendMessageApplicateOK(alvo.getRecruitNo(),Integer.parseInt(member[i]));
+			list.add(memberService.findMemberByMemberNo(alvo.getMemberNo()).getName());
 		}
-			List<ApplicantVO> list=recruitBoardService.findApplicantOkList(alvo.getRecruitNo());
 		return new ModelAndView("voluntary_applicantOK","list",list);
 	}
 	/**
