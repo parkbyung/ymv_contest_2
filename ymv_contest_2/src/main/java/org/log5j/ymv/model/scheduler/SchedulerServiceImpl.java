@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.log5j.ymv.model.board.BoardVO;
 import org.log5j.ymv.model.board.ListVO;
@@ -19,7 +20,7 @@ public class SchedulerServiceImpl implements SchedulerService {
 		return list;
 	}
 	@Override
-	public ListVO findSearchList(SearchVO scvo){
+	public ListVO findSearchList(SearchVO scvo,HttpServletRequest request){
 		if(scvo.getPageNo()==null||scvo.getPageNo()=="") 
 			scvo.setPageNo("1");
 		List<BoardVO> list=schedulerDAO.findSearchList(scvo);

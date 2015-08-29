@@ -84,10 +84,10 @@ public class SchedulerController {
 	 */
 	@RequestMapping("search_board.ymv")
 	@NoLoginCheck
-	public ModelAndView findSearchList(SearchVO scvo){
+	public ModelAndView findSearchList(SearchVO scvo,HttpServletRequest request){
 		ModelAndView mv = new ModelAndView("search_recruit_result");
 		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
-		ListVO lvo = schedulerService.findSearchList(scvo);
+		ListVO lvo = schedulerService.findSearchList(scvo,request);
 		for(int i = 0; i<lvo.getList().size(); i ++){
 			int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getRecruitingEnd());
 			if(compare > 0){
