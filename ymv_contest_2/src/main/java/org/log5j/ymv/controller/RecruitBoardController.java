@@ -69,7 +69,11 @@ public class RecruitBoardController {
 		ListVO lvo = recruitBoardService.findBoardList(pageNo);
 		//lvo안에 있는 list들의 모집기한 마지막 날과 현재 날과 비교 함
 		for(int i = 0; i<lvo.getList().size(); i ++){
-			int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getRecruitingEnd());
+			RecruitBoardVO rbvo=(RecruitBoardVO) lvo.getList().get(i);
+			String choice = rbvo.getApplicantChoice();
+			recruitBoardService.checkDate(rbvo,choice);
+			lvo.setList(i,rbvo);
+			/*int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getRecruitingEnd());
 			String choice = ((RecruitBoardVO) lvo.getList().get(i)).getApplicantChoice();
 			//비교해서 today가 enddate보다 크면 compare가 0보다 크다.
 			System.out.println("초이스   " + choice);
@@ -79,7 +83,7 @@ public class RecruitBoardController {
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
 			}else{
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
-			}
+			}*/
 		}
 		mv.addObject("lvo", lvo);
 		return mv;
@@ -107,7 +111,8 @@ public class RecruitBoardController {
 		response.addCookie(cookie);
 		RecruitBoardVO rvo = recruitBoardService
 				.showContent(recruitNo, request);
-		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
+		rvo=recruitBoardService.checkDate(rvo);
+		/*String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
         int compare = today.compareTo(rvo.getRecruitingEnd());
         if(compare > 0){
         	rvo.setMojib("모집완료");
@@ -115,7 +120,7 @@ public class RecruitBoardController {
 				rvo.setMojib("모집중");
 			}else{
 				rvo.setMojib("모집중");
-			}
+			}*/
 		// RecruitBoardVO에 있는 memberNo로 MemberVO의 정보를 찾아 model로 보냄
 		MemberVO vo = memberService.findMemberByMemberNo(rvo.getMemberNo());
 		if(!noApplicate.equals("no") || noApplicate==null){
@@ -185,7 +190,8 @@ public class RecruitBoardController {
 		ModelAndView mv=new ModelAndView();
          recruitBoardService.updateBoard(rbvo);
          rbvo=recruitBoardService.findRecruitBoardByRecruitNo(rbvo.getRecruitNo());
-         String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
+         rbvo=recruitBoardService.checkDate(rbvo);
+         /*String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
          int compare = today.compareTo(rbvo.getRecruitingEnd());
          if(compare > 0){
 				rbvo.setMojib("모집완료");
@@ -193,7 +199,7 @@ public class RecruitBoardController {
 				rbvo.setMojib("모집중");
 			}else{
 				rbvo.setMojib("모집중");
-			}
+			}*/
 	      mv.addObject("rvo",rbvo).addObject("mvo",mvo);
 	      return "redirect:voluntary_show_content.ymv?noApplicate=yes&recruitNo=" + rbvo.getRecruitNo();
 	   }
@@ -273,7 +279,11 @@ public class RecruitBoardController {
 		cpvo.setMemberNo(mvo.getMemberNo());
 		ListVO lvo = recruitBoardService.findCompanyBoardList(cpvo);
 		for(int i = 0; i<lvo.getList().size(); i ++){
-			int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getRecruitingEnd());
+			RecruitBoardVO rbvo=(RecruitBoardVO) lvo.getList().get(i);
+			String choice = rbvo.getApplicantChoice();
+			recruitBoardService.checkDate(rbvo,choice);
+			lvo.setList(i,rbvo);
+			/*int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getRecruitingEnd());
 			String choice = ((RecruitBoardVO) lvo.getList().get(i)).getApplicantChoice();
 			//비교해서 today가 enddate보다 크면 compare가 0보다 크다.
 			System.out.println("초이스   " + choice);
@@ -289,7 +299,7 @@ public class RecruitBoardController {
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
 			}else{
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
-			}
+			}*/
 		}
 		mv.addObject("lvo", lvo);
 		return mv;
@@ -311,14 +321,17 @@ public class RecruitBoardController {
 		cpvo.setMemberNo(mvo.getMemberNo());
 		ListVO lvo = recruitBoardService.findNormalBoardList(cpvo);
 		for(int i = 0; i<lvo.getList().size(); i ++){
-			int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getRecruitingEnd());
+			RecruitBoardVO rbvo=(RecruitBoardVO) lvo.getList().get(i);
+			recruitBoardService.checkDate(rbvo);
+			lvo.setList(i,rbvo);
+			/*int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getRecruitingEnd());
 			if(compare > 0){
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
 			}else if(compare < 0){
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
 			}else{
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
-			}
+			}*/
 		}
 		mv.addObject("lvo", lvo);
 		return mv;
