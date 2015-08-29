@@ -153,7 +153,7 @@ public class SchedulerController {
 	@RequestMapping("scheduler_register")
 	public String schedulerRegister(SchedulerVO sdvo){
 		schedulerService.registerScheduler(sdvo);
-		return "redirect:testTiles.ymv";
+		return "redirect:home.ymv";
 	}
 	/**
 	 * 
@@ -179,7 +179,7 @@ public class SchedulerController {
 	@RequestMapping("scheduler_update")
 	public String schdulerUpdate(SchedulerVO sdvo){
 		schedulerService.updateScheduler(sdvo);
-		return "redirect:testTiles.ymv";
+		return "redirect:home.ymv";
 	}
 	
 	
