@@ -13,8 +13,9 @@
     
     
 <div class="col-md-6 col-sm-offset-3">
-		<h2>스케줄러 등록</h2>
-		<form id="recruitForm" action="scheduler_register.ymv?memberNo=${sessionScope.mvo.memberNo }" method="post">
+		<h2>스케줄러 등록</h2><br>
+		<font >[원하시는 분야,지역,그리고 시작시간과 끝시간을 정해 스케줄러를 등록하세요]</font>
+	<br><br><form id="recruitForm" action="scheduler_register.ymv?memberNo=${sessionScope.mvo.memberNo }" method="post">
 			<table class="table table-striped table-hover">
 				<tr>
 					<th class="info">분야</th>
