@@ -3,6 +3,8 @@ package org.log5j.ymv.model.scheduler;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.log5j.ymv.model.board.BoardVO;
 import org.log5j.ymv.model.board.ListVO;
 
@@ -10,7 +12,7 @@ public interface SchedulerService {
 
 	public abstract List<BoardVO> findSchedulerList(SchedulerVO sdvo);
 
-	ListVO findSearchList(SearchVO scvo);
+	ListVO findSearchList(SearchVO scvo,HttpServletRequest request);
 
 	public abstract List<HashMap> findDateList(SchedulerVO sdvo);
 

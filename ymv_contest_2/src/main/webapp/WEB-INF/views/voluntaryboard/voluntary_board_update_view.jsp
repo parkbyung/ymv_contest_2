@@ -100,7 +100,7 @@ $(document).ready(function () {
 });
 
 </script>
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-10 col-md-offset-1">
 	<h2>봉사 수정</h2>
 	<form id="recruitForm" action="voluntary_board_update.ymv"
 		method="post" class="form-horizontal">
@@ -158,24 +158,20 @@ $(document).ready(function () {
 					</c:choose> <!-- 전체, 학생, 성인으로 나눠서 -->
 				</td>
 			</tr>
-			<tr>
-					<th class="info"><h4 class="text-center">모집 시작 시간</h4></th>
-					<td><input type="text" id="datepicker1" name="recruitingStart" placeholder="모집 시작 시간"  value="${requestScope.rvo.recruitingStart }">	</td>
+				<tr>
+					<th class="info"><h4 class="text-center">모집 시작/끝 기간</h4></th>
+					<td><input type="text" id="datepicker1" name="recruitingStart"
+						placeholder="모집 시작 기간">&nbsp;&nbsp;  ~	&nbsp; &nbsp; <input type="text" id="datepicker2" name="recruitingEnd" placeholder="모집 종료 기간">	</td>
 				</tr>
 				<tr>
-					<th class="info"><h4 class="text-center">모집 끝 시간</h4></th>
-					<td><input type="text" id="datepicker2" name="recruitingEnd" placeholder="모집 종료 시간" value="${requestScope.rvo.recruitingEnd }">						
-					</td></tr>
-				<tr>
-					<th class="info"><h4 class="text-center">봉사 활동 시작</h4></th>
-					<td><input type="text" id="datepicker3" name="volunteeringStartDate" placeholder="봉사 시작 기간" value="${requestScope.rvo.volunteeringStartDate }"> </td>
+					<th class="info"><h4 class="text-center">봉사 활동 시작/끝 기간</h4></th>
+					<td><input type="text" id="datepicker3" name="volunteeringStartDate" placeholder="봉사 시작 기간"> 
+					&nbsp;&nbsp;  ~	&nbsp; &nbsp;<input type="text" id="datepicker4" name="volunteeringEndDate" placeholder="봉사 종료 기간"> 
+					</td>
 				</tr>
+	
 				<tr>
-					<th class="info"><h4 class="text-center">봉사 활동 끝</h4></th>
-					<td><input type="text" id="datepicker4" name="volunteeringEndDate" placeholder="봉사 종료 기간" value="${requestScope.rvo.volunteeringEndDate }">  </td>
-				</tr>
-				<tr>
-					<th class="info"><h4 class="text-center">봉사 시작 시간</h4></th>
+					<th class="info"><h4 class="text-center">봉사 시작/끝 시간</h4></th>
 					<td> 
 						<select id="volunteeringStartTime" name="volunteeringStartTime">
 							<!-- 한시간 단위로 하기 -->
@@ -199,12 +195,9 @@ $(document).ready(function () {
 							<option value="22:00">22:00</option>
 							<option value="23:00">23:00</option>
 							<option value="00:00">00:00</option>
-					</select></td>
-				</tr>
-				<tr>
-					<th class="info"><h4 class="text-center">봉사 끝 시간</h4></th>
-					<td>
-						<select id="volunteeringEndTime" name="volunteeringEndTime">
+					</select>
+					&nbsp;&nbsp;  ~	&nbsp; &nbsp; 
+					<select id="volunteeringEndTime" name="volunteeringEndTime">
 							<!-- 한시간 단위로 하기 -->
 							<option value="">-끝시간-</option>
 							<option value="06:00">06:00</option>
@@ -226,8 +219,9 @@ $(document).ready(function () {
 							<option value="22:00">22:00</option>
 							<option value="23:00">23:00</option>
 							<option value="00:00">00:00</option>
-					</select></td>
-				</tr>
+					</select>
+					</td>
+				</tr>				
 			<tr>
 				<th class="info"><h4 class="text-center">상세정보</h4></th>
 				<td><textarea rows="10" cols="80" id="content" name="content" >${requestScope.rvo.content }</textarea></td>

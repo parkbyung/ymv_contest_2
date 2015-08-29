@@ -62,7 +62,7 @@ class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
  -->
 <bean id="uploadReviewPath" class="java.lang.String" >
 	<constructor-arg>
-		<value>C:\\Users\\지윤\\git\\ymv_contest_2\\ymv_contest_2\\src\\main\\webapp\\reviewupload</value>
+		<value>C:\\Users\\지윤\\git\\ymv_contest_2\\ymv_contest_2\\src\\main\\webapp\\reviewupload\\</value>
 	</constructor-arg>
 </bean>
 <bean id="uploadNoticePath" class="java.lang.String" >

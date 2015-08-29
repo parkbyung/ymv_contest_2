@@ -2,6 +2,8 @@ package org.log5j.ymv.model.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.ApplicantVO;
 import org.log5j.ymv.model.voluntary.ConfirmBoardVO;
@@ -10,7 +12,7 @@ import org.log5j.ymv.model.voluntary.ConfirmVO;
 
 public interface RecruitBoardService {
 	public ListVO findBoardList(String pageNo);
-	public BoardVO showContent(int no);
+	public RecruitBoardVO showContent(int recruitNo,HttpServletRequest request);
 	public void updateBoard(BoardVO bvo);
 	 public RecruitBoardVO findRecruitBoardByRecruitNo(int recruitNo);
 	public List<FieldVO> findFieldList();
@@ -29,4 +31,6 @@ public interface RecruitBoardService {
 	public ListVO findConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO);
 	public ConfirmBoardVO findConfirmBoardByConfirm(ConfirmVO cvo);
 	public void updateApplicationChoice(RecruitBoardVO rbvo);
+	RecruitBoardVO checkDate(RecruitBoardVO rbvo);
+	RecruitBoardVO checkDate(RecruitBoardVO rbvo, String choice);
 }

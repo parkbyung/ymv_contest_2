@@ -30,6 +30,9 @@ public class ListVO {
 	public void setList(List<BoardVO> list) {
 		this.list = list;
 	}
+	public void setList(int i, RecruitBoardVO rbvo) {
+		this.list.set(i, rbvo);
+	}
 
 	public PagingBean getPagingBean() {
 		return pagingBean;

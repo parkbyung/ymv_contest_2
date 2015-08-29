@@ -3,11 +3,15 @@ package org.log5j.ymv.aop.common;
 import java.sql.SQLException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.log5j.ymv.aop.model.CommonService;
+import org.log5j.ymv.model.member.MemberVO;
+import org.log5j.ymv.model.scheduler.SearchVO;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateVO;
 import org.springframework.stereotype.Component;
 
@@ -39,7 +43,34 @@ public class AroundAspect {
 		String field = commonService.findFieldByRecruitNo(vvo.getRecruitNo());
 		commonService.saveStatistics(age, field);
 	}
-	
+	@After("execution(public * org.log5j..RecruitBoardService.show*(..))")
+	public void afterLogTest(JoinPoint point) throws SQLException{
+		Object param[]=point.getArgs();
+		int recruitNo=(Integer) param[0];
+		String field = commonService.findFieldByRecruitNo(recruitNo);
+		HttpServletRequest request=(HttpServletRequest) param[1];
+		HttpSession session=request.getSession();
+		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
+		String ageString = commonService.findIdentityNoByMemberNo(mvo.getMemberNo());
+		int age = Integer.parseInt(ageString);
+		if(mvo.getMemberType().equals("normal")){
+			commonService.saveStatistics(age, field);
+		}
+	}
+	@After("execution(public * org.log5j..SchedulerService.findSearchList*(..))")
+	public void afterLogSearch(JoinPoint point) throws SQLException{
+		Object param[]=point.getArgs();
+		SearchVO scvo=(SearchVO)param[0];
+		String field=scvo.getField();
+		HttpServletRequest request=(HttpServletRequest) param[1];
+		HttpSession session=request.getSession();
+		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
+		String ageString = commonService.findIdentityNoByMemberNo(mvo.getMemberNo());
+		int age = Integer.parseInt(ageString);
+		if(field!=null && field!=""){
+			commonService.saveStatistics(age, field);
+		}
+	}
 	
 }
 

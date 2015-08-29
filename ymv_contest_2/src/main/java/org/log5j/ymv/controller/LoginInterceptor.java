@@ -23,7 +23,8 @@ public class LoginInterceptor extends WebContentInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException {
         //@NoCheckLogin 어노테이션이 컨트롤러에 사용되었는지 체크함
         NoLoginCheck usingAuth = ((HandlerMethod) handler).getMethodAnnotation(NoLoginCheck.class);
-        System.out.println("test"+usingAuth);
+        AdminLoginCheck admin = ((HandlerMethod) handler).getMethodAnnotation(AdminLoginCheck.class);
+        CompanyLoginCheck company = ((HandlerMethod) handler).getMethodAnnotation(CompanyLoginCheck.class);
         //NoCheckLogin 어노테이션이 없음으로 무조건 로그인 체크
         if(usingAuth == null) {
             HttpSession session=request.getSession();
@@ -33,10 +34,26 @@ public class LoginInterceptor extends WebContentInterceptor {
 					response.sendRedirect("loginCheck.ymv");
 					return false;
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
-/*					return super.preHandle(request, response, handler);*/
 				}
+            }else if(admin!=null){
+            	if(!memberVO.getMemberType().equals("admin")){
+            		try {
+						response.sendRedirect("adminLoginCheck.ymv");
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					return false;
+            	}
+            }else if(company!=null){
+            	if(!memberVO.getMemberType().equals("company")){
+            		try {
+						response.sendRedirect("companyLoginCheck.ymv");
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					return false;
+            	}
             }
         }
         //NoCheckLogin 어노테이션이 없음으로 로그인 체크 하지 않음
