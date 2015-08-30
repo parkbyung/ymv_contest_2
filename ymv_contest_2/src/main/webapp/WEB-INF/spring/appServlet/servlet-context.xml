@@ -86,21 +86,10 @@ class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	</constructor-arg>
 </bean>
 
-
 <bean id="beanNameViewResolver" 
 class="org.springframework.web.servlet.view.BeanNameViewResolver">
 	<property name="order" value="2"></property>
 </bean>
-<!-- 임영학 -->
-<!-- 인터셉터 -->
-<!-- <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-	<property name="order" value="0"/>
-	<property name="interceptors">
-		<list>
-			<ref bean="LoginCheckInterceptor"/>
-		</list>
-	</property>
-</bean> -->
  <mvc:interceptors>
  <mvc:interceptor>
     <mvc:mapping path="/**"/>
