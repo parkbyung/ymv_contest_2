@@ -14,6 +14,7 @@
 		});
 	});
 </script>
+
 <div class="col-md-8 col-md-offset-2">
 <form action="qna_reply.ymv" method="post" id="writeForm" class="form-horizontal">
     <h3>답변글쓰기</h3>

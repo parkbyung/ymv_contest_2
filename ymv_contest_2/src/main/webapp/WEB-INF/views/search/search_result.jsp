@@ -2,9 +2,6 @@
 	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
-<script type="text/javascript">
-
-</script>
 
 <h3 align="center">검색 결과</h3>
 <br><br>
@@ -49,27 +46,17 @@
 		<c:if test="${fn:length(rvo)>=3}">
 			<div class = "col-sm-12">
 				<div class = "pull-right">
-		
 					<a href="search_boards_recruit.ymv?search=${requestScope.search }">더보기</a>
-		
 				</div>
 			</div>
 			</c:if>
-			
-		
-		
 		<br><br>
 		<br>
 </div>
 </div>
-
-
-
-
 <!-- notice 검색 결과-->
 
 <div class="col-md-12">
-	
 	<div class="col-md-12">
 		<table class="table">
 			<colgroup>
@@ -81,7 +68,6 @@
 			</colgroup>
 			<thead>
 			<h5 style="border-width: thick;">공지사항 검색 결과</h5><br>
-				
 				<tr>
 					<th class="boardNo col">NO</th>
 					<th class="title col">제목</th>
@@ -108,9 +94,7 @@
 		<c:if test="${fn:length(nvo)>=3}">
 		<div class = "col-sm-12">
 		<div class = "pull-right">
-		
 		<a href="search_boards_notice.ymv?search=${requestScope.search }">더보기</a>
-		
 		</div>
 		</div>
 		</c:if>
@@ -119,14 +103,7 @@
 	</div>
 	</div>
 
-
-
-
 	<!-- review 검색결과 -->
-
-
-
-
 
 	<div class="col-md-12">
 		<div class="col-md-12">
@@ -140,7 +117,6 @@
 				</colgroup>
 				<thead>
 				<h5 style="border-width: thick;">후기 검색 결과</h5><br>
-					
 					<tr>
 						<th scope="col">NO</th>
 						<th scope="col">제목</th>
@@ -166,9 +142,7 @@
 			<c:if test="${fn:length(revo)>=3}">
 		<div class = "col-sm-12">
 		<div class = "pull-right">
-		
 		<a href="search_boards_review.ymv?search=${requestScope.search }">더보기</a>
-		
 		</div>
 		</div>
 		</c:if>
@@ -177,13 +151,7 @@
 		</div>
 		</div>
 
-
-
-
-
 		<!-- QnA 검색결과 -->
-
-
 
 		<div class="col-md-12">
 			<div class="col-md-12">
@@ -197,7 +165,6 @@
 					</colgroup>
 					<thead>
 					<h5 style="border-width: thick;">QnA 검색 목록</h5><br>
-						
 						<tr>
 							<th class="qnaNo col">NO</th>
 							<th class="title col">제목</th>
@@ -224,9 +191,7 @@
 				<c:if test="${fn:length(qvo)>=3}">
 		<div class = "col-sm-12">
 		<div class = "pull-right">
-		
 		<a href="search_boards_QnA.ymv?search=${requestScope.search }">더보기</a>
-		
 		</div>
 		</div>
 		</c:if>

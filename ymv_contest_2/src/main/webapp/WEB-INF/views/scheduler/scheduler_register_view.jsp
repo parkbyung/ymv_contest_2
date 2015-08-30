@@ -4,14 +4,9 @@
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	type="text/css" media="all" />
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-	type="text/javascript"></script>
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"
-	type="text/javascript"></script>    
-    
-    
-    
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>    
+
 <div class="col-md-6 col-sm-offset-3">
 		<h2>스케줄러 등록</h2><br>
 		<font >[원하시는 분야,지역,그리고 시작시간과 끝시간을 정해 스케줄러를 등록하세요]</font>
@@ -20,7 +15,6 @@
 				<tr>
 					<th class="info">분야</th>
 					<td><select id="field" name="field">
-							<!-- 분야(노인, 아동, 장애, 동물, 환경) DB에서 받아오기 -->
 							<option value="">-분야-</option>
 							<c:forEach items="${requestScope.fieldlist }" var="f">
 								<option value="${f.field }">${f.field }</option>
@@ -41,7 +35,6 @@
 					<th class="info">시작시간</th>
 					<td> <select id="startTime"
 						name="volunteeringStartTime">
-							<!-- 한시간 단위로 하기 -->
 							<option value="">-시작시간-</option>
 							<option value="06:00">06:00</option>
 							<option value="07:00">07:00</option>
@@ -68,7 +61,6 @@
 					<th class="info">끝시간</th>
 					<td>
 						<select id="endTime" name="volunteeringEndTime">
-							<!-- 한시간 단위로 하기 -->
 							<option value="">-끝시간-</option>
 							<option value="06:00">06:00</option>
 							<option value="07:00">07:00</option>
@@ -97,4 +89,3 @@
 			<input type="submit" value="스케쥴러 등록" class = "btn btn-primary"></div>
 		</form>
 	</div>
-</div>

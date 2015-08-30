@@ -76,8 +76,8 @@ $(document).ready(function () {
 			}
 		});
 	});
-	
 </script>
+
     <h3>
 		<p class="text-center">후원등록</p>
 		<br>

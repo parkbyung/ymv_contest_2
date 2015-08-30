@@ -29,8 +29,6 @@
 						href="${initParam.root}message_show_content.ymv?messageNo=${bvo.messageNo}">
 							${bvo.title }</a></td>
 					<!-- 신청자 알람 선정자 알람 확인서 알람 일반 알람 등 으로 나누기 -->
-					<%-- <td>${bvo.messageType }</td>
-					<td>${bvo.timePosted }</td> --%>
 					<!-- recruitNo를 통해 해당 게시판으로 이동 하게 링크 걸기 -->
 					<td><a
 						href="${initParam.root}voluntary_show_content.ymv?recruitNo=${bvo.recruitNo }&noApplicate=no">
@@ -41,11 +39,6 @@
 		</tbody>
 	</table>
 	<br>
-	<%-- <c:if test="${sessionScope.mvo.memberType=='admin' }">
-				<div class="col-sm-12">
-    <div class="pull-right"> 
-		<a href="${initParam.root}notice_register_view.ymv" class="btn btn-default btn-xs">글쓰기</a></div></div>
-	</c:if> --%>
 	<br></br>
 	<div class="text-center">
 		<ul class="pagination">

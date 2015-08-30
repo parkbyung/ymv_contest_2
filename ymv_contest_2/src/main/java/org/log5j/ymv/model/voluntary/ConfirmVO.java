@@ -3,9 +3,9 @@ package org.log5j.ymv.model.voluntary;
 public class ConfirmVO {
 	private int boardNo;
 	private int memberNo;
+	
 	public ConfirmVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public ConfirmVO(int boardNo, int memberNo) {

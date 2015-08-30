@@ -5,9 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.log5j.ymv.model.member.MemberService;
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.MessageService;
 import org.log5j.ymv.model.voluntary.MessageVO;
@@ -23,7 +21,6 @@ public class HomeController {
 	@RequestMapping("home.ymv")
 	@NoLoginCheck
 	public ModelAndView home(HttpServletRequest request){
-		//HttpSession session=request.getSession(false);
 		MemberVO mvo=(MemberVO)request.getSession().getAttribute("mvo");
 		List<MessageVO> messagelist = new ArrayList<MessageVO>();
 		if(mvo!=null){
@@ -38,12 +35,6 @@ public class HomeController {
 		}
 		return new ModelAndView("home");
 	}
-	/**
-	 * 
-	 * 작성자 : 임영학
-	 * 내용 : 
-	 * @return
-	 */
 	@RequestMapping("loginCheck.ymv")
 	@NoLoginCheck
 	public String loginCheck(){

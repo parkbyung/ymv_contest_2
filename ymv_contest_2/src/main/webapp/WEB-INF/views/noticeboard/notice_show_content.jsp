@@ -15,6 +15,7 @@
 		})
 	})
 </script>
+
 	<div class="col-sm-8 col-sm-offset-2">
 		<table class="table table-hover">
 			<tr>

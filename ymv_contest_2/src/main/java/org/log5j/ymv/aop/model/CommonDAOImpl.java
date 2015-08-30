@@ -14,7 +14,6 @@ public class CommonDAOImpl implements CommonDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : age와 field를 받아와 통계DB에 넣어준다. 
 	 * 				age와 field를 한 번에 넣어줄 수 없으므로 vo에 담아서 넣어준다.
 	 * 				insert시 신청자 수는 자동으로 1이 입력된다.
@@ -29,7 +28,6 @@ public class CommonDAOImpl implements CommonDAO {
 	}
 
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 통계DB에 이미 age와 field가 있는 경우 0이 반환된다.(age, field는 복합PK)
 	 * 				그 외 다른 수가 반환되면 해당하는 age와 field의를 찾아 신청자 수를 +1 해준다.
 	 * @param age
@@ -44,7 +42,6 @@ public class CommonDAOImpl implements CommonDAO {
 	}
 
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : memberNo를 이용해 해당 회원의 생년월일을 가져온다.
 	 * @param memberNo : 회원의 생년 월일을 찾기 위해 사용
 	 * @return String : 생년월일
@@ -55,7 +52,6 @@ public class CommonDAOImpl implements CommonDAO {
 	}
 
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : RecruitNo를 이용해 해당 글의 분야를 가져온다.
 	 * @param RecruitNo : 해당 글의 분야를 찾기 위해 사용
 	 * @return String : 분야

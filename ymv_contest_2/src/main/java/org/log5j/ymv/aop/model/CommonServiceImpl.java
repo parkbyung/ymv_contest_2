@@ -12,7 +12,6 @@ public class CommonServiceImpl implements CommonService {
 	private CommonDAO commonDAO;
 
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : commonDAO에서 findIdentityNoByMemberNo를 수행한 값을 return 해 준다.
 	 * 				memberNo를 가지고 해당하는 회원번호를 가진 회원의 생년월일을 가져온다.
 	 * @param memberNo : 회원의 생년 월일을 찾기 위해 사용
@@ -24,7 +23,6 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 생년월일을 받아오면 메서드 수행전에 조건에 따라 ageTemp에 값을 담아준다.
 	 * 				변경된 age와 field를 가지고 update를 수행하는데 
 	 * 				만약 return값이 0이면 registerStatistics 메서드를 수행하고
@@ -50,7 +48,6 @@ public class CommonServiceImpl implements CommonService {
 			ageTemp=0;
 			//age가 0이면 기타
 		}
-		System.out.println("ageTemp    "+ageTemp);
 		int result=commonDAO.updateStatistics(ageTemp, field);
 		if(result==0)
 			commonDAO.registerStatistics(ageTemp, field);	
@@ -58,7 +55,6 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : commonDAO에서 findFieldByRecruitNo를 수행한다.
 	 * 				RecruitNo를 이용해 해당하는 글번호를 가진 글의 봉사분야를 가져온다.
 	 * @param RecruitNo : 해당 글의 분야를 찾기 위해 사용

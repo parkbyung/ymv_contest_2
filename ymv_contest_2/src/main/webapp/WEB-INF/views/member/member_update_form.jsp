@@ -21,6 +21,7 @@
 		});	
 	});
 </script>
+
 <h3>
 	<p class="text-center">회원정보수정</p>
 </h3>

@@ -16,7 +16,6 @@
 				alert("검색어를 입력하세요!");
 				return false;
 			}else{
-				//alert($("#search").val());
 				location.href="search_boards.ymv?search="+$("#search").val();
 			}
 		});

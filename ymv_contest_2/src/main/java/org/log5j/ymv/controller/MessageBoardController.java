@@ -1,15 +1,10 @@
 package org.log5j.ymv.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.log5j.ymv.model.board.BoardVO;
 import org.log5j.ymv.model.board.ListVO;
-import org.log5j.ymv.model.board.NoticeBoardService;
-import org.log5j.ymv.model.board.NoticeBoardVO;
-import org.log5j.ymv.model.board.PictureVO;
 import org.log5j.ymv.model.cookie.CookieService;
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.MessageService;

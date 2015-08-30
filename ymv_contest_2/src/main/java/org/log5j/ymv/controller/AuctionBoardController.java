@@ -47,14 +47,12 @@ public class AuctionBoardController {
 		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		ModelAndView mv=new ModelAndView("auction_show_content");
 		int boardNo=Integer.parseInt(request.getParameter("boardNo"));
-		System.out.println("auction_showContent boardNo: " + boardNo);
 		int pictureNo=boardNo;
 		AuctionBoardVO auvo=auctionBoardService.findAuctionBoardByBoardNo(boardNo);
 		PictureVO pvo=auctionBoardService.findPicture(pictureNo);
 		if(pvo!=null){
 			mv.addObject("pvo",pvo);
 	    }
-		System.out.println("showContent : "+auvo+" picture:"+pvo);
 		int compare = today.compareTo(auvo.getEndDate());
 			if(compare > 0){
 				auvo.setGyeongmae("경매완료");
@@ -70,7 +68,6 @@ public class AuctionBoardController {
 	@RequestMapping("auction_update_view.ymv")
 	public ModelAndView auctionBoardUpdateView(int boardNo) {		
 		AuctionBoardVO abvo = (AuctionBoardVO) auctionBoardService.findAuctionBoardByBoardNo(boardNo);
-		/*abvo=auctionBoardService.setDate(abvo);*/
 		return new ModelAndView("auction_update_view","abvo",abvo);
 	}
 
@@ -110,17 +107,8 @@ public class AuctionBoardController {
 		return new ModelAndView("auction_register_view");
 	}
 
-	/**
-	 * 
-	 * 작성자 : 박병준
-	 * 내용 : 
-	 * @param abvo
-	 * @param pvo
-	 * @return
-	 */
 	@RequestMapping("auction_register.ymv")
 	public String auctionRegister(AuctionBoardVO abvo,PictureVO pvo,HttpServletRequest request){
-		System.out.println("등록할 정보 입니다. " + abvo +"pvo 입니다  " + pvo);
 		abvo.setEndDate(abvo.getEndDate());
 		auctionBoardService.registerAuctionBoard(abvo);
 		AuctionBoardVO avo = (AuctionBoardVO) auctionBoardService.findAuctionBoardByBoardNo(abvo.getBoardNo());
@@ -130,13 +118,6 @@ public class AuctionBoardController {
 		session.setAttribute("hidden", "register");
 		return "forward:upload_auction_path.ymv";
 	}
-	/**
-	 * 
-	 * 작성자 : 박병준
-	 * 내용 : 
-	 * @param pvo
-	 * @return
-	 */
 	@RequestMapping("auction_register_file.ymv")
 	public ModelAndView memberProfileUpdate(HttpServletRequest request) {
 		PictureVO pvo=(PictureVO)request.getSession().getAttribute("pvo");
@@ -155,7 +136,6 @@ public class AuctionBoardController {
 	@RequestMapping("auction_update_price.ymv")
 	@ResponseBody
 	public AuctionBoardVO updatePrice(AuctionBoardVO auvo){
-		System.out.println("경매 시작 "+auvo);
 		int resultPrice = auctionBoardService.updatePrice(auvo);
 		auctionBoardService.updateBidder(auvo);
 		

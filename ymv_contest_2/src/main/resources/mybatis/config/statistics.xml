@@ -31,7 +31,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select age, field, row_number() over(order by applicate_count desc) as ranking, applicate_count from statistics where age =#{value}
 		) where ranking<=3
 	]]>
-	<!-- 3위까지 뽑음 -->
 	</select>
  
  	<select id="findFieldByRecruitNo" resultType="String">

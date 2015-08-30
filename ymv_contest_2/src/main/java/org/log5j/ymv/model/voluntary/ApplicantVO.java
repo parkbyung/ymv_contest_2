@@ -7,6 +7,7 @@ public class ApplicantVO {
 	private String id;
 	private String name;
 	private String mailAddress;
+	
 	@Override
 	public String toString() {
 		return "ApplicantListVO [recruitNo=" + recruitNo + ", memberNo="

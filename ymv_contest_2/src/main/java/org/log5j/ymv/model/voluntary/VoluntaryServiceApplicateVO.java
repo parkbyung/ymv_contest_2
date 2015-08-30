@@ -7,7 +7,6 @@ public class VoluntaryServiceApplicateVO {
 	
 	public VoluntaryServiceApplicateVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public VoluntaryServiceApplicateVO(int recruitNo, int memberNo,

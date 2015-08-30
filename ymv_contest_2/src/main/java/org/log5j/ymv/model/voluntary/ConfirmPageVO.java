@@ -3,6 +3,7 @@ package org.log5j.ymv.model.voluntary;
 public class ConfirmPageVO {
 	private int memberNo;
 	private int pageNo;
+	
 	public int getMemberNo() {
 		return memberNo;
 	}

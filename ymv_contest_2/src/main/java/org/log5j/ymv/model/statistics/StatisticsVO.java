@@ -4,9 +4,9 @@ public class StatisticsVO {
 	private int age;
 	private String field;
 	private int applicateCount;
+	
 	public StatisticsVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public StatisticsVO(int age, String field, int applicateCount) {
 		super();

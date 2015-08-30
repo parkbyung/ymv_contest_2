@@ -7,8 +7,8 @@
 		});
 	});
 </script>
+
 <script type="text/javascript">
-	
 	$(document).ready(function() {
 		$("#sponsorForm").submit(function() {
 			if ($("#datepicker1").val() == "") {
@@ -38,6 +38,7 @@
 		});
 	});
 </script>
+
 <script>
 $(document).ready(function () {
     $.datepicker.regional['ko'] = {
@@ -81,6 +82,7 @@ $(document).ready(function () {
     });
 });
 </script>
+
 <div class="col-md-6 col-sm-offset-3">
 	<form action="sponsor_update.ymv" enctype="multipart/form-data" id = sponsorForm
 		method="post">

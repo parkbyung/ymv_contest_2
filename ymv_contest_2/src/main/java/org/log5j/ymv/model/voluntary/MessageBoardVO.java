@@ -1,7 +1,5 @@
 package org.log5j.ymv.model.voluntary;
 
-import java.util.Date;
-
 import org.log5j.ymv.model.board.BoardVO;
 
 public class MessageBoardVO implements BoardVO {
@@ -10,7 +8,6 @@ public class MessageBoardVO implements BoardVO {
 	
 	public MessageBoardVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public MessageBoardVO(int memberNo, int pageNo) {

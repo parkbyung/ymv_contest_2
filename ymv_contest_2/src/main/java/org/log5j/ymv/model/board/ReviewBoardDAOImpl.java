@@ -14,7 +14,6 @@ public class ReviewBoardDAOImpl implements ReviewBoardDAO {
 
 	@Override
 	public List<BoardVO> findReviewBoardList(String pageNo) {
-		// TODO Auto-generated method stub
 		List<BoardVO> list = sqlSessionTemplate.selectList(
 				"reviewBoard.findReviewBoardList", Integer.parseInt(pageNo));
 		return list;
@@ -27,7 +26,6 @@ public class ReviewBoardDAOImpl implements ReviewBoardDAO {
 
 	@Override
 	public BoardVO findReviewBoardByBoardNo(int boardNo) {
-		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne(
 				"reviewBoard.findReviewBoardByBoardNo", boardNo);
 	}
@@ -67,7 +65,6 @@ public class ReviewBoardDAOImpl implements ReviewBoardDAO {
 
 	@Override
 	public void registerReviewBoard(ReviewBoardVO vo) {
-		System.out.println("DAO" + vo);
 		sqlSessionTemplate.insert("reviewBoard.registerReviewBoard", vo);
 	}
 
@@ -78,21 +75,18 @@ public class ReviewBoardDAOImpl implements ReviewBoardDAO {
 
 	@Override
 	public PictureVO findPicture(int pictureNo) {
-		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("reviewBoard.findPicture",
 				pictureNo);
 	}
 
 	@Override
 	public void deletePicture(int pictureNo) {
-		// TODO Auto-generated method stub
 		sqlSessionTemplate.delete("reviewBoard.deletePicture", pictureNo);
 	}
 
 	@Override
 	public void updateHit(int boardNo) {
 		sqlSessionTemplate.update("reviewBoard.updateHit", boardNo);
-
 	}
 
 	@Override

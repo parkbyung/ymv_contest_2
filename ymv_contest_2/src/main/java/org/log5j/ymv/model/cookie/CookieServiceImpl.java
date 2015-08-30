@@ -47,9 +47,9 @@ public class CookieServiceImpl implements CookieService {
 							cookieDAO.updateHit(No,bvo);
 							//쿠키 'myboard' 에 게시글 번호를 등록한다.
 							cookie= new Cookie("myboard", value);
-						}// else1
-					}// else2
-				}// else3
+						}
+					}
+				}
 				return cookie;
 	}
 }

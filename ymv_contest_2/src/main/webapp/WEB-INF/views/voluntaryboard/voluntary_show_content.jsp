@@ -225,9 +225,6 @@ $(document).ready(function(){
 										</c:otherwise>
 									</c:choose>
 								</c:when>
-								<%-- 관리자 일 경우도 만들어 주기
-						<c:when test="">
-								</c:when> --%>
 							</c:choose></td>
 						</c:otherwise>
 						</c:choose>

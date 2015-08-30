@@ -12,6 +12,7 @@
 		}); //click
 	});
 </script>
+
 <h3 align="center">후기 상세 글</h3>
 <br>
 <div class="col-md-8 col-sm-offset-2">
@@ -81,28 +82,22 @@
 								<td align="right"><span style="color:#92B3B7">시간 : ${comment.timePosted}</span></td>
 							</tr>
 							<tr>
-							<td></td>
-								<td>${comment.content}</td>
-								<td align="right"><c:choose>
-										<%-- <c:when test="${sessionScope.mvo.memberType=='admin' }">
-											<a
-												href="delete_review_comment.ymv?commentNo=${comment.commentNo}&boardNo=${comment.boardNo}"
-												class="btn btn-default btn-xs">댓글삭제</a>
-										</c:when> --%>
-										<c:when test="${comment.writer==sessionScope.mvo.name }">
-											<a
-												href="delete_review_comment.ymv?commentNo=${comment.commentNo}&boardNo=${comment.boardNo}"
-												class="btn btn-default btn-xs">댓글삭제</a>
-
-										</c:when>
-										<c:otherwise>
-										</c:otherwise>
-									</c:choose></td>
-							</tr>
-						</c:forEach>
-
-					</table>
-				</td>
+							<td>
+							</td>
+							<td>${comment.content}</td>
+							<td align="right">
+							<c:choose>
+								<c:when test="${comment.writer==sessionScope.mvo.name }">
+									<a href="delete_review_comment.ymv?commentNo=${comment.commentNo}&boardNo=${comment.boardNo}"	class="btn btn-default btn-xs">댓글삭제</a>
+								</c:when>
+								<c:otherwise>
+									
+								</c:otherwise>
+							</c:choose></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</td>
 		</tr>
 	</table>
 </div>

@@ -12,9 +12,9 @@ public class SponsorVO implements BoardVO{
 	private String startDate;
 	private String endDate;
 	private String hoowon;
+	
 	public SponsorVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public SponsorVO(int boardNo, String title, String content,
 			int targetPrice, int currentPrice) {

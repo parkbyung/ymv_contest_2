@@ -13,9 +13,9 @@ $(document).ready(function(){
 			return false;
 		}
 	});
-});
-	
+});	
 </script>
+
 <h3>
 	<p class="text-center">후원게시판</p>
 </h3>

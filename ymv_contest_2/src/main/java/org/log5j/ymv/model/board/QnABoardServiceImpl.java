@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 public class QnABoardServiceImpl implements QnABoardService {
 	@Resource(name="qnABoardDAOImpl")
 	private QnABoardDAO qnABoardDAO;
+	
 	@Override
 	public ListVO findQnABoardList(String pageNo) {
 		if(pageNo==null||pageNo=="") 
@@ -46,12 +47,11 @@ public class QnABoardServiceImpl implements QnABoardService {
 		//입력 전에 restep값 과 relevel의 값을 1씩 증가하여 insert시킨다.
 		qvo.setRestep(restep+1);
 		qvo.setRelevel(relevel+1);
-		qnABoardDAO.replyQnABoard(qvo);//답변 글 입력								
+		qnABoardDAO.replyQnABoard(qvo);								
 	}
 	
 	@Override
 	public void findQnABoardByQnaNoNotHit(int qnaNo) {
-		// TODO Auto-generated method stub
 		qnABoardDAO.findQnABoardByQnaNoNotHit(qnaNo);
 	}
 	@Override

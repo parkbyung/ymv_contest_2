@@ -41,11 +41,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-
-
 		<br> <br>
-
-
 		<div class="text-center">
 			<ul class="pagination">
 				<c:choose>

@@ -47,10 +47,7 @@
 				
 			}
 		})
-		
 	});//document
-
-
 </script>
 
 
@@ -67,7 +64,6 @@
          			</tr>
          			<tr>
           			<tr>
-    
          				<td>
          					<c:choose>
          					<c:when test="${requestScope.auvo.gyeongmae == '경매중'}">
@@ -129,7 +125,6 @@
                       	</c:choose>
          				</td>
          			</tr>
-         			
          			<!-- 버튼 -->
          			<tr>
          				<td valign="middle" align="center" colspan="2">
@@ -143,7 +138,6 @@
                               			<img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">
 								</c:when>
 							</c:choose>
-         					
          				</td>
          			</tr>
          		</tbody>
