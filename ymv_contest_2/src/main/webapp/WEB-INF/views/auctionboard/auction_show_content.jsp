@@ -49,10 +49,7 @@
 		})
 		
 	});//document
-
-
 </script>
-
 
 <h3 align="center">나눔 활동 상세 글보기</h3>
    <div class="col-sm-8 col-sm-offset-2" align="center">
@@ -141,12 +138,9 @@
 								<c:when test="${sessionScope.mvo.memberType=='admin' }">
 									<a href="${initParam.root}auction_update_view.ymv?boardNo=${requestScope.auvo.boardNo }">
 										<img id="modifyBtn" src="${initParam.root}img/modify_btn.jpg"></a>
-									<%-- <a href="${initParam.root}auction_board_delete.ymv?boardNo=${requestScope.auvo.boardNo }">
-                              			<img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg"></a> --%>
                               			<img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">
 								</c:when>
 							</c:choose>
-         					
          				</td>
          			</tr>
          		</tbody>
