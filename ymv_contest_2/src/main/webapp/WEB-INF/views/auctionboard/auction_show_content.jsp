@@ -47,7 +47,10 @@
 				
 			}
 		})
+		
 	});//document
+
+
 </script>
 
 
@@ -59,7 +62,11 @@
          		<tbody>
          			<tr>
          				<td colspan="2">NO : ${requestScope.auvo.boardNo }</td>
+         			</tr>
+         			<tr>
          				<td colspan="5" style="font-weight: bold; font-size: 7;" >제목 : ${requestScope.auvo.title }</td>
+         			</tr>
+         			<tr>
          				 <td colspan="3">물품명 : ${requestScope.auvo.article }</td>
          			</tr>
          			<tr>
@@ -125,6 +132,7 @@
                       	</c:choose>
          				</td>
          			</tr>
+         			
          			<!-- 버튼 -->
          			<tr>
          				<td valign="middle" align="center" colspan="2">
@@ -138,6 +146,7 @@
                               			<img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">
 								</c:when>
 							</c:choose>
+         					
          				</td>
          			</tr>
          		</tbody>
