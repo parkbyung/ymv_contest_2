@@ -10,7 +10,6 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.log5j.ymv.aop.model.CommonService;
-import org.log5j.ymv.controller.NoLoginCheck;
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.scheduler.SearchVO;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateVO;
@@ -25,7 +24,6 @@ public class AroundAspect {
 	private CommonService commonService;
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : execution는 접근제어자는 public이며 return type은 상관없고 org.log5j 아래의 
 	 * 				VoluntaryServiceApplicateService클래스의 reg로 시작하는 메서드 실행시 수행된다.
 	 * 				param[0]은 받아온 매개변수를 저장하는데 VoluntaryServiceApplicateVO에 그 정보를 담아준다.
@@ -65,7 +63,6 @@ public class AroundAspect {
 		HttpServletRequest request=(HttpServletRequest) param[1];
 		HttpSession session=request.getSession();
 		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
-		System.out.println("mvo    "+mvo);
 		if(mvo==null){
 			age=150101;
 		}else{
