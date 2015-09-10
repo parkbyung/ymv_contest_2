@@ -15,7 +15,6 @@ public class PictureVO {
 	}
 	public PictureVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public int getPictureNo() {
 		return pictureNo;

@@ -14,9 +14,9 @@ public class QnABoardVO implements BoardVO{
 	private Date timePosted;
 	private int hit;
 	private String answer;
+	
 	public QnABoardVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public QnABoardVO(int qnaNo, String title, String writer, String content,
 			int ref, int restep, int relevel, int memberNo, Date timePosted,

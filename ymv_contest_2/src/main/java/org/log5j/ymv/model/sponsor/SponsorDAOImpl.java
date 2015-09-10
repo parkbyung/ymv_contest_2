@@ -26,7 +26,6 @@ public class SponsorDAOImpl implements SponsorDAO {
 
 	@Override
 	public void registerSponsor(SponsorVO spvo){
-		System.out.println("sponsorDAO-spvo:"+spvo);
 		sqlSessionTemplate.insert("sponsor.registerSponsor",spvo);
 	}
 

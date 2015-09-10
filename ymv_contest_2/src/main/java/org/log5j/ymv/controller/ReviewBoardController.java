@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.log5j.ymv.model.board.AuctionBoardVO;
 import org.log5j.ymv.model.board.BoardVO;
 import org.log5j.ymv.model.board.CommentVO;
 import org.log5j.ymv.model.board.ListVO;
@@ -20,13 +19,6 @@ import org.log5j.ymv.model.cookie.CookieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.sun.xml.bind.v2.runtime.output.Pcdata;
-/**
- * 후기게시판
- * @author jjh
- *
- */
 @Controller
 public class ReviewBoardController {
 	@Resource
@@ -35,8 +27,6 @@ public class ReviewBoardController {
 	private CookieService cookieService;
 
 	/**
-	 * 
-	 * 작성자 : 전진한
 	 * 내용 : pageNo를 이용하여 해당하는 페이지의 후기 게시글과 페이지 정보를 반환한다. 
 	 * @param pageNo : 현재 페이지 번호를 받아온다.
 	 * @return
@@ -45,15 +35,9 @@ public class ReviewBoardController {
 	@NoLoginCheck
 	public ModelAndView reviewBoard(String pageNo) {	
 		ListVO lvo = reviewBoardService.findReviewBoardList(pageNo);
-		System.out.println("s;knas;lkajnlbjerbnlekrjgnalkergrg");
-		System.out.println(lvo.getPagingBean().getStartPageOfPageGroup());
-		System.out.println(lvo.getPagingBean().getEndPageOfPageGroup());
-		System.out.println(lvo.getPagingBean().getNowPageGroup());
 		return new ModelAndView("review_board","lvo",lvo);
 	}
 	/**
-	 * 
-	 * 작성자 : 전진한
 	 * 내용 : 쿠키를 사용하여 조회수를 개인당 한번만 허용하고 게시판 상세정보,사진정보,댓글 정보를 반환한다.
 	 * @param request : boardNo를 받아오고 쿠키 정보를 받기 위해 사용
 	 * @param response : 쿠키를 사용자에게 생성하기 위해 사용
@@ -80,8 +64,6 @@ public class ReviewBoardController {
 		 return mv;
 }
 	/**
-	 * 
-	 * 작성자 : 전진한
 	 * 내용 : review 게시판에 작성한 댓글을 등록하고 해당 페이지로 다시 이동
 	 * @param cmvo : 댓글의 정보를 받아오기 위해 사용(댓글번호,글번호,작성자,내용)
 	 * @return
@@ -92,8 +74,6 @@ public class ReviewBoardController {
 		return "redirect:review_showContent.ymv?boardNo="+cmvo.getBoardNo();
 	}
 	/**
-	 * 
-	 * 작성자 : 전진한
 	 * 내용 : 
 	 * @param cmvo : 댓글의 정보를 받아오기 위해 사용(댓글 번호,글번호)
 	 * @return
@@ -104,8 +84,6 @@ public class ReviewBoardController {
 		return "redirect:review_showContent.ymv?boardNo="+cmvo.getBoardNo();
 	}
 	/**
-	 * 
-	 * 작성자 : 전진한
 	 * 내용 : 게시글 번호로 조회하고 게시글의 정보를 수정페이지(review_board_update_view.jsp)으로 반환한다.
 	 * @param boardNo : 해당 게시글 번호를 받아오기위해 사용.
 	 * @return
@@ -116,8 +94,6 @@ public class ReviewBoardController {
 		return new ModelAndView("review_board_update_view","rvo",reviewbvo);
 	}
 	/**
-	 * 
-	 * 작성자 : 전진한
 	 * 내용 : 게시물을 수정한 후 글번호를 이용해 redirect 사용하여 상세글보기로 이동
 	 * @param rbvo : 후기게시글의 수정된 상세 정보를 받아옴.
 	 * @return
@@ -144,8 +120,6 @@ public class ReviewBoardController {
 		return new ModelAndView("redirect:review_showContent.ymv?boardNo="+pvo.getPictureNo());
 	}
 	/**
-	 * 
-	 * 작성자 : 전진한
 	 * 내용 : 게시글을 삭제하는 메서드, 해당 글을 참조하고 있는 사진 및 댓글도 삭제한다.
 	 * @param boardNo : 해당 게시판의 번호를 받아온다.
 	 * @return
@@ -156,8 +130,6 @@ public class ReviewBoardController {
 		return new ModelAndView("redirect:review_board.ymv");
 	}
 	/**
-	 * 
-	 * 작성자 : 전진한
 	 * 내용 : 게시글 작성 페이지로 이동한다.
 	 * @return
 	 */
@@ -166,8 +138,6 @@ public class ReviewBoardController {
 		return new ModelAndView("review_register_view");
 	}
 	/**
-	 * 
-	 * 작성자 : 전진한, 임영학
 	 * 내용 : 입력받은 상세정보와 사진정보를 등록하는 메서드
 	 * @param rbvo : 게시판의 상세 정보를 받아온다.
 	 * @param pvo : 게시판의 사진정보를 받아온다.
@@ -185,8 +155,6 @@ public class ReviewBoardController {
 		return "forward:upload_review_path.ymv";
 	}
 	/**
-	 * 
-	 * 작성자 : 박병준
 	 * 내용 : UploadPathController로 부터 받은 PictureVO 정보를 통해 File을 업로드해준다.
 	 * @param pvo : 업로드하기 위한 기초 정보
 	 * @return

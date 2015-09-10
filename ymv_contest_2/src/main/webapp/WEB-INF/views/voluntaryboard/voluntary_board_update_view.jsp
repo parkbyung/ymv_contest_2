@@ -36,6 +36,7 @@
 		});
 	});
 </script>
+
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	type="text/css" media="all" />
@@ -114,7 +115,6 @@ $(document).ready(function () {
 			<tr>
 				<th class="info"><h4 class="text-center">분야</h4></th>
 				<td><select id="field" name="field">
-						<!-- 분야(노인, 아동, 장애, 동물, 환경) DB에서 받아오기 -->
 						<option value="${requestScope.rvo.field }">${requestScope.rvo.field }</option>
 						<c:forEach items="${requestScope.fieldlist }" var="f">
 							<c:if test="${requestScope.rvo.field != f.field}">
@@ -126,7 +126,6 @@ $(document).ready(function () {
 			<tr>
 				<th class="info"><h4 class="text-center">지역</h4></th>
 				<td><select id="location" name="location">
-						<!-- 지역(*도 별로) DB에서 받아오기 -->
 						<option value="${requestScope.rvo.location}">${requestScope.rvo.location}</option>
 						<c:forEach items="${requestScope.locationlist }" var="l">
 							<c:if test="${requestScope.rvo.location != l.location }">
@@ -138,8 +137,7 @@ $(document).ready(function () {
 			<tr>
 				<th class="info"><h4 class="text-center">나이제한</h4></th>
 				<td>
-					<!-- <input type="text" name="age" id="age"> --> <!-- 숫자로 입력 안하면 submit 못하게
-			나이를 select or input text로 둘중에 뭐할지 정하기 --> <c:choose>
+					<c:choose>
 						<c:when test="${requestScope.rvo.age=='전체'}">
 							<input type="radio" name="age" value="전체" checked="checked">전체 
 					<input type="radio" name="age" value="학생">학생 
@@ -155,7 +153,7 @@ $(document).ready(function () {
 					<input type="radio" name="age" value="학생">학생 
 					<input type="radio" name="age" value="성인" checked="checked">성인
 				</c:when>
-					</c:choose> <!-- 전체, 학생, 성인으로 나눠서 -->
+					</c:choose>
 				</td>
 			</tr>
 				<tr>
@@ -169,12 +167,10 @@ $(document).ready(function () {
 					&nbsp;&nbsp;  ~	&nbsp; &nbsp;<input type="text" id="datepicker4" name="volunteeringEndDate" placeholder="봉사 종료 기간"> 
 					</td>
 				</tr>
-	
 				<tr>
 					<th class="info"><h4 class="text-center">봉사 시작/끝 시간</h4></th>
 					<td> 
 						<select id="volunteeringStartTime" name="volunteeringStartTime">
-							<!-- 한시간 단위로 하기 -->
 							<option value="">-시작시간-</option>
 							<option value="06:00">06:00</option>
 							<option value="07:00">07:00</option>
@@ -198,7 +194,6 @@ $(document).ready(function () {
 					</select>
 					&nbsp;&nbsp;  ~	&nbsp; &nbsp; 
 					<select id="volunteeringEndTime" name="volunteeringEndTime">
-							<!-- 한시간 단위로 하기 -->
 							<option value="">-끝시간-</option>
 							<option value="06:00">06:00</option>
 							<option value="07:00">07:00</option>

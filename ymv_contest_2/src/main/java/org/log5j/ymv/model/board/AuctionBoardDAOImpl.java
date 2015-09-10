@@ -14,13 +14,11 @@ private SqlSessionTemplate sqlSessionTemplate;
 
 @Override
 public AuctionBoardVO findByAuctionNO(AuctionBoardVO vo){
-	// TODO Auto-generated method stub
 	return sqlSessionTemplate.selectOne("auctionBoard.findByAuctionNo", vo.getBoardNo());	
 }
 
 @Override
 public List<BoardVO> findBoardList(String pageNo){
-	// TODO Auto-generated method stub
 	List<BoardVO> list=sqlSessionTemplate.selectList("auctionBoard.findBoardList",Integer.parseInt(pageNo));
 	return list;
 }
@@ -32,7 +30,6 @@ public int totalContent(){
 
 @Override
 public AuctionBoardVO findAuctionBoardByBoardNo(int boardNo){
-	// TODO Auto-generated method stub
 	return sqlSessionTemplate.selectOne("auctionBoard.findAuctionBoardByBoardNo",boardNo);	
 }
 
@@ -49,25 +46,21 @@ public void auctionBoardDelete(String boardNo) {
 
 @Override
 public void registerAuctionBoard(AuctionBoardVO vo) {
-	System.out.println("DAO"+vo);
 	sqlSessionTemplate.insert("auctionBoard.registerAuctionBoard",vo);
 }
 
 @Override
 public void registerPicture(PictureVO pvo) {
-	// TODO Auto-generated method stub
 	sqlSessionTemplate.insert("auctionBoard.registerPicture",pvo);
 }
 
 @Override
 public PictureVO findPicture(int pictureNo) {
-	// TODO Auto-generated method stub
 	return sqlSessionTemplate.selectOne("auctionBoard.findPicture",pictureNo);
 }
 
 @Override
 public void deletePicture(int pictureNo) {
-	// TODO Auto-generated method stub
 	sqlSessionTemplate.delete("auctionBoard.deletePicture",pictureNo);
 }
 
@@ -97,40 +90,4 @@ public void updateBidder(AuctionBoardVO abvo) {
 	sqlSessionTemplate.update("auctionBoard.updateBidder",abvo);
 	
 }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

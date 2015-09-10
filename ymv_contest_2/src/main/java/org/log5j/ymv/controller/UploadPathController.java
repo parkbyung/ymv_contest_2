@@ -3,7 +3,6 @@ package org.log5j.ymv.controller;
 import java.io.File;
 
 import javax.annotation.Resource;
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,16 +22,12 @@ public class UploadPathController {
 
 	@Resource(name = "uploadReviewPath")
 	private String reviewPath;
-
 	@Resource(name = "uploadNoticePath")
 	private String noticePath;
-
 	@Resource(name = "uploadProfilePath")
 	private String profilePath;
-
 	@Resource(name = "uploadAuctionPath")
 	private String auctionPath;
-	
 	@Resource(name = "uploadSponsorPath")
 	private String sponsorPath;
 
@@ -48,10 +43,6 @@ public class UploadPathController {
 				mvo.setFilePath(filePath);
 				pvo.setPictureNo(mvo.getMemberNo());
 				file.transferTo(new File(profilePath + fileName));
-				System.out.println("PictureNo: " + pvo.getPictureNo()
-						+ " fileName: " + pvo.getFileName());
-				System.out.println("fileupload ok:" + fileName);
-				System.out.println(filePath);
 				mav.addObject("mvo", mvo);
 			} catch (Exception e) {
 				e.printStackTrace();

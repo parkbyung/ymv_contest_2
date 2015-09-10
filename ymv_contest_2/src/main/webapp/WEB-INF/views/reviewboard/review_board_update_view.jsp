@@ -66,19 +66,5 @@
 						<input type="button" id="updateCancel" value="취소하기" class="btn btn-default btn-xs"></input></td>
 				</tr>
 			</table>
-
 		</form>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -11,11 +11,10 @@ import org.springframework.stereotype.Repository;
 public class QnABoardDAOImpl implements QnABoardDAO {
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate sqlSessionTemplate;
+	
 	/**
-	 * 
 	 *@param pageNo : 페이지번호를 받아온다.
 	 *@return ListVO:  페이지 번호에 해당하는 목록 list 를 return 한다.
-	 *@작성자 : 장지윤
 	 *@Method설명 : 페이지 번호를 받아와 해당하는 리스트를 뽑는다.
 	 */
 	@Override
@@ -24,8 +23,6 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 		return list;
 	}
 	/**
-	 * 
-	 *@작성자 : 장지윤
 	 *@Method설명 : 전체 글 수를 return 해온다.
 	 */
 	@Override
@@ -33,7 +30,6 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 		return sqlSessionTemplate.selectOne("qnaBoard.totalQnABoardContent");
 	}
 	/**
-	 *@작성자 : 장지윤
 	 *@Method설명 :쓴 내용을 가져와 QnABoard에 등록한다.
 	 */
 	@Override
@@ -41,7 +37,6 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 		sqlSessionTemplate.delete("qnaBoard.registerQnABoard",qvo);
 	}
 	/**
-	 *@작성자 : 장지윤
 	 *@Method설명 :qna 번호를 통해 글을 찾아 return 한다.
 	 */
 	@Override
@@ -49,7 +44,6 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 		return sqlSessionTemplate.selectOne("qnaBoard.findQnABoardByQnANo",qnaNo);
 	}
 	/**
-	 *@작성자 : 장지윤
 	 *@Method설명 :수정된 글을 불러와 수정한다.
 	 */
 	@Override
@@ -57,7 +51,6 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 		sqlSessionTemplate.update("qnaBoard.updateQnABoard",qnABoardVO);
 	}
 	/**
-	 *@작성자 : 장지윤
 	 *@Method설명 :qna 글번호를 통해 글을 삭제한다
 	 */
 	@Override
@@ -65,7 +58,6 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 		sqlSessionTemplate.delete("qnaBoard.deleteQnABoard",qnaNo);
 	}
 	/**
-	 *@작성자 : 장지윤
 	 *@Method설명 :ref와 restep을 가져와 map에 넣어 count를 늘린다.
 	 */
 	@Override
@@ -76,7 +68,6 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 		sqlSessionTemplate.update("qnaBoard.updateRestep", map);		
 	}
 	/**
-	 *@작성자 : 장지윤
 	 *@Method설명 :쓴 내용을 가져와 QnABoard에 등록한다.
 	 */
 	@Override

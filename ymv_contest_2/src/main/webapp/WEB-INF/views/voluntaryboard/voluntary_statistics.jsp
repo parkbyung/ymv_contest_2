@@ -6,13 +6,10 @@
     <title>AdminLTE 2 | Flot Charts</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
     <!-- Font Awesome Icons -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
     <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-    
-    
           
       <div class = "col-sm-6 col-sm-offset-3">
         <div class="box box-primary">
@@ -35,12 +32,9 @@
     <script src="${initParam.root}chart/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
               
         <script type="text/javascript">
-        
-        
         $(function () {
            var arr=new Array();
            var arr2=new Array();
-
 	       <c:forEach items="${requestScope.list }" var="test3">
 		      	 arr=new Array();
 		         arr.push("${test3.FIELD}");

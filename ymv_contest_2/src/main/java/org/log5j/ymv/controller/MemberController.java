@@ -8,20 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.log5j.ymv.model.board.ListVO;
 import org.log5j.ymv.model.board.PictureVO;
 import org.log5j.ymv.model.member.MemberService;
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.MessageService;
 import org.log5j.ymv.model.voluntary.MessageVO;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateService;
-import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateVO;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,12 +32,8 @@ public class MemberController {
 	
 	@Resource
 	private MessageService messageService;
-	/*
-	 * 로그인부분
-	 */
 	
 	/**
-	 * 작성자 : 백지영, 장지윤
 	 * 내용 : 로그인 메서드를 수행해 id와 password에 해당하는 회원정보를 가져온다.
 	 * 				가져 온 회원정보가 null이 아니라면 세션이 있는지 없는지 확인 후 
 	 * 				세션이 없다면 세션을 만들어주고 loginSession에 Y를 할당한다.
@@ -53,13 +46,11 @@ public class MemberController {
 	@RequestMapping("login.ymv")
 	@NoLoginCheck
 	public ModelAndView login(HttpServletRequest request,MemberVO vo) {	
-		System.out.println("memberVO:"+vo);
 		MemberVO mvo=memberService.login(vo);
 		String loginSession="";
 		List<MessageVO> messagelist = new ArrayList<MessageVO>();
 		if(mvo!=null){
 			request.getSession().setAttribute("mvo", mvo);
-			System.out.println("로그인 mvo:"+mvo);
 			loginSession="Y";
 			request.getSession().setAttribute("mvo", mvo);
 			List<MessageVO> mglist = messageService.findMessageByMemberNo(mvo.getMemberNo());
@@ -80,7 +71,6 @@ public class MemberController {
 	}
 	
 	/**
-	 * 작성자 : 백지영, 장지윤
 	 * 내용 : 만약 세션이 null이 아니라면 세션을 해제 한 후 "home.jsp"로 보내준다.
 	 * @param request : 세션 유무를 확인하기 위해 사용
 	 * @return 
@@ -99,7 +89,6 @@ public class MemberController {
 	
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 회원가입 폼이 있는 페이지로 넘겨준다.
 	 * @return
 	 */
@@ -112,7 +101,6 @@ public class MemberController {
 	}
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 일반회원의 경우에는 생년월일을 입력받아 "member_register_form_detail.jsp"로 보내준다.
 	 * 				기업회원의 경우에는 사업자등록번호를 입력받아 "member_register_form_detail.jsp"로 보내준다.
 	 * @param identityNo : 생년월일이나 사업자등록번호를 입력하기 위해 사용
@@ -129,7 +117,6 @@ public class MemberController {
 	}
 
 	/**
-	 * 작성자 : 박병준
 	 * 내용 : validation과 idcheck를 동시에 수행하고 있다. 
 	 *  validation을 통해 에러가 발생하면 정보들을 vo에 담아 다시 보내주고
 	 *  에러가 없다면 글 등록을 하게된다. 이 때 id가 중복되게 되면
@@ -162,7 +149,6 @@ public class MemberController {
 	}
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 회원수정폼이 있는 페이지로 보내준다.
 	 * @return
 	 */
@@ -172,7 +158,6 @@ public class MemberController {
 	}
 	
 	/**
-	 * 작성자 : 백지영, 박병준
 	 * 내용 : 회원정보 수정 폼에서 수정된 회원 정보들을 받아와서 updateMember를 사용해 회원정보를 수정한다.
 	 * 				현재 회원의 회원번호를 사용해서 회원의 정보를 찾는다.
 	 * 				바뀐 회원의 정보를 세션에 setting해주고 "member_update.jsp"로 보내준다.
@@ -198,7 +183,6 @@ public class MemberController {
 	}
 	/**
 	 * 
-	 * 작성자 : 박병준
 	 * 내용 : UploadPathController로 부터 받은 MemberVO 정보를 통해 File을 업로드해준다.
 	 * @param mvo : 업로드하기 위한 기초 정보
 	 * @return

@@ -30,8 +30,6 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
-
 </script>
 
 	<link rel="stylesheet"

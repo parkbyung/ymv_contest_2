@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.log5j.ymv.model.board.BoardVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+
 @Repository
 public class SchedulerDAOImpl implements SchedulerDAO {
 	@Resource(name="sqlSessionTemplate")
@@ -15,13 +16,11 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	
 	@Override
 	public List<BoardVO> findSchedulerList(SchedulerVO sdvo) {
-		System.out.println("DAO Scheduler"+sdvo);
 		List<BoardVO> list = sqlSessionTemplate.selectList("scheduler.findSchedulerList",sdvo);
 		return list;
 	}
 	@Override
 	public List<BoardVO> findSearchList(SearchVO scvo) {
-		System.out.println("DAO Search"+scvo);
 		List<BoardVO> list = sqlSessionTemplate.selectList("scheduler.findSearchList",scvo);
 		return list;
 	}
@@ -36,7 +35,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	}
 	@Override
 	public SchedulerVO checkScheduler(String memberNo) {
-		
 		return sqlSessionTemplate.selectOne("scheduler.checkScheduler",memberNo);
 	}
 	@Override
@@ -49,7 +47,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	}
 
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 봉사 목록 중에서 제목과 상세 내용중 검색한 단어가 포함 된 글의 목록을 가져온다.
 	 * @param sebvo : 검색어와 페이지 번호를 같이 담기위해 사용
 	 * @return list
@@ -61,7 +58,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	}
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 봉사 목록 중에서 제목과 상세내용에 검색한 단어가 포함 된 글이 몇개 인지 보여준다.
 	 * @param search : 검색된 단어
 	 * @return int
@@ -72,7 +68,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	}
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 공지사항 목록 중에서 제목과 작성자, 상세 내용중 검색한 단어가 포함 된 글의 목록을 가져온다.
 	 * @param sebvo : 검색어와 페이지 번호를 같이 담기위해 사용
 	 * @return list
@@ -83,7 +78,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	}
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 공지사항 목록 중에서 제목과 작성자, 상세내용에 검색한 단어가 포함 된 글이 몇개 인지 보여준다.
 	 * @param search : 검색된 단어
 	 * @return int
@@ -94,7 +88,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	}
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 봉사후기 목록 중에서 제목과 작성자, 상세 내용중 검색한 단어가 포함 된 글의 목록을 가져온다.
 	 * @param sebvo : 검색어와 페이지 번호를 같이 담기위해 사용
 	 * @return list
@@ -105,7 +98,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	}
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 봉사후기 목록 중에서 제목과 작성자, 상세내용에 검색한 단어가 포함 된 글이 몇개 인지 보여준다.
 	 * @param search : 검색된 단어
 	 * @return int
@@ -116,7 +108,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	}
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : QnA 목록 중에서 제목과 작성자, 상세 내용중 검색한 단어가 포함 된 글의 목록을 가져온다.
 	 * @param sebvo : 검색어와 페이지 번호를 같이 담기위해 사용
 	 * @return list
@@ -127,7 +118,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	}
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : QnA 목록 중에서 제목과 작성자, 상세내용에 검색한 단어가 포함 된 글이 몇개 인지 보여준다.
 	 * @param search : 검색된 단어
 	 * @return int
@@ -138,7 +128,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	}
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 봉사 목록 중에서 제목과 상세 내용중 검색한 단어가 포함 된 글의 목록을 가장 최근 글 3개만 가져온다.
 	 * @param search : 검색된 단어
 	 * @return list
@@ -150,7 +139,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	}
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 공지사항 목록 중에서 제목과 작성자, 상세 내용중 검색한 단어가 포함 된 글의 목록을 가장 최근 글 3개만 가져온다.
 	 * @param search : 검색된 단어
 	 * @return list
@@ -162,7 +150,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	}
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : 봉사 후기 목록 중에서 제목과 작성자, 상세 내용중 검색한 단어가 포함 된 글의 목록을 가장 최근 글 3개만 가져온다.
 	 * @param search : 검색된 단어
 	 * @return list
@@ -174,7 +161,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	}
 	
 	/**
-	 * 작성자 : 백지영
 	 * 내용 : QnA 목록 중에서 제목과 작성자, 상세 내용중 검색한 단어가 포함 된 글의 목록을 가장 최근 글 3개만 가져온다.
 	 * @param search : 검색된 단어
 	 * @return list

@@ -9,7 +9,6 @@ public class CommentVO {
 	
 	public CommentVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public CommentVO(int commentNo, String writer, String content,

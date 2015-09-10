@@ -1,5 +1,4 @@
 package org.log5j.ymv.model.board;
-//area => location
 /*
  * recruitingStart 봉사 모집 시작 날짜
  * volunteeringStartDate 실제 봉사 시작 날짜
@@ -17,7 +16,6 @@ public class RecruitBoardVO implements BoardVO{
 	private int memberNo;
 	private String postDate;
 	private int hit;
-	//확인하기
 	private String checkDate;
 	private String mojib;
 	private String volunteeringStartDate;

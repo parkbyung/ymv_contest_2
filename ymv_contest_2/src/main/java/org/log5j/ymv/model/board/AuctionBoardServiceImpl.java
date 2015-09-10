@@ -30,7 +30,6 @@ public AuctionBoardVO findAuctionBoardByBoardNo(int boardNo) {
 	return auctionBoardDAO.findAuctionBoardByBoardNo(boardNo);
 }
 
-
 @Override
 public void updateAuctionBoard(AuctionBoardVO vo) {
 	auctionBoardDAO.auctionBoardUpdate(vo);
@@ -40,8 +39,6 @@ public void updateAuctionBoard(AuctionBoardVO vo) {
 public void deleteAuctionBoard(String boardNo) {
 	auctionBoardDAO.auctionBoardDelete(boardNo);
 }
-
-
 
 @Override
 public void registerAuctionBoard(AuctionBoardVO abvo) {
@@ -60,7 +57,6 @@ public PictureVO findPicture(int pictureNo) {
 
 @Override
 public void deletePicture(int pictureNo) {
-	// TODO Auto-generated method stub
 	auctionBoardDAO.deletePicture(pictureNo);
 }
 
@@ -74,6 +70,7 @@ public AuctionBoardVO getPostingByNoticeBoardNoUpdateHit(int boardNo) {
 public void updateCurrentPrice(AuctionBoardVO abvo) {
 	auctionBoardDAO.updateCurrentPrice(abvo);
 }
+
 @Override
 public AuctionBoardVO setDate(AuctionBoardVO abvo) {      
       String EndDate[] = abvo.getEndDate().split(" ");
@@ -93,7 +90,6 @@ public int updatePrice(AuctionBoardVO auvo) {
 @Override
 public void updatePicture(PictureVO pvo) {
 	auctionBoardDAO.updatePicture(pvo);
-	
 }
 
 @Override
@@ -101,37 +97,4 @@ public void updateBidder(AuctionBoardVO abvo) {
 	auctionBoardDAO.updateBidder(abvo);
 	
 }
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

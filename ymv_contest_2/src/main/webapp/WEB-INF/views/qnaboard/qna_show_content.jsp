@@ -44,7 +44,8 @@
 						<input type="button" onclick="checkDelete()" value="삭제"
 							class="btn btn-default btn-xs">
 					</c:when>
-				</c:choose> <c:choose>
+				</c:choose>
+				<c:choose>
 					<c:when
 						test="${sessionScope.mvo.memberNo==requestScope.qvo.memberNo}">
 						<a

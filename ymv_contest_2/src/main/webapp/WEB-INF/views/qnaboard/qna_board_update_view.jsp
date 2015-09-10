@@ -26,11 +26,9 @@
 				return;
 			}
 		});
-      
-      
    });
-
 </script>
+
 <div class="col-md-6 col-md-offset-3">
 <h3>QnA 수정</h3>
 <form id="qnaForm" action="qna_board_update.ymv" method="post" class="form-horizontal">

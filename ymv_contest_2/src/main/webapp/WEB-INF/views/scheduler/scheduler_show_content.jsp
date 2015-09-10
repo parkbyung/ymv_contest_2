@@ -20,16 +20,12 @@ $(document).ready(function(){
 		$("#motivateForm").html(motivate);
 		
 		$("#VolunteerApplicant").click(function(){
-			//alert("버튼 클릭");
-			/* location.href="voluntary_register_applicant.ymv?recruitNo=${requestScope.rvo.recruitNo }&memberNo=1&motivate="+$("#motivate").val(); */ 
-			/* memberNo=${sessinScope.session.memberNo}우선 숫자 하나 넣어놓고 나중에 세션에서 받아온 memberNO로 바꾸기 */
 			$.ajax({
 				type:"get",
 				url:"voluntary_register_applicant.ymv",				
 				data:"recruitNo=${requestScope.rvo.recruitNo }&memberNo=1&motivate="+$("#motivate").val(),
 				dataType:"json", 
 				success:function(data){
-					//alert(data);
 					if(data==true){
 						alert("이미 신청하셨습니다.");
 						$("#motivate").val("");
@@ -41,10 +37,9 @@ $(document).ready(function(){
 			});
 		});
 	});//click
-	
-	
 });
 </script>
+
 <div class="col-md-12">
 	<div class="col-md-12">
 		<table class="content">

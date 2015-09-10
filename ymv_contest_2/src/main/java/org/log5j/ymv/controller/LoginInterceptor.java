@@ -11,7 +11,6 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.WebContentInterceptor;
 /**
  * 
- * @작성자 : 임영학
  * @내용 : 로그인 체크가 필요하지 않는 메서드에는 새로 생성한 
  * @NoCheckLogin 어노테이션을 선언하고 
  * @NoCheckLogin 어노테이션이 선언되지 않는 메서드를 구분하여 
@@ -58,7 +57,7 @@ public class LoginInterceptor extends WebContentInterceptor {
         }
         //NoCheckLogin 어노테이션이 없음으로 로그인 체크 하지 않음
         else {
-            //TODO 추가작업
+
         }
       return true;
     }   

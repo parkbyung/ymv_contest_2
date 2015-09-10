@@ -28,32 +28,17 @@
 											  }
 										});
 					});//documentready
-	$(document)
-			.on(
-					"click",
-					"#company",
-					function() {
-						$("#memberPicture")
-								.html(
-										"<img src='${initParam.root }/img/company2.jpg' id='company'><img src='${initParam.root }/img/normal1.jpg' id='normal'>");
-						$("#inputType")
-								.html(
-										"<input class='form-control input-sm' type='text' id='identityNo'><br></div><div class='col-sm-4 col-sm-offset-7'><input type='button' class='btn btn-primary' name='checkBtn' value='사업자등록번호등록'>");
+	$(document).on("click","#company",function() {
+						$("#memberPicture").html("<img src='${initParam.root }/img/company2.jpg' id='company'><img src='${initParam.root }/img/normal1.jpg' id='normal'>");
+						$("#inputType").html("<input class='form-control input-sm' type='text' id='identityNo'><br></div><div class='col-sm-4 col-sm-offset-7'><input type='button' class='btn btn-primary' name='checkBtn' value='사업자등록번호등록'>");
 					});
 
-	$(document)
-			.on(
-					"click",
-					"#normal",
-					function() {
-						$("#memberPicture")
-								.html(
-										"<img src='${initParam.root }/img/company1.jpg' id='company'><img src='${initParam.root }/img/normal2.jpg' id='normal'>");
-						$("#inputType")
-								.html(
-										"<input class='form-control input-sm' type='text' id='identityNo'><br></div><div class='col-sm-4 col-sm-offset-7'><input type='button' class='btn btn-primary' name='checkBtn' value='주민등록번호 등록'>");
+	$(document).on("click","#normal",function() {
+						$("#memberPicture").html("<img src='${initParam.root }/img/company1.jpg' id='company'><img src='${initParam.root }/img/normal2.jpg' id='normal'>");
+						$("#inputType").html("<input class='form-control input-sm' type='text' id='identityNo'><br></div><div class='col-sm-4 col-sm-offset-7'><input type='button' class='btn btn-primary' name='checkBtn' value='주민등록번호 등록'>");
 					});
 </script>
+
 <div class="section" style="position: relative; left: 20px;">
 	<div class="container">
 		<div class="row" id="memberPicture">

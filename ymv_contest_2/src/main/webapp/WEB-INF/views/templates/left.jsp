@@ -104,7 +104,6 @@ $("#modalBtn").click(function(){
 				<br>
 			</c:otherwise>
 		</c:choose>
-		<!-- <div id="profileView"></div> -->
 		<div class="panel panel-default"
 			style="position: relative; margin-left: 5%;">
 			<div class="panel-body">
@@ -214,7 +213,3 @@ $("#modalBtn").click(function(){
 		</div>
 	</div>
 </div>
-
-
-
-

@@ -16,8 +16,8 @@ public class MessageVO implements BoardVO {
 	
 	public MessageVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+	
 	public MessageVO(String messageType, String title, String content,
 			int receiveNo, String receiverName, int recruitNo) {
 		super();
@@ -28,8 +28,6 @@ public class MessageVO implements BoardVO {
 		this.receiverName = receiverName;
 		this.recruitNo = recruitNo;
 	}
-
-
 
 	public int getMessageNo() {
 		return messageNo;

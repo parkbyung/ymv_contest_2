@@ -18,7 +18,6 @@
 				<tr>
 					<th class="info">분야</th>
 					<td><select id="field" name="field">
-							<!-- 분야(노인, 아동, 장애, 동물, 환경) DB에서 받아오기 -->
 							<option value="${requestScope.sdvo.field }">${requestScope.sdvo.field }</option>
 							<c:forEach items="${requestScope.fieldlist }" var="f">
 								<c:if test="${requestScope.sdvo.field != f.field}">
@@ -31,7 +30,6 @@
 				<tr>
 					<th class="info">지역</th>
 					<td><select id="location" name="location">
-							<!-- 지역(*도 별로) DB에서 받아오기 -->
 							<option value="${requestScope.sdvo.location}">${requestScope.sdvo.location}</option>
 							<c:forEach items="${requestScope.locationlist }" var="l">
 								<c:if test="${requestScope.sdvo.location != l.location }">
@@ -45,7 +43,6 @@
 					<th class="info">시작시간</th>
 					<td> <select id="startTime"
 						name="volunteeringStartTime">
-							<!-- 한시간 단위로 하기 -->
 							<option value="${requestScope.sdvo.volunteeringStartTime}">${requestScope.sdvo.volunteeringStartTime}</option>
 							<option value="06:00">06:00</option>
 							<option value="07:00">07:00</option>
@@ -72,7 +69,6 @@
 					<th class="info">끝시간</th>
 					<td>
 						<select id="endTime" name="volunteeringEndTime">
-							<!-- 한시간 단위로 하기 -->
 							<option value="${requestScope.sdvo.volunteeringEndTime}">${requestScope.sdvo.volunteeringEndTime}</option>
 							<option value="06:00">06:00</option>
 							<option value="07:00">07:00</option>

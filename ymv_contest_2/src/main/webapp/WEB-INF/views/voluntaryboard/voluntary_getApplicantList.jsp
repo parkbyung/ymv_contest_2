@@ -14,6 +14,7 @@
 		});
 	});
 </script>
+
 <form action="voluntary_applicantOK.ymv" id="checkForm" method="get">
 <c:forEach items="${requestScope.list }" var="applicant">
 	<input type="checkbox" name="memberNo" value="${applicant.memberNo }">${applicant.id } + ${applicant.name } + ${applicant.mailAddress } + ${applicant.motivate } <br>

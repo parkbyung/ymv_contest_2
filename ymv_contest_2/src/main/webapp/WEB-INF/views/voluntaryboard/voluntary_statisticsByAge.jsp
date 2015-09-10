@@ -4,7 +4,6 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#10Btn").click(function(){
-			//alert($(this).val());
 			 $.ajax({
 					type:"post",
 					url:"voluntary_selectStatisticsByAge.ymv",				
@@ -21,15 +20,12 @@
 							table+="</tr>";
 						});
 						table+="</table></div></div></div>";
-						
 						$("#statistics").html(table);
-						
 					}
 				});//ajax 		
 		});
 		
 		$("#20Btn").click(function(){
-			//alert($(this).val());
 			 $.ajax({
 					type:"post",
 					url:"voluntary_selectStatisticsByAge.ymv",				
@@ -46,14 +42,11 @@
 							table+="</tr>";
 						});
 						table+="</table></div></div></div>";
-						
 						$("#statistics").html(table);
-						
 					}
 				});//ajax 		
 		});
 		$("#30Btn").click(function(){
-			//alert($(this).val());
 			 $.ajax({
 					type:"post",
 					url:"voluntary_selectStatisticsByAge.ymv",				
@@ -70,14 +63,11 @@
 							table+="</tr>";
 						});
 						table+="</table></div></div></div>";
-						
 						$("#statistics").html(table);
-						
 					}
 				});//ajax 		
 		});
 		$("#40Btn").click(function(){
-			//alert($(this).val());
 			 $.ajax({
 					type:"post",
 					url:"voluntary_selectStatisticsByAge.ymv",				
@@ -94,14 +84,11 @@
 							table+="</tr>";
 						});
 						table+="</table></div></div></div>";
-						
 						$("#statistics").html(table);
-						
 					}
 				});//ajax 		
 		});
 		$("#50Btn").click(function(){
-			//alert($(this).val());
 			 $.ajax({
 					type:"post",
 					url:"voluntary_selectStatisticsByAge.ymv",				
@@ -118,14 +105,11 @@
 							table+="</tr>";
 						});
 						table+="</table></div></div></div>";
-						
 						$("#statistics").html(table);
-						
 					}
 				});//ajax 		
 		});
 		$("#0Btn").click(function(){
-			//alert($(this).val());
 			 $.ajax({
 					type:"post",
 					url:"voluntary_selectStatisticsByAge.ymv",				
@@ -142,9 +126,7 @@
 							table+="</tr>";
 						});
 						table+="</table></div></div></div>";
-						
 						$("#statistics").html(table);
-						
 					}
 				});//ajax 		
 		});
@@ -171,52 +153,3 @@
 		<span id="statistics">
 	</span>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<%-- <br><br>
-		<table border="1" cellpadding="5">
-			<tr>
-				<th>순위</th>
-				<th>분야</th>
-				<th>신청수</th>
-				<th>나이</th>
-			</tr>
-			<c:forEach items="${requestScope.list}" var="i">
-				<tr>
-					<td>${i.RANKING }</td>
-					<td>${i.FIELD }</td>
-					<td>${i.APPLICATE_COUNT }</td>
-					<td>${i.AGE }</td>
-					<!-- {RANKING=1, FIELD=아동, AGE=20, APPLICATE_COUNT=18} -->
-				</tr>
-			</c:forEach>
-		</table> --%>

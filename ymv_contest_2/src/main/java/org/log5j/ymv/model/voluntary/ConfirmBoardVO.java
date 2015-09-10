@@ -19,9 +19,7 @@ public class ConfirmBoardVO {
 	
 	public ConfirmBoardVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
 
 	public ConfirmBoardVO(int boardNo, String title, String field,
 			String location, String age, String recruitingStart,

@@ -50,10 +50,6 @@
 				</c:forEach>
 			</tbody>
 		</table>
-<!-- 봉사신청 내역확인 하는 곳인데 글쓰기 버튼이 필요한가? -->
-<%-- <c:if test="${sessionScope.mvo.memberType=='company' }">
-		<a href="${initParam.root }voluntary_register_view.ymv">글쓰기	</a>
-</c:if> --%>
 <br></br>
 <div class = "text-center">
 		<ul class="pagination">
@@ -93,14 +89,3 @@
 		</ul>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-

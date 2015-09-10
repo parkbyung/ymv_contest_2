@@ -16,7 +16,6 @@ public class AuctionBoardVO implements BoardVO{
 	
 	public AuctionBoardVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public AuctionBoardVO(int boardNo, String title, String content,

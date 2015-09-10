@@ -96,8 +96,6 @@ $(document).ready(function () {
     });
 });</script>
 
-  
-
 	<div class="col-md-10 col-sm-offset-1">
 		<h2>봉사 등록</h2>
 		<form id="recruitForm"
@@ -132,7 +130,6 @@ $(document).ready(function () {
 						<input type="radio"
 						name="age" value="전체">전체 <input type="radio" name="age"
 						value="학생">학생 <input type="radio" name="age" value="성인">성인
-						<!-- 전체, 학생, 성인으로 나눠서 -->
 					</td>
 				</tr>
 				<tr>
@@ -151,7 +148,6 @@ $(document).ready(function () {
 					<th class="info"><h4 class="text-center">봉사 시작/끝 시간</h4></th>
 					<td> 
 						<select id="volunteeringStartTime" name="volunteeringStartTime">
-							<!-- 한시간 단위로 하기 -->
 							<option value="">-시작시간-</option>
 							<option value="06:00">06:00</option>
 							<option value="07:00">07:00</option>
@@ -175,7 +171,6 @@ $(document).ready(function () {
 					</select>
 					&nbsp;&nbsp;  ~	&nbsp; &nbsp; 
 					<select id="volunteeringEndTime" name="volunteeringEndTime">
-							<!-- 한시간 단위로 하기 -->
 							<option value="">-끝시간-</option>
 							<option value="06:00">06:00</option>
 							<option value="07:00">07:00</option>
@@ -206,7 +201,6 @@ $(document).ready(function () {
 		</table>
 			<br> <div class = "col-sm-2 col-sm-offset-10">
 			<input type="submit" class = "btn btn-primary"value="글 등록"><br><br></div>
-			  
 		</form>
 		<br><br>
 					</div>

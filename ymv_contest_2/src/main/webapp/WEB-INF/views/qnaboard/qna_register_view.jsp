@@ -14,6 +14,7 @@
 		});
 	});
 </script>
+
 <div class="col-sm-6 col-sm-offset-3">
 	<h2>
 		<p class="text-center">Q & A 등록</p>

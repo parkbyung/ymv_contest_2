@@ -10,8 +10,5 @@
 		}else{
 			location.href = "${initParam.root}member_register_form.ymv";
 		}
-
-
-
 	}
 </script>

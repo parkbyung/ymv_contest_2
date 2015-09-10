@@ -6,17 +6,13 @@
 	<p class="text-center">봉사활동 확인서</p>
 </h3>
 <br>
-<!-- style="width: 100px; height: 500px;" -->
-
 <style> 
 @page a4sheet { size: 21.0cm 29.7cm } 
 .a4 { page: a4sheet; page-break-after: always } 
 </style>
 
-
 <div class="col-sm-3 col-sm-offset-3" align="center">
 	<table class="a4" border="1" cellpadding="5" width="620px" height="630px" style="table-layout:fixed">
-
 		<tr>
 			<th rowspan="3" colspan="1" style="text-align: center;">인적사항</th>
 			<th align="center" colspan="1" style="text-align: center;">성명</th>
@@ -50,7 +46,6 @@
 			<th style="text-align: center;">전화번호</th>
 			<td align="center"  colspan="1" >031)1234-5678</td>
 		</tr>
-		
 			<tr>
 				<div class="col-md-12">
 				<td align="center"  colspan="5" >
