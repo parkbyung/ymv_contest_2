@@ -13,10 +13,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="volunteeringEndDate" column="volunteering_end_date"/>
       <result property="volunteeringStartTime" column="volunteering_start_time"/>
       <result property="volunteeringEndTime" column="volunteering_end_time"/>
+       <result property="applicantChoice" column="applicant_choice"/>
    </resultMap>
 	<select id="findSchedulerList" resultMap="boardRM" parameterType="sdvo">
-		select recruit_no, title, field, location, age,recruitingStart as checkDate,volunteering_start_time,volunteering_end_time,recruiting_end,volunteering_start_date,volunteering_end_date
-		from(select recruit_no, title, field,location, age,volunteering_start_time, volunteering_end_time,recruiting_start as recruitingStart,recruiting_end,volunteering_start_date,volunteering_end_date from recruit order by recruit_no desc)
+		select recruit_no, title, field, location, age,recruitingStart as checkDate,volunteering_start_time,volunteering_end_time,recruiting_end,volunteering_start_date,volunteering_end_date,applicant_choice 
+		from(select recruit_no, title, field,location, age,volunteering_start_time, volunteering_end_time,recruiting_start as recruitingStart,recruiting_end,volunteering_start_date,volunteering_end_date,applicant_choice from recruit order by recruit_no desc)
 		<where>
 			<if test="field!='' ">
 				AND field=#{field}
@@ -40,10 +41,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<select id="findSearchList" resultMap="boardRM" parameterType="scvo">
-		select recruit_no, title, field, location, age,volunteering_start_date,volunteering_end_date,recruiting_end as recruitingEnd
+		select recruit_no, title, field, location, age,volunteering_start_date,volunteering_end_date,recruiting_end as recruitingEnd,applicant_choice
 		from(select recruit_no, title, field, location, age, volunteering_start_date,volunteering_end_date,recruiting_end,
-		ceil(rownum/5) as page from(select recruit_no, title, field,	location, age,volunteering_start_date, volunteering_end_date
-		,recruiting_end from recruit
+		ceil(rownum/5) as page,applicant_choice from(select recruit_no, title, field,	location, age,volunteering_start_date, volunteering_end_date
+		,recruiting_end,applicant_choice from recruit
 		<where>
 			<if test="field != ''">
 				AND field=#{field}

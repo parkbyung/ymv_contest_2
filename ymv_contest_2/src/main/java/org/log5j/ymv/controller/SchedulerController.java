@@ -55,14 +55,10 @@ public class SchedulerController {
 		schedulerMap.put("dateList", dateList);
 		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		for(int i = 0; i<list.size(); i ++){
-			int compare = today.compareTo(((RecruitBoardVO) list.get(i)).getRecruitingEnd());
-			if(compare > 0){
-				((RecruitBoardVO)list.get(i)).setMojib("모집완료");
-			}else if(compare < 0){
-				((RecruitBoardVO)list.get(i)).setMojib("모집중");
-			}else{
-				((RecruitBoardVO)list.get(i)).setMojib("모집중");
-			}
+			RecruitBoardVO rbvo=(RecruitBoardVO) list.get(i);
+			String choice = rbvo.getApplicantChoice();
+			recruitBoardService.checkDate(rbvo,choice);
+			list.set(i, rbvo);
 		}
 		return schedulerMap;
 	}
@@ -78,14 +74,10 @@ public class SchedulerController {
 		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		ListVO lvo = schedulerService.findSearchList(scvo,request);
 		for(int i = 0; i<lvo.getList().size(); i ++){
-			int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getRecruitingEnd());
-			if(compare > 0){
-				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
-			}else if(compare < 0){
-				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
-			}else{
-				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
-			}
+			RecruitBoardVO rbvo=(RecruitBoardVO) lvo.getList().get(i);
+			String choice = rbvo.getApplicantChoice();
+			recruitBoardService.checkDate(rbvo,choice);
+			lvo.setList(i,rbvo);
 		}
 		mv.addObject("lvo", lvo).addObject("scvo", scvo);
 		return mv;

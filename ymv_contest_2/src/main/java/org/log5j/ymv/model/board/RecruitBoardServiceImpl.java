@@ -146,8 +146,6 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		rbvo=checkDate(rbvo);
 		if(choice.equals("Y")){
 			rbvo.setMojib("모집완료");
-		}else{
-			rbvo.setMojib("모집중");
 		}
 		return rbvo;
 	}
