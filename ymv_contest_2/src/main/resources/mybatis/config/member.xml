@@ -44,4 +44,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="checkIdentityNo" resultType="int">
 		select count(*) from member where identity_no=#{value}
 	</select>
+	
+	<delete id="deleteVoluntaryServiceApplicateNo" parameterType="int">
+      	delete from voluntary_service_applicate where recruit_no=#{recruitNo}
+   	</delete>
  </mapper> 
