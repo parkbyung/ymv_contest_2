@@ -55,7 +55,7 @@ public class LoginInterceptor extends WebContentInterceptor {
             	}
             }
         }
-        //NoCheckLogin 어노테이션이 없음으로 로그인 체크 하지 않음
+        //NoCheckLogin 어노테이션이 있음으로 로그인 체크 하지 않음
         else {
 
         }

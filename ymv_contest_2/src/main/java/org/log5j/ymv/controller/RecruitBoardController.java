@@ -148,6 +148,7 @@ public class RecruitBoardController {
 	 * @return Model : voluntary_register_view.jsp
 	 */
 	@RequestMapping("voluntary_register_view.ymv")
+	@CompanyLoginCheck
 	public ModelAndView RegisterVolunteerForm() {
 		// 분야 DB에서 리스트를 받아온다.
 		List<FieldVO> Flist = recruitBoardService.findFieldList();
@@ -166,6 +167,7 @@ public class RecruitBoardController {
 	 * @return voluntary_show_content_recruit_vol_type.ymv : recruitNo도 함께 리다이렉트 시켜준다.
 	 */
 	@RequestMapping("volunteer_register.ymv")
+	@CompanyLoginCheck
 	public String RegisterVolunteer_result(HttpServletRequest request,RecruitBoardVO rbvo){
 		recruitBoardService.registerVolunteer(rbvo);
 		return "redirect:voluntary_show_content.ymv?noApplicate=yes&recruitNo=" + rbvo.getRecruitNo();
@@ -176,6 +178,7 @@ public class RecruitBoardController {
 	 * @return
 	 */
 	@RequestMapping("voluntary_delete.ymv")
+	
 	   public ModelAndView DeleteRecruitVol(HttpServletRequest request){
 	         int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
 	         int pictureNo=recruitNo;
