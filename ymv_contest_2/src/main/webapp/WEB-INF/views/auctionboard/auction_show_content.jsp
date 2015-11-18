@@ -13,7 +13,7 @@
 			}else if(isNaN($("#auctionNewPrice ").val())){
 				alert("가격은 숫자만 입력하실 수 있습니다.");
 				return;
-			}else if(parseFloat($("#auctionNewPrice ").val()) < parseFloat("${requestScope.auvo.currentPrice}")){
+			}else if(parseFloat($("#auctionNewPrice ").val()) == parseFloat("${requestScope.auvo.currentPrice}")){
 				alert("현재가격보다 큰 금액을 입력해주세요.");
 				return;
 			}else{
