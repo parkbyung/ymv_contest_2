@@ -8,7 +8,7 @@
 <script>
 $(document).ready(function(){
 	$("#sponsorForm").submit(function() {
-		if ($("#currentPrice").val() == "") {
+		if ($("#currentPrice").val() == "" || $("#currentPrice").val() == null) {
 			alert("금액을 선택해 주세요");
 			return false;
 		}
